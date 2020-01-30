@@ -1,0 +1,127 @@
+/*
+ * @Author: your name
+ * @Date: 2020-01-17 14:05:34
+ * @LastEditTime : 2020-01-28 22:00:52
+ * @LastEditors  : Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /music_app/js/navigation/AppNavigation.js
+ */
+import * as React from 'react'
+import {connect} from 'react-redux'
+import {createAppContainer, createSwitchNavigator, createStackNavigator} from 'react-navigation'
+import {createReactNavigationReduxMiddleware, reduxifyNavigator} from 'react-navigation-redux-helpers'
+
+import WeclomePage from '../view/Welcome/WelcomePage'
+import IndexPage from '../view/Index/IndexPage'
+import PersonalPage from '../view/Personal/PersonalPage'
+import RecommendPage from '../view/Recommend/RecommendPage'
+import HomePage from '../view/Home/HomePage'
+import LoginPage from '../view/Personal/Login'
+import VideoPage from '../view/Video/VideoPage'
+import PersonalInformation from '../view/Personal/PersonalInformation'
+import MyFriend from '../view/Personal/MyFriend'
+import MyPersoanl from '../view/Personal/MyPersoanl'
+import DressedUp from '../view/Personal/DressedUp'
+
+export const rootCom = 'Init'
+
+const InitNavigator = createStackNavigator({
+  WeclomePage: {
+    screen: WeclomePage,
+    navigationOptions: {
+      header: null,
+    },
+  },
+});
+
+const MainNavigator = createStackNavigator({
+  HomePage: {
+    screen: HomePage,
+    navigationOptions: {
+      header: null,
+    }
+  },
+  IndexPage: {
+    screen: IndexPage,
+    navigationOptions: {
+      header: null,
+    }
+  },
+  PersonalPage: {
+    screen: PersonalPage,
+    navigationOptions: {
+      header: null,
+    }
+  },
+  RecommendPage: {
+    screen: RecommendPage,
+    navigationOptions: {
+      header: null,
+    }
+  },
+  LoginPage: {
+    screen: LoginPage,
+    navigationOptions: {
+      header: null,
+    }
+  },
+  VideoPage: {
+    screen: VideoPage,
+    navigationOptions: {
+      header: null,
+    }
+  },
+  PersonalInformation: {
+    screen: PersonalInformation,
+    navigationOptions: {
+      header: null,
+    }
+  },
+  MyFriend: {
+    screen: MyFriend,
+    navigationOptions: {
+      header: null
+    }
+  },
+  MyPersoanl: {
+    screen: MyPersoanl,
+    navigationOptions: {
+      header: null,
+    }
+  },
+  DressedUp: {
+    screen: DressedUp,
+    navigationOptions: {
+      header: null
+    }
+  }
+})
+
+export const RootNavigation = createAppContainer(
+  createSwitchNavigator(
+    {
+      Init: InitNavigator,
+      Main: MainNavigator,
+    },
+    {
+      navigationOptions: {
+        header: null,
+      },
+    },
+  ),
+);
+
+
+
+export const middleware = createReactNavigationReduxMiddleware(
+  'root',
+  state => state.nav,
+);
+
+const AppWithNavigationState = reduxifyNavigator(RootNavigation, 'root')
+
+const mapStateToProps = state => ({
+  state: state.nav,
+});
+
+export default connect(mapStateToProps)(AppWithNavigationState)
