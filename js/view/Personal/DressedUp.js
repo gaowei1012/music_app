@@ -1,11 +1,4 @@
-/*
- * @Author: your name
- * @Date: 2020-01-28 21:58:03
- * @LastEditTime : 2020-01-30 11:32:17
- * @LastEditors  : Please set LastEditors
- * @Description: In User Settings Edit
- * @FilePath: /music_app/js/view/Personal/DressedUp.js
- */
+
 'use strict'
 
 import * as React from 'react'
@@ -25,6 +18,6 @@ export default class DressedUp extends React.Component {
 const sytles =StyleSheet.create({
   container: {
     flex: flex,
-    alignItems: center,
+    alignItems: center
   }
 })

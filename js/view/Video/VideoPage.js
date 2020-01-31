@@ -1,11 +1,4 @@
-/*
- * @Author: your name
- * @Date: 2020-01-28 11:37:56
- * @LastEditTime : 2020-01-28 13:11:39
- * @LastEditors  : Please set LastEditors
- * @Description: In User Settings Edit
- * @FilePath: /music_app/js/view/Video/VideoPage.js
- */
+
 'use strict'
 
 import * as React from 'react'

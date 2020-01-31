@@ -1,11 +1,4 @@
-/*
- * @Author: your name
- * @Date: 2020-01-17 14:29:31
- * @LastEditTime : 2020-01-28 21:23:48
- * @LastEditors  : Please set LastEditors
- * @Description: In User Settings Edit
- * @FilePath: /music_app/js/view/view/Welcome/WelcomePage.js
- */
+
 import * as React from 'react'
 import {View, Text, StyleSheet} from 'react-native'
 import NavigationUtil from '../../utils/NavigationUtil'
