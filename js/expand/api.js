@@ -26,7 +26,7 @@ module.exports = {
   // 获取热门歌手
   artist: 'artist/sublist',
   // 搜索歌曲
-  search: 'search',
+  search: 'search?keywords=',
   // 点赞收藏
   subscribe: 'playlist/subscribe',
   // 歌词
@@ -75,4 +75,7 @@ module.exports = {
   djHot: 'dj/hot',
   // 电台 - 24小时节目榜
   djProgramToplist: 'dj/program/toplist/hours',
+  // 私人FM
+  persoanlFm: 'personal_fm',
+  
 }

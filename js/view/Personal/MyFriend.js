@@ -1,11 +1,4 @@
-/*
- * @Author: your name
- * @Date: 2020-01-28 21:18:27
- * @LastEditTime : 2020-01-30 11:29:56
- * @LastEditors  : Please set LastEditors
- * @Description: In User Settings Edit
- * @FilePath: /music_app/js/view/Personal/MyFriend.js
- */
+
 'use strict'
 
 import * as React from 'react'

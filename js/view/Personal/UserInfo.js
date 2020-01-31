@@ -1,17 +1,10 @@
-/*
- * @Author: your name
- * @Date: 2020-01-23 08:51:18
- * @LastEditTime : 2020-01-29 10:20:52
- * @LastEditors  : Please set LastEditors
- * @Description: 用户信息
- * @FilePath: /music_app/js/view/Personal/UserInfo.js
- */
+
 'use strict'
 
 import * as React from 'react'
-import {View, Text, StyleSheet, TouchableOpacity, Image, Alert} from 'react-native'
+import {View,Text,StyleSheet,TouchableOpacity,Image,Alert} from 'react-native'
 import actions from '../../redux/actions/index'
-import {screentHeight, screentWidth} from '../../utils/screenUtil'
+import {screentHeight,screentWidth} from '../../utils/screenUtil'
 import NavigationUtil from '../../utils/NavigationUtil'
 import {connect} from 'react-redux'
 import {

@@ -1,4 +1,4 @@
-
+'use strict'
 import * as React from 'react'
 import store from './redux/store/index'
 import {Provider} from 'react-redux'

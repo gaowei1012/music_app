@@ -1,11 +1,4 @@
-/*
- * @Author: your name
- * @Date: 2020-01-20 16:12:08
- * @LastEditTime : 2020-01-28 18:26:42
- * @LastEditors  : Please set LastEditors
- * @Description: In User Settings Edit
- * @FilePath: /music_app/js/redux/reducers/index/banner.js
- */
+'use strict'
 import types from '../../actionTypes/index'
 
 export default function onBannerAction(state = {}, action) {
