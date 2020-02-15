@@ -16,6 +16,10 @@ import banner from './index/banner';
 import getCode from './personal/user/getCode';
 import login from './personal/user/login';
 import signin from './personal/user/signin';
+import radio from './index/radio'
+import top from './index/list'
+import playHigh from './index/topPlaylistHigh'
+import daily from './personal/daily'
 
 
 const navState = RootNavigation.router.getStateForAction(
@@ -34,6 +38,10 @@ const root = combineReducers({
   getCode,
   login,
   signin,
+  radio,
+  top,
+  playHigh,
+  daily,
 });
 
 export default root;

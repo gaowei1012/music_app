@@ -6,20 +6,30 @@
  * @Description: In User Settings Edit
  * @FilePath: /music_app/js/view/Index/components/BannerItem.js
  */
-import * as Reacrt from 'react'
+import * as React from 'react'
 import PropTypes from 'prop-types'
-import {View,StyleSheet} from 'react-native'
+import {View,StyleSheet,Image} from 'react-native'
 import {flex} from '../../../styles/constants'
+import Swipe from 'react-native-swiper'
 
-export default class BannerItem extends Reacrt.Component {
+export default class BannerItem extends React.Component {
   static propTypes = {
     imageHeight: PropTypes.number,
     imageWidth: PropTypes.number,
     data: PropTypes.array,
   }
+  state = {
+    data: [
+      {id: 1, image: 'https://iph.href.lu/375x120'},
+      {id: 2, image: 'https://iph.href.lu/375x120'},
+      {id: 3, image: 'https://iph.href.lu/375x120'},
+    ]
+  }
   render() {
-    const {data} = this.props
-    console.log('data--data--data', data)
+    // const {data} = this.props
+    const {data} = this.state
+    const {imageWidth, imageHeight} = this.props
+    //console.log('data--data--data', data)
     return (
       <View style={styles.container}>
         <Swipe
@@ -28,7 +38,7 @@ export default class BannerItem extends Reacrt.Component {
           horizontal={true}
         >
           {data.map(item => (
-            <Image style={[{width: imageWidth}, {height: imageHeight}]} key={item.id} source={item.url}/>
+            <Image style={[{width: imageWidth}, {height: imageHeight}]} key={item.id} source={{uri: item.url}}/>
           ))}
         </Swipe>
       </View>
@@ -38,6 +48,6 @@ export default class BannerItem extends Reacrt.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: flex,
+    flex: 1,
   }
 })

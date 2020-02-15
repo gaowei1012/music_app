@@ -77,5 +77,8 @@ module.exports = {
   djProgramToplist: 'dj/program/toplist/hours',
   // 私人FM
   persoanlFm: 'personal_fm',
-  
+  // 电台
+  radio: 'personalized/djprogram',
+  // 精选歌单
+  topPlaylistHigh:'/top/playlist/highquality'
 }

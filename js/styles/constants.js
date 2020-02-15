@@ -16,6 +16,7 @@ export const center = 'center';
 export const backgroundColor = '#eee';
 export const borderRaduis = 10;
 export const fontColor = '#333';
+export const defaultFontColor = '#999';
 export const spaceBetween = 'space-between';
 export const spaceAround = 'space-around';
 export const flexStart = 'flex-start';

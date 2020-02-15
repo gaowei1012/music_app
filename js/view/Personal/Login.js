@@ -1,11 +1,3 @@
-/*
- * @Author: your name
- * @Date: 2020-01-23 13:03:46
- * @LastEditTime : 2020-01-28 20:05:38
- * @LastEditors  : Please set LastEditors
- * @Description: In User Settings Edit
- * @FilePath: /music_app/js/view/Personal/Login.js
- */
 'use strict'
 
 import * as React from 'react'

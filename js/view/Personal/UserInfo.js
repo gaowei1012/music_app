@@ -19,9 +19,7 @@ import {
   spaceAround,
   fontSmallSize,
 } from '../../styles/constants'
-import {
-  dailySignin
-} from '../../expand/api'
+import {dailySignin} from '../../expand/api'
 
 
 class UserInfo extends React.Component {
@@ -35,6 +33,14 @@ class UserInfo extends React.Component {
       {id:4, title: '个性装扮', icon: require('../../images/personal/personalized.png'), com: 'DressedUp'},
     ],
   }
+  componentDidMount() {
+    //this.getDailyData()
+  }
+  // 签到
+  getDailyData() {
+    const {onDailySinger} = this.props
+    onDailySinger(dailySignin)
+  }
   // 跳转
   handleUserInfo=()=>{
     NavigationUtil.goPage({
@@ -47,7 +53,7 @@ class UserInfo extends React.Component {
     }, item)
   }
   // 签到
-  handeSignin=()=> {
+  handeSignin() {
     console.log('签到')
   }
   /* 顶部用户信息栏 */
@@ -69,7 +75,7 @@ class UserInfo extends React.Component {
               </View>
             </View>
             <TouchableOpacity
-              onPress={this.handeSignin}
+              onPress={() => this.handeSignin}
               style={styles.signBox}
               activeOpacity={1}
               >
@@ -99,9 +105,13 @@ class UserInfo extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({})
+const mapStateToProps = state => ({
+  daily: state.daily,
+})
 
-const mapDispatchToProps = dispatch => ({})
+const mapDispatchToProps = dispatch => ({
+  onDailySinger: url => dispatch(actions.onDailySinger(url))
+})
 
 export default connect(
   mapStateToProps,
@@ -175,7 +185,7 @@ const styles = StyleSheet.create({
     // backgroundColor: 'red',
     flexDirection: row,
     justifyContent: spaceAround,
-    marginTop: 6,
+    marginTop: 10,
   },
   menuInfo: {
     

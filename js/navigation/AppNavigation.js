@@ -22,6 +22,14 @@ import PersonalInformation from '../view/Personal/PersonalInformation'
 import MyFriend from '../view/Personal/MyFriend'
 import MyPersoanl from '../view/Personal/MyPersoanl'
 import DressedUp from '../view/Personal/DressedUp'
+import SingerPage from '../view/Index/SingerPage'
+import SingerDetailPage from '../view/Index/SingerDetail'
+import MoreSingerPage from '../view/Index/MoreSinger'
+import GuessLikePage from '../view/Index/GuessLikePage'
+import RankingPage from '../view/Index/RankingPage'
+import RadioPage from '../view/Index/RadioPage'
+import RecommenPage from '../view/Index/RecommenPage'
+import PlayListPage from '../view/Index/PlayListPage'
 
 export const rootCom = 'Init'
 
@@ -91,6 +99,54 @@ const MainNavigator = createStackNavigator({
   },
   DressedUp: {
     screen: DressedUp,
+    navigationOptions: {
+      header: null
+    }
+  },
+  SingerPage: {
+    screen: SingerPage,
+    navigationOptions: {
+      header: null
+    }
+  },
+  SingerDetailPage: {
+    screen: SingerDetailPage,
+    navigationOptions: {
+      header: null
+    }
+  },
+  MoreSingerPage: {
+    screen: MoreSingerPage,
+    navigationOptions: {
+      header: null
+    }
+  },
+  GuessLikePage: {
+    screen: GuessLikePage,
+    navigationOptions: {
+      header: null
+    }
+  },
+  RadioPage: {
+    screen: RadioPage,
+    navigationOptions: {
+      header: null
+    }
+  },
+  RankingPage: {
+    screen: RankingPage,
+    navigationOptions: {
+      header: null
+    }
+  },
+  RecommenPage: {
+    screen: RecommenPage,
+    navigationOptions: {
+      header: null
+    }
+  },
+  PlayListPage: {
+    screen: PlayListPage,
     navigationOptions: {
       header: null
     }

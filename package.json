@@ -22,6 +22,7 @@
     "react-native-elements": "^1.2.7",
     "react-native-gesture-handler": "^1.5.3",
     "react-native-reanimated": "^1.7.0",
+    "react-native-screens": "^2.0.0-beta.2",
     "react-native-swiper": "^1.6.0-rc.3",
     "react-native-ui-lib": "^5.1.2",
     "react-native-vector-icons": "^6.6.0",

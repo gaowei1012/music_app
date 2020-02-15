@@ -1,12 +1,3 @@
-/*
- * @Author: your name
- * @Date: 2019-12-18 13:57:29
- * @LastEditTime : 2019-12-25 17:28:25
- * @LastEditors  : Please set LastEditors
- * @Description: In User Settings Edit
- * @FilePath: /hehechaojidaxue/js/utils/NavigationUtil.js
- */
-
 'use strict';
 
 export default class NavigationUtil {

@@ -9,11 +9,19 @@
 
 import {onThemeChange} from '../actions/theme/index'
 import {onLoadBannerData} from '../actions/index/banner'
+import {onLoadRadioData} from '../actions/index/radio'
+import {onLoadTopListData} from '../actions/index/list'
+import {onLoadTopPlayListHigh} from '../actions/index/topPlaylistHigh'
 import {onGetCodeData, onLoginData} from '../actions/personal/user'
+import {onDailySinger} from '../actions/personal/daily'
 
 export default {
   onThemeChange,
   onLoadBannerData,
   onGetCodeData,
   onLoginData,
+  onLoadRadioData,
+  onLoadTopListData,
+  onLoadTopPlayListHigh,
+  onDailySinger,
 }

@@ -1,38 +1,36 @@
-/*
- * @Author: your name
- * @Date: 2020-01-28 12:25:49
- * @LastEditTime : 2020-01-30 16:34:06
- * @LastEditors  : Please set LastEditors
- * @Description: In User Settings Edit
- * @FilePath: /music_app/js/view/Index/SearchItem.js
- */
 'use strict'
 
 import * as React from 'react'
-import {View,TextInput,StyleSheet,Text} from 'react-native'
-import {center,row,spaceBetween,flexStart} from '../../styles/constants'
-
+import {View,TextInput,StyleSheet,Image,TouchableOpacity} from 'react-native'
+import {center,row,spaceBetween} from '../../styles/constants'
+import NavigationUtil from '../../utils/NavigationUtil'
 export default class SearchItem extends React.Component {
   renderTextInput() {
     return (
       <TextInput
         placeholder='搜索'
-        style={{height: 36, alignSelf: flexStart, width: 260}}
+        style={styles.textInput}
       />
     )
+  }
+  goToNoticePage() {
+    NavigationUtil.goPage({}, '')
+  }
+  goToMuiscPage() {
+    NavigationUtil.goPage({}, '')
   }
   render() {
     return (
       <View style={styles.container}>
-        <View>
-          <Text>听</Text>
-        </View>
-        <View>
+        <TouchableOpacity onPress={() => this.goToNoticePage} >
+          <Image style={styles.notice} source={require('../../images/common/notice.png')} />
+        </TouchableOpacity>
+        <View style={styles.inputBox}>
           {this.renderTextInput()}
         </View>
-        <View>
-          <Text>l-icon</Text>
-        </View>
+        <TouchableOpacity onPress={() => this.goToMuiscPage} >
+          <Image style={styles.music} source={require('../../images/common/topMusic.png')}/>
+        </TouchableOpacity>
       </View>
     )
   }
@@ -45,6 +43,24 @@ const styles = StyleSheet.create({
     flexDirection: row,
     justifyContent: spaceBetween,
     alignSelf: center,
-    alignItems: center
+    alignItems: center,
+  },
+  notice: {
+    width: 25,
+    height: 25,
+  },
+  music: {
+    width: 25,
+    height: 25,
+  },
+  inputBox: {
+    width: 280,
+    backgroundColor: '#eee',
+    borderRadius: 36,
+  },
+  textInput: {
+    width: 260,
+    height: 36,
+    marginLeft: 10,
   }
 })

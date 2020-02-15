@@ -1,6 +1,4 @@
-
 'use strict'
-
 import * as React from 'react'
 import {View,Text,StyleSheet,SafeAreaView} from 'react-native'
 import {flex,center,iosFontFmily} from '../../styles/constants'
