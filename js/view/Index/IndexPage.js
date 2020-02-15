@@ -1,20 +1,20 @@
 'use strict'
 import * as React from 'react'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import actions from '../../redux/actions'
-import {View,SafeAreaView,Text,StyleSheet,ScrollView} from 'react-native'
-import {flex, center} from '../../styles/constants'
-import {banner_url} from '../../expand/api'
-import BannerItem from './components/BannerItem'
+import { View, SafeAreaView, Text, StyleSheet, ScrollView } from 'react-native'
+import { flex, center } from '../../styles/constants'
+import { banner_url } from '../../expand/api'
+import SwiperItem from './components/Swiper'
 import SearchItem from './SearchItem'
 import MenuItem from './components/MenuItem'
-import {screentWidth} from '../../utils/screenUtil'
+import { screentWidth } from '../../utils/screenUtil'
 import DailyMood from './components/DailyMood'
 import GuessLikePage from './components/GuessLike'
 import SelectedPlaylist from './components/SelectedPlaylist'
 
 class IndexPage extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props)
   }
   componentDidMount() {
@@ -22,35 +22,35 @@ class IndexPage extends React.Component {
   }
   // 获取banner数据
   getBannerData() {
-    const {onLoadBannerData} = this.props
+    const { onLoadBannerData } = this.props
     onLoadBannerData(banner_url)
     console.log('banner', this.props.banner)
   }
   rederBanner() {
-    const {banner} = this.props.banner
+    const { banner } = this.props.banner
     console.log('banner-------------banner', banner)
-    return <View style={styles.bannerBox}>
-      <BannerItem imageWidth={345} imageHeight={60}/>
-    </View>
+    return null
   }
   renderMenuItem() {
-    return <MenuItem/>
+    return <MenuItem />
   }
   renderDailyMood() {
-    return <DailyMood/>
+    return <DailyMood />
   }
   renderSelectedPlaylists() {
-    return <SelectedPlaylist/>
+    return <SelectedPlaylist />
   }
   renderGuessLike() {
-    return <GuessLikePage/>
+    return <GuessLikePage />
   }
   render() {
     return (
       <SafeAreaView style={styles.container}>
-        <SearchItem/>
+        <SearchItem />
         <ScrollView>
-          {this.rederBanner()}
+          <View style={{width: screentWidth, height: 90}}>
+          <SwiperItem/>
+          </View>
           {this.renderMenuItem()}
           {this.renderDailyMood()}
           {this.renderSelectedPlaylists()}
@@ -75,13 +75,17 @@ export default connect(
 
 const styles = StyleSheet.create({
   container: {
-    flex:flex
+    flex: flex
   },
   bannerBox: {
     marginTop: 10,
-    backgroundColor: '#eee',
+    //backgroundColor: '#eee',
     width: 345,
     height: 80,
     alignSelf: center,
+  },
+  shopSwiperBox: {
+    width: screentWidth,
+    height: 99,
   }
 })
