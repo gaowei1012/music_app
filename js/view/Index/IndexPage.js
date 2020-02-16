@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import actions from '../../redux/actions'
 import { View, SafeAreaView, Text, StyleSheet, ScrollView } from 'react-native'
 import { flex, center } from '../../styles/constants'
-import { banner_url } from '../../expand/api'
+import { banner_url, WeatherUrl } from '../../expand/api'
 import SwiperItem from './components/Swiper'
 import SearchItem from './SearchItem'
 import MenuItem from './components/MenuItem'
@@ -22,9 +22,10 @@ class IndexPage extends React.Component {
   }
   // 获取banner数据
   getBannerData() {
-    const { onLoadBannerData } = this.props
+    const { onLoadBannerData, onLoadWeatherData } = this.props
     onLoadBannerData(banner_url)
-    console.log('banner', this.props.banner)
+    onLoadWeatherData(WeatherUrl)
+    //console.log('banner', this.props.banner)
   }
   rederBanner() {
     const { banner } = this.props.banner
@@ -35,7 +36,7 @@ class IndexPage extends React.Component {
     return <MenuItem />
   }
   renderDailyMood() {
-    return <DailyMood />
+    return <DailyMood data={this.props.weather}/>
   }
   renderSelectedPlaylists() {
     return <SelectedPlaylist />
@@ -63,9 +64,11 @@ class IndexPage extends React.Component {
 
 const mapStateToProps = state => ({
   banner: state.banner,
+  weather: state.weather,
 })
 const mapDispatchToProps = dispatch => ({
-  onLoadBannerData: url => dispatch(actions.onLoadBannerData(url))
+  onLoadBannerData: url => dispatch(actions.onLoadBannerData(url)),
+  onLoadWeatherData: url => dispatch(actions.onLoadWeatherData(url)),
 })
 
 export default connect(

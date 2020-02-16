@@ -14,6 +14,7 @@ import {onLoadTopListData} from '../actions/index/list'
 import {onLoadTopPlayListHigh} from '../actions/index/topPlaylistHigh'
 import {onGetCodeData, onLoginData} from '../actions/personal/user'
 import {onDailySinger} from '../actions/personal/daily'
+import {onLoadWeatherData} from '../actions/index/weather'
 
 export default {
   onThemeChange,
@@ -24,4 +25,5 @@ export default {
   onLoadTopListData,
   onLoadTopPlayListHigh,
   onDailySinger,
+  onLoadWeatherData,
 }

@@ -80,5 +80,8 @@ module.exports = {
   // 电台
   radio: 'personalized/djprogram',
   // 精选歌单
-  topPlaylistHigh:'/top/playlist/highquality'
+  topPlaylistHigh:'/top/playlist/highquality',
+  // 首页天气
+  WeatherUrl : 'https://free-api.heweather.net/s6/weather/now?location=109.36645,34.07863&key=a54b1c81d8e343929a3a79659040a51a',
+
 }
