@@ -16,27 +16,31 @@ import SelectedPlaylist from './components/SelectedPlaylist'
 class IndexPage extends React.Component {
   constructor(props) {
     super(props)
+    this.state = {
+      daily_data: [],
+      banner: [],
+    }
   }
-  componentDidMount() {
+  async componentDidMount() {
     this.getBannerData()
+    this._mapBanner()
   }
   // 获取banner数据
   getBannerData() {
     const { onLoadBannerData, onLoadWeatherData } = this.props
     onLoadBannerData(banner_url)
     onLoadWeatherData(WeatherUrl)
-    //console.log('banner', this.props.banner)
   }
-  rederBanner() {
-    const { banner } = this.props.banner
-    console.log('banner-------------banner', banner)
-    return null
+  // 处理banner数据
+  _mapBanner() {
+    const banner = this.props.banner.item
+    this.setState({banner: banner})
   }
   renderMenuItem() {
     return <MenuItem />
   }
   renderDailyMood() {
-    return <DailyMood data={this.props.weather}/>
+    return <DailyMood data={this.props.weather == null ? null : this.props.weather}/>
   }
   renderSelectedPlaylists() {
     return <SelectedPlaylist />
@@ -50,10 +54,10 @@ class IndexPage extends React.Component {
         <SearchItem />
         <ScrollView>
           <View style={{width: screentWidth, height: 90}}>
-          <SwiperItem/>
+            <SwiperItem data={this.state.banner}/>
           </View>
           {this.renderMenuItem()}
-          {this.renderDailyMood()}
+          {/* {this.renderDailyMood()} */}
           {this.renderSelectedPlaylists()}
           {this.renderGuessLike()}
         </ScrollView>

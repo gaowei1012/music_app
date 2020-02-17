@@ -12,22 +12,26 @@ export default class DailyMood extends React.Component {
   state = {
     cond_txt: '',
     fl: '',
-    month: 0,
-    day: 0
+    month: 1,
+    day: 1
   }
-  async componentDidMount() {
+  componentDidMount() {
     this.filterData()
     this.formData()
   }
   // 对数据处理
   filterData() {
-    const now = this.props.data.item[0].now
-    const cond_txt_data = now.cond_txt
-    const fl_data = now.fl
-    this.setState({
-      cond_txt: cond_txt_data,
-      fl: fl_data
-    })
+    if (this.props.data !== null) {
+      const now = this.props.data.item[0].now
+      const cond_txt_data = now.cond_txt
+      const fl_data = now.fl
+      this.setState({
+        cond_txt: cond_txt_data,
+        fl: fl_data
+      })  
+    } else {
+      return 
+    }
   }
   // 对日期处理
   formData() {
@@ -38,7 +42,7 @@ export default class DailyMood extends React.Component {
       month: new_month,
       day: new_day,
     }, () => {
-      console.log('day', this.state.day)
+      //console.log('day', this.state.day)
     })
   }
   render() {

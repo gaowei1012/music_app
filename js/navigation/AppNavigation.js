@@ -24,7 +24,7 @@ import MyPersoanl from '../view/Personal/MyPersoanl'
 import DressedUp from '../view/Personal/DressedUp'
 import SingerPage from '../view/Index/SingerPage'
 import SingerDetailPage from '../view/Index/SingerDetail'
-import MoreSingerPage from '../view/Index/MoreSinger'
+import MorePlayPage from '../view/Index/MoreSinger'
 import GuessLikePage from '../view/Index/GuessLikePage'
 import RankingPage from '../view/Index/RankingPage'
 import RadioPage from '../view/Index/RadioPage'
@@ -115,8 +115,8 @@ const MainNavigator = createStackNavigator({
       header: null
     }
   },
-  MoreSingerPage: {
-    screen: MoreSingerPage,
+  MorePlayPage: {
+    screen: MorePlayPage,
     navigationOptions: {
       header: null
     }
