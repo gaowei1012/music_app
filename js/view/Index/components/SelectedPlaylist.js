@@ -56,34 +56,34 @@ class SelectedPlaylist extends React.Component {
           //alwaysBounceVertical={true}
           showsHorizontalScrollIndicator={false}
           >
-          {play_list.map(item => {
-            return <View key={item.id}>
-              <TouchableOpacity
-                onPress={() => this.goToPage(item.userId)}
-                style={styles.itemBox}
-                activeOpacity={0.8}
-                >
+          {play_list.length == null ? <Text>数据加载中...</Text> : play_list.map(item => (
+            <View key={item.id}>
+            <TouchableOpacity
+              onPress={() => this.goToPage(item.userId)}
+              style={styles.itemBox}
+              activeOpacity={0.8}
+              >
+              <Image
+                source={{uri: item.coverImgUrl}}
+                style={styles.playImage}
+                resizeMode='contain'
+              />
+              {/* 播放数量 */}
+              <View style={styles.palyerNumBox}>
+                <Image source={require('../../../images/common/player.png')} style={{width: 10, height: 10}}/>
+                <Text>{item.trackCount}</Text>
+              </View>
+              {/* 播放icon */}
+              <View style={styles.palyerBox}>
                 <Image
-                  source={{uri: item.coverImgUrl}}
-                  style={styles.playImage}
-                  resizeMode='contain'
+                  style={styles.palyerBtn}
+                  source={require('../../../images/common/bofang.png')}
                 />
-                {/* 播放数量 */}
-                <View style={styles.palyerNumBox}>
-                  <Image source={require('../../../images/common/player.png')} style={{width: 10, height: 10}}/>
-                  <Text>{item.trackCount}</Text>
-                </View>
-                {/* 播放icon */}
-                <View style={styles.palyerBox}>
-                  <Image
-                    style={styles.palyerBtn}
-                    source={require('../../../images/common/bofang.png')}
-                  />
-                </View>
-              </TouchableOpacity>
-              <Text style={styles.itemText} numberOfLines={1}>{item.name}</Text>
-            </View>
-          })}
+              </View>
+            </TouchableOpacity>
+            <Text style={styles.itemText} numberOfLines={1}>{item.name}</Text>
+          </View>
+          ))}
         </ScrollView>
       </View>
     )

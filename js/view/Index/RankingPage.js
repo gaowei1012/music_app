@@ -7,6 +7,8 @@ import {screentWidth} from '../../utils/screenUtil'
 import {connect} from 'react-redux'
 import actions from '../../redux/actions/index'
 import {topList} from '../../expand/api'
+import TopNavigationBar from '../../common/TopNavigationBar'
+import {GoBack} from '../../utils/GoBack'
 
 // 排行榜
 class RankingPage extends React.Component {
@@ -16,13 +18,22 @@ class RankingPage extends React.Component {
   // 获取数据
   getData() {
     const {onLoadTopListData} = this.props
-    let url = topList + '0';
+    let url = topList + '1';
     console.log('url-----', url)
     onLoadTopListData(url)
   }
   render() {
+    let TopNavigationbar = (
+      <TopNavigationBar
+        title="商品详情"
+        statusBar={statusbar}
+        style={{backgroundColor: THEME_DEFAULT.DEFAULT_COLOR}}
+        leftButton={GoBack(this.props)}
+      />
+    );
     return (
       <SafeAreaView style={styles.container}>
+        <TopNavigationbar/>
         <Text>排行榜</Text>
       </SafeAreaView>
     )

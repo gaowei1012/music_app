@@ -33,7 +33,7 @@ target 'music_app' do
   pod 'DoubleConversion', :podspec => '../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec'
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
-  pod 'boost-for-react-native', :git => 'https://gitee.com/damon-s/boost-for-react-native.git’
+  # pod 'boost-for-react-native', :git => 'https://gitee.com/damon-s/boost-for-react-native.git'
 
   target 'music_appTests' do
     inherit! :search_paths

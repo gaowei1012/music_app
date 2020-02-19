@@ -1,16 +1,9 @@
-/*
- * @Author: your name
- * @Date: 2020-01-28 20:11:00
- * @LastEditTime : 2020-01-28 20:33:36
- * @LastEditors  : Please set LastEditors
- * @Description: In User Settings Edit
- * @FilePath: /music_app/js/common/TopNavigationBar.js
- */
 'use strict'
 
 import * as React from 'react'
 import {View, Text, StyleSheet, ViewPropTypes, StatusBar} from 'react-native'
 import {row, center, spaceBetween, flexStart} from '../styles/constants'
+import {flexRowEnd} from '../styles/flex'
 import PropTypes from 'prop-types'
 
 const StatusBarShape = {
@@ -113,7 +106,7 @@ const styles = StyleSheet.create({
   },
   rightBtnBox:{
     ...flexRowEnd,
-    width:px2dp(50),
+    width:50
     // height: NAV_BAR_H, // 根据平台设置高度
   }
 })

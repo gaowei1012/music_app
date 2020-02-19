@@ -21,6 +21,7 @@ import top from './index/list'
 import playHigh from './index/topPlaylistHigh'
 import daily from './personal/daily'
 import weather from './index/weather'
+import search from './index/search'
 
 
 const navState = RootNavigation.router.getStateForAction(
@@ -33,7 +34,7 @@ const navReducer = (state = navState, action) => {
 };
 
 const root = combineReducers({
-  nav: navReducer, theme, banner, getCode, login, signin, radio, top, playHigh, daily, weather,
+  nav: navReducer, theme, banner, getCode, login, signin, radio, top, playHigh, daily, weather, search,
 });
 
 export default root;
