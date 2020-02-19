@@ -56,7 +56,7 @@ class SelectedPlaylist extends React.Component {
           //alwaysBounceVertical={true}
           showsHorizontalScrollIndicator={false}
           >
-          {play_list.length == null ? <Text>数据加载中...</Text> : play_list.map(item => (
+          {play_list.map(item => (
             <View key={item.id}>
             <TouchableOpacity
               onPress={() => this.goToPage(item.userId)}

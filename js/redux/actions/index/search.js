@@ -9,7 +9,7 @@ export function onLoadSearchData(url) {
   return dispatch => {
     request(url)
       .then(res => {
-        let data = res
+        let data = res.result.songs
         console.log('data===data', data)
         handleData(dispatch, data, types.SEARCH_LOAD_SUCCESS)
       })
