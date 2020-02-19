@@ -26,7 +26,7 @@ export default class PersonalItem extends React.Component {
     const {list} = this.state
     return <View>
       {list.map(item => {
-        return <TouchableOpacity onPress={this.goToPage(item.text, item.com)} activeOpacity={0.8} style={styles.listBox}>
+        return <TouchableOpacity key={item.id} onPress={this.goToPage(item.text, item.com)} activeOpacity={0.8} style={styles.listBox}>
           <View style={styles.titleBox}>
             <Image style={styles.icon} source={item.icon}/>
             <Text style={styles.text}>{item.text}</Text>
