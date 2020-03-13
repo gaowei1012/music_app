@@ -7,16 +7,17 @@
  * @FilePath: /music_app/js/redux/actions/index.js
  */
 
-import {onThemeChange} from '../actions/theme/index'
-import {onLoadBannerData} from '../actions/index/banner'
-import {onLoadRadioData} from '../actions/index/radio'
-import {onLoadTopListData} from '../actions/index/list'
-import {onLoadTopPlayListHigh} from '../actions/index/topPlaylistHigh'
-import {onGetCodeData, onLoginData} from '../actions/personal/user'
-import {onDailySinger} from '../actions/personal/daily'
-import {onLoadWeatherData} from '../actions/index/weather'
-import {onLoadSearchData} from '../actions/index/search'
-import {onLoadRecommendData} from './index/personalized'
+import {onThemeChange} from '../actions/theme/index';
+import {onLoadBannerData} from '../actions/index/banner';
+import {onLoadRadioData} from '../actions/index/radio';
+import {onLoadTopListData} from '../actions/index/list';
+import {onLoadTopPlayListHigh} from '../actions/index/topPlaylistHigh';
+import {onGetCodeData, onLoginData} from '../actions/personal/user';
+import {onDailySinger} from '../actions/personal/daily';
+import {onLoadWeatherData} from '../actions/index/weather';
+import {onLoadSearchData} from '../actions/index/search';
+import {onLoadRecommendData} from './index/personalized';
+import {onLoadMv} from './video/mv';
 
 export default {
   onThemeChange,
@@ -30,4 +31,5 @@ export default {
   onLoadWeatherData,
   onLoadSearchData,
   onLoadRecommendData,
-}
+  onLoadMv,
+};

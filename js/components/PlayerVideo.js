@@ -1,15 +1,32 @@
-'use strict'
+'use strict';
 
-import * as React from 'react'
-import PropTypes from 'prop-types'
-import Video from 'react-native-video'
-import {View,Text,StyleSheet,ScrollView,Image,TouchableOpacity} from 'react-native'
-import {flex,center,row,defaultFontSize,defaultFontColor,iosFontFmily} from '../styles/constants'
+import * as React from 'react';
+import PropTypes from 'prop-types';
+import Video from 'react-native-video';
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  Image,
+  TouchableOpacity,
+} from 'react-native';
+import {
+  flex,
+  center,
+  row,
+  defaultFontSize,
+  defaultFontColor,
+  iosFontFmily,
+} from '../styles/constants';
 
 class PlayerVideo extends React.Component {
+  constructor() {
+    super();
+  }
   static propTypes = {
     data_list: PropTypes.array,
-  }
+  };
   state = {
     data_list: [
       {id: 1, price_url: '', text: 'test'},
@@ -17,18 +34,23 @@ class PlayerVideo extends React.Component {
       {id: 3, price_url: '', text: 'test'},
       {id: 4, price_url: '', text: 'test'},
       {id: 5, price_url: '', text: 'test'},
-    ]
-  }
-  playerVideo(id){
-    console.log('id', id)
+    ],
+  };
+  playerVideo(id) {
+    console.log('id', id);
   }
   render() {
     return (
       <ScrollView style={styles.container}>
         {this.state.data_list.map(item => (
           <View key={item.id} style={styles.videoBox}>
-            <TouchableOpacity onPress={() => this.playerVideo(item.id)} style={styles.videoContentBox}>
-              <Image style={styles.image} source={require('../images/common/player.png')}/>
+            <TouchableOpacity
+              onPress={() => this.playerVideo(item.id)}
+              style={styles.videoContentBox}>
+              <Image
+                style={styles.image}
+                source={require('../images/common/player.png')}
+              />
             </TouchableOpacity>
             <View style={styles.videoBtnItem}>
               <Text>hello</Text>
@@ -36,16 +58,14 @@ class PlayerVideo extends React.Component {
           </View>
         ))}
       </ScrollView>
-    )
+    );
   }
 }
 
-export default PlayerVideo
+export default PlayerVideo;
 
 const styles = StyleSheet.create({
-  container: {
-    
-  },
+  container: {},
   videoBox: {
     height: 200,
     width: 345,
@@ -61,11 +81,11 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     backgroundColor: '#eee',
     overflow: 'hidden',
-    justifyContent: center
+    justifyContent: center,
   },
   image: {
-    width:40,
-    height:40,
+    width: 40,
+    height: 40,
     alignSelf: center,
     justifyContent: center,
   },
@@ -76,5 +96,5 @@ const styles = StyleSheet.create({
     height: 40,
     backgroundColor: 'red',
     width: 345,
-  }
-})
+  },
+});
