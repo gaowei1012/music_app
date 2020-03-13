@@ -1,56 +1,76 @@
-'use strict'
-
-import * as React from 'react'
-import { connect } from 'react-redux'
-import actions from '../../../redux/actions/index'
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native'
-import { screentWidth } from '../../../utils/screenUtil'
-import NavigationUtil from '../../../utils/NavigationUtil'
-import { flex, row, center, iosFontFmily, defaultFontColor, defaultFontSize, spaceBetween, spaceAround, fontColor, fontSmallSize } from '../../../styles/constants'
+import * as React from 'react';
+import {connect} from 'react-redux';
+import actions from '../../../redux/actions/index';
+import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
+import {screentWidth} from '../../../utils/screenUtil';
+import NavigationUtil from '../../../utils/NavigationUtil';
+import {
+  flex,
+  row,
+  center,
+  iosFontFmily,
+  defaultFontColor,
+  defaultFontSize,
+  spaceBetween,
+  spaceAround,
+  fontColor,
+  fontSmallSize,
+} from '../../../styles/constants';
+import {personalizedNewsong} from '../../../expand/api';
 
 class GuessLikePage extends React.Component {
-  state = {
-    guess_list: [
-      {id: 1, title: 'Love Story', url: 'http://iph.href.lu/100x100', des: 'desdesdes'},
-      {id: 2, title: 'Love Story', url: 'http://iph.href.lu/100x100', des: 'desdesdes'},
-      {id: 3, title: 'Love Story', url: 'http://iph.href.lu/100x100', des: 'desdesdes'},
-      {id: 4, title: 'Love Story', url: 'http://iph.href.lu/100x100', des: 'desdesdes'},
-      {id: 5, title: 'Love Story', url: 'http://iph.href.lu/100x100', des: 'desdesdes'},
-      {id: 6, title: 'Love Story', url: 'http://iph.href.lu/100x100', des: 'desdesdes'}
-    ]
+  async componentDidMount() {
+    this.getData();
   }
-  async componentDidMount() {}
+  getData() {
+    const {onLoadRecommendData} = this.props;
+    onLoadRecommendData(personalizedNewsong);
+  }
+  // 更多
+  goToMore = () => {
+    NavigationUtil.goPage({}, 'GuessLikeMore');
+  };
   renderTopCom() {
-    return <View style={styles.topBox}>
-      <Text style={styles.topTitle}>猜你喜欢</Text>
-      <View style={styles.topMoreBox}>
-        <Text style={styles.moreText}>更多</Text>
-        <Image style={styles.arrow} source={require('../../../images/common/arrow.png')}/>
+    return (
+      <View style={styles.topBox}>
+        <Text style={styles.topTitle}>今日推荐</Text>
+        {/* <TouchableOpacity onPress={this.goToMore} style={styles.topMoreBox}>
+          <Text style={styles.moreText}>更多</Text>
+          <Image
+            style={styles.arrow}
+            source={require('../../../images/common/arrow.png')}
+          />
+        </TouchableOpacity> */}
       </View>
-    </View>
+    );
   }
   goGuessLikePage() {
-    NavigationUtil.goPage({title: '猜你喜欢'}, 'GuessLikePage')
+    NavigationUtil.goPage({title: '猜你喜欢'}, 'GuessLikeMore');
   }
   renderGuessLikeItem() {
-    const {guess_list} = this.state
-    return <View>
-      {guess_list.map(item => {
-        return <TouchableOpacity
-          activeOpacity={0.8}
-          onPress={() => this.goGuessLikePage}
-          key={item.id} style={styles.guessBox}
-          >
-          <View style={styles.guessImageBox}>
-            <Image source={{uri: item.url}} style={styles.guessImage}/>
-          </View>
-          <View style={styles.guessDesBox}>
-            <Text style={styles.guessTitle}>{item.title}</Text>
-            <Text style={styles.guessDes}>{item.des}</Text>
-          </View>
-        </TouchableOpacity>
-      })}
-    </View>
+    const recommend = this.props.recommend.item;
+    console.log('recommed', recommend);
+    return (
+      <View>
+        {recommend.map(item => {
+          return (
+            <TouchableOpacity
+              activeOpacity={0.8}
+              onPress={() => this.goGuessLikePage(item)}
+              key={item.id}
+              style={styles.guessBox}>
+              <View style={styles.guessImageBox}>
+                <Image source={{uri: item.picUrl}} style={styles.guessImage} />
+              </View>
+              <View style={styles.guessDesBox}>
+                <Text style={styles.guessTitle}>{item.name}</Text>
+                <Text style={styles.guessDes}>{item.des}</Text>
+              </View>
+            </TouchableOpacity>
+          );
+        })}
+      </View>
+    );
   }
   render() {
     return (
@@ -58,18 +78,19 @@ class GuessLikePage extends React.Component {
         {this.renderTopCom()}
         {this.renderGuessLikeItem()}
       </View>
-    )
+    );
   }
 }
 
-const mapStateToProps = state => ({})
+const mapStateToProps = state => ({
+  recommend: state.recommend,
+});
 
-const mapDispatchToProps = dispatch => ({})
+const mapDispatchToProps = dispatch => ({
+  onLoadRecommendData: url => dispatch(actions.onLoadRecommendData(url)),
+});
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(GuessLikePage)
+export default connect(mapStateToProps, mapDispatchToProps)(GuessLikePage);
 
 const styles = StyleSheet.create({
   container: {
@@ -79,7 +100,7 @@ const styles = StyleSheet.create({
     marginLeft: 6,
     marginRight: 6,
     flexDirection: row,
-    justifyContent: spaceBetween
+    justifyContent: spaceBetween,
   },
   topTitle: {
     fontFamily: iosFontFmily,
@@ -110,7 +131,7 @@ const styles = StyleSheet.create({
     height: 100,
     margin: 10,
     borderRadius: 6,
-    overflow: 'hidden'
+    overflow: 'hidden',
   },
   guessImage: {
     width: '100%',
@@ -118,7 +139,7 @@ const styles = StyleSheet.create({
   },
   guessDesBox: {
     marginLeft: 10,
-    alignSelf: center
+    alignSelf: center,
   },
   guessTitle: {
     fontFamily: iosFontFmily,
@@ -129,5 +150,5 @@ const styles = StyleSheet.create({
     fontFamily: iosFontFmily,
     fontSize: defaultFontSize,
     color: defaultFontColor,
-  }
-})
+  },
+});

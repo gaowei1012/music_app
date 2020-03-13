@@ -9,10 +9,10 @@ import {
   createBottomTabNavigator,
 } from 'react-navigation';
 
-import IndexPage from '../view/Index/IndexPage'
-import PersonalPage from '../view/Personal/PersonalPage'
-import RecommendPage from '../view/Recommend/RecommendPage'
-import VideoPage from '../view/Video/VideoPage'
+import IndexPage from '../view/Index/IndexPage';
+import PersonalPage from '../view/Personal/PersonalPage';
+// import RecommendPage from '../view/Recommend/RecommendPage'
+import VideoPage from '../view/Video/VideoPage';
 
 const TABS = {
   IndexPage: {
@@ -31,22 +31,22 @@ const TABS = {
       },
     },
   },
-  RecommendPage: {
-    screen: RecommendPage,
-    navigationOptions: {
-      tabBarLabel: '最新',
-      tabBarIcon: ({tintColor, focused}) => {
-        return (
-          <TabBarItem
-            tintColor={tintColor}
-            focused={focused}
-            normalImage={require('../images/tab/play.png')}
-            selectedImage={require('../images/tab/play_fill.png')}
-          />
-        );
-      },
-    },
-  },
+  // RecommendPage: {
+  //   screen: RecommendPage,
+  //   navigationOptions: {
+  //     tabBarLabel: '最新',
+  //     tabBarIcon: ({tintColor, focused}) => {
+  //       return (
+  //         <TabBarItem
+  //           tintColor={tintColor}
+  //           focused={focused}
+  //           normalImage={require('../images/tab/play.png')}
+  //           selectedImage={require('../images/tab/play_fill.png')}
+  //         />
+  //       );
+  //     },
+  //   },
+  // },
   VideoPage: {
     screen: VideoPage,
     navigationOptions: {
@@ -61,7 +61,7 @@ const TABS = {
           />
         );
       },
-    }
+    },
   },
   PersonalPage: {
     screen: PersonalPage,
@@ -92,8 +92,8 @@ class DynamicTabNavigator extends Component {
     if (this.Tabs) {
       return this.Tabs;
     }
-    const {IndexPage, RecommendPage, VideoPage, PersonalPage} = TABS;
-    const tabs = {IndexPage, RecommendPage, VideoPage, PersonalPage};
+    const {IndexPage, VideoPage, PersonalPage} = TABS;
+    const tabs = {IndexPage, VideoPage, PersonalPage};
     // V2exPage.navigationOptions.tabBarLabel = '最热';
     return (this.Tabs = createBottomTabNavigator(tabs, {
       tabBarComponent: props => {
