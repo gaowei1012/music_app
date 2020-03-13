@@ -18,6 +18,11 @@ import {onLoadWeatherData} from '../actions/index/weather';
 import {onLoadSearchData} from '../actions/index/search';
 import {onLoadRecommendData} from './index/personalized';
 import {onLoadMv} from './video/mv';
+import {
+  onLoadVideoGroupData,
+  onLoadVideoRelateData,
+  onLoadVideoDetailData,
+} from './video/video';
 
 export default {
   onThemeChange,
@@ -32,4 +37,7 @@ export default {
   onLoadSearchData,
   onLoadRecommendData,
   onLoadMv,
+  onLoadVideoGroupData,
+  onLoadVideoDetailData,
+  onLoadVideoRelateData,
 };

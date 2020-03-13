@@ -25,38 +25,29 @@ class PlayerVideo extends React.Component {
     super();
   }
   static propTypes = {
-    data_list: PropTypes.array,
-  };
-  state = {
-    data_list: [
-      {id: 1, price_url: '', text: 'test'},
-      {id: 2, price_url: '', text: 'test'},
-      {id: 3, price_url: '', text: 'test'},
-      {id: 4, price_url: '', text: 'test'},
-      {id: 5, price_url: '', text: 'test'},
-    ],
+    data_list: PropTypes.object,
   };
   playerVideo(id) {
     console.log('id', id);
   }
   render() {
+    const data = this.props.data_list.item;
     return (
       <ScrollView style={styles.container}>
-        {this.state.data_list.map(item => (
-          <View key={item.id} style={styles.videoBox}>
-            <TouchableOpacity
-              onPress={() => this.playerVideo(item.id)}
-              style={styles.videoContentBox}>
-              <Image
-                style={styles.image}
-                source={require('../images/common/player.png')}
-              />
-            </TouchableOpacity>
-            <View style={styles.videoBtnItem}>
-              <Text>hello</Text>
-            </View>
-          </View>
-        ))}
+        {data == null
+          ? null
+          : data.map(item => (
+              <View key={item.id} style={styles.videoBox}>
+                <TouchableOpacity
+                  onPress={() => this.playerVideo(item.id)}
+                  style={styles.videoContentBox}>
+                  <Image style={styles.image} source={{uri: item.cover}} />
+                </TouchableOpacity>
+                <View style={styles.videoBtnItem}>
+                  <Text>{item.name}</Text>
+                </View>
+              </View>
+            ))}
       </ScrollView>
     );
   }

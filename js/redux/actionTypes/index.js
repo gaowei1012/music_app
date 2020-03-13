@@ -1,11 +1,3 @@
-/*
- * @Author: your name
- * @Date: 2020-01-18 08:40:02
- * @LastEditTime : 2020-01-28 20:53:52
- * @LastEditors  : Please set LastEditors
- * @Description: In User Settings Edit
- * @FilePath: /music_app/js/redux/actionTypes/index.js
- */
 export default {
   // 全局主题
   THEME_CHANGE: 'THEME_CHANGE',
@@ -45,4 +37,13 @@ export default {
   // 视频
   VIDEO_LOAD_SUCCESS: 'VIDEO_LOAD_SUCCESS',
   VIDEO_LOAD_FAIL: 'VIDEO_LOAD_FAIL',
+  // 视频列表菜单
+  VIDEO_LOAD_MENU_SUCCESS: 'VIDEO_LOAD_MENU_SUCCESS',
+  VIDEO_LOAD_MENU_FAIL: 'VIDEO_LOAD_MENU_FAIL',
+  // 视频详情
+  VIDEO_LOAD_DETAIL_SUCCESS: 'VIDEO_LOAD_DETAIL_SUCCESS',
+  VIDEO_LOAD_DETAIL_FAIL: 'VIDEO_LOAD_DETAIL_FAIL',
+  // 相关视频
+  VIDEO_LOAD_RELATE_SUCCESS: 'VIDEO_LOAD_RELATE_SUCCESS',
+  VIDEO_LOAD_RELATE_FAIL: 'VIDEO_LOAD_RELATE_FAIL',
 };

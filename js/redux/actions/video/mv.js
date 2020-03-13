@@ -6,7 +6,7 @@ export function onLoadMv(url) {
   return dispatch => {
     request(url)
       .then(res => {
-        let data = res;
+        let data = res.data;
         handleData(dispatch, data, types.VIDEO_LOAD_SUCCESS);
       })
       .catch(err => {

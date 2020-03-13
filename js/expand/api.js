@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 module.exports = {
   // 线下默认地址
@@ -12,7 +12,7 @@ module.exports = {
   // 刷新登录
   refresh: 'login/refresh',
   // 注册
-  register:'register/cellphone',
+  register: 'register/cellphone',
   // 检查手机好是否已注册
   checkot_register: 'cellphone/existence/check',
   // 退出登录
@@ -45,6 +45,8 @@ module.exports = {
   albumNewest: 'album/newest',
   // 热门歌手
   topArtists: 'top/artists',
+  // mv 排行
+  topMv: '/top/mv?area=',
   // 全部mv
   mvAll: 'mv/all?area=',
   // 网易出品mv
@@ -74,10 +76,21 @@ module.exports = {
   // 电台
   radio: 'personalized/djprogram',
   // 精选歌单
-  topPlaylistHigh:'/top/playlist/highquality',
+  topPlaylistHigh: '/top/playlist/highquality',
   // 推荐
   personalized: '/personalized',
-  // 首页天气
-  WeatherUrl : 'https://free-api.heweather.net/s6/weather/now?location=109.36645,34.07863&key=a54b1c81d8e343929a3a79659040a51a',
+  // 视频菜单
+  videoList: '/video/group/list',
+  // 标签下的视频
+  videoTagList: '/video/group?id=',
+  // 相关视频
+  relate: '/related/allvideo?id=',
+  // 视频详情
+  videoDetail: '/video/detail?id=',
+  // 视频播放地址
+  videoPalyer: '/video/url?id=',
 
-}
+  // 首页天气
+  WeatherUrl:
+    'https://free-api.heweather.net/s6/weather/now?location=109.36645,34.07863&key=a54b1c81d8e343929a3a79659040a51a',
+};

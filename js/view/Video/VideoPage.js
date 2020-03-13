@@ -7,18 +7,16 @@ import PlayerVideo from '../../components/PlayerVideo';
 import TopNavigationBar from '../../common/TopNavigationBar';
 import {connect} from 'react-redux';
 import actions from '../../redux/actions/index';
-import {mvAll} from '../../expand/api';
+import {topMv} from '../../expand/api';
 
 class VideoPage extends React.Component {
-  constructor() {
-    super();
-  }
   componentDidMount() {
     this.getData();
   }
   getData() {
     const {onLoadMv} = this.props;
-    onLoadMv(mvAll);
+    const url = topMv + '港台';
+    onLoadMv(url);
   }
   _renderTopBar = () => {
     let statusbar = {
@@ -37,7 +35,7 @@ class VideoPage extends React.Component {
     return (
       <SafeAreaView style={styles.container}>
         {this._renderTopBar()}
-        <PlayerVideo />
+        <PlayerVideo data_list={this.props.mv} />
       </SafeAreaView>
     );
   }

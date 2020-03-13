@@ -24,6 +24,7 @@ import weather from './index/weather';
 import search from './index/search';
 import recommend from './index/personalized';
 import mv from './video/mv';
+import group from './video/video';
 
 const navState = RootNavigation.router.getStateForAction(
   RootNavigation.router.getActionForPathAndParams(rootCom),
@@ -49,6 +50,7 @@ const root = combineReducers({
   search,
   recommend,
   mv,
+  group,
 });
 
 export default root;
