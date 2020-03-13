@@ -49,6 +49,7 @@ class GuessLikePage extends React.Component {
   }
   renderGuessLikeItem() {
     const recommend = this.props.recommend.item;
+    if (recommend == null) return;
     console.log('recommed', recommend);
     return (
       <View>
