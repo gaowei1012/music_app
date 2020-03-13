@@ -1,11 +1,5 @@
-/*
- * @Author: your name
- * @Date: 2020-01-20 16:01:18
- * @LastEditTime : 2020-01-28 12:21:35
- * @LastEditors  : Please set LastEditors
- * @Description: In User Settings Edit
- * @FilePath: /music_app/js/expand/config.js
- */
+'use strict'
+
 module.exports = {
   // 线下默认地址
   base_url: 'http://localhost:3000/',
@@ -81,6 +75,8 @@ module.exports = {
   radio: 'personalized/djprogram',
   // 精选歌单
   topPlaylistHigh:'/top/playlist/highquality',
+  // 推荐
+  personalized: '/personalized',
   // 首页天气
   WeatherUrl : 'https://free-api.heweather.net/s6/weather/now?location=109.36645,34.07863&key=a54b1c81d8e343929a3a79659040a51a',
 

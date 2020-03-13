@@ -1,15 +1,16 @@
 'use strict'
 
 import * as React from 'react'
-import {connect} from 'react-redux'
+import PropTypes from 'prop-types'
 import {View,Text,StyleSheet,Image,ScrollView,TouchableOpacity} from 'react-native'
 import {screentWidth} from '../../../utils/screenUtil'
-import actions from '../../../redux/actions/index'
 import NavigationUtil from '../../../utils/NavigationUtil'
-import {topPlaylistHigh} from '../../../expand/api'
 import {row,center,spaceBetween,iosFontFmily,fontColor,defaultFontSize,defaultFontColor,fontSmallSize} from '../../../styles/constants'
 // 精选歌单
 class SelectedPlaylist extends React.Component {
+  static propTypes = {
+    play_list: PropTypes.object
+  }
   constructor(props) {
     super(props)
     this.state = {
@@ -21,34 +22,23 @@ class SelectedPlaylist extends React.Component {
         {id: 5, uri: 'https://p1.music.126.net/L1u0ZX2IrCRspy1Q_mu3uw==/109951163783547378.jpg', com: 'SingerPage', text: '周倩倩'},
         {id: 6, uri: 'https://p1.music.126.net/L1u0ZX2IrCRspy1Q_mu3uw==/109951163783547378.jpg', com: 'SingerPage', text: '周倩倩'},
         {id: 7, uri: 'https://p1.music.126.net/L1u0ZX2IrCRspy1Q_mu3uw==/109951163783547378.jpg', com: 'SingerPage', text: '周倩倩'},
-      ],
-      play_list: [], // 渲染数据
+      ]
     }
   }
-  async componentDidMount() {
-    this.getData()
-  }
-  getData() {
-    let url = topPlaylistHigh + '?' + 'limit=10&order=new'
-    //console.log('url----', url)
-    const {onLoadTopPlayListHigh} = this.props
-    onLoadTopPlayListHigh(url)
-    let list = this.props.playHigh.item
-    this.setState({
-      play_list: list
-    }, () => {
-      console.log('----playHigh----', this.state.play_list)
-    })
+  _mapData() {
+    const {play_list} = this.props
+    let result = play_list.item
+    console.log('处理数据', result)
   }
   goToPage(com) {
     //NavigationUtil.goPage({title: 'more'}, com)
   }
   goToMorePage = () => {
-    const list = this.props.playHigh.item
+    const list = this.props.play_list.item
     NavigationUtil.goPage({list}, 'MorePlayPage')
   }
   renderItem() {
-    const {play_list} = this.state
+    const result = this.props.play_list.item
     return (
       <View style={{flexDirection: row, height: 130}}>
         <ScrollView
@@ -56,7 +46,7 @@ class SelectedPlaylist extends React.Component {
           //alwaysBounceVertical={true}
           showsHorizontalScrollIndicator={false}
           >
-          {play_list.map(item => (
+          {result.map(item => (
             <View key={item.id}>
             <TouchableOpacity
               onPress={() => this.goToPage(item.userId)}
@@ -108,18 +98,7 @@ class SelectedPlaylist extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
-  playHigh: state.playHigh,
-})
-
-const mapDispatchToProps = dispatch => ({
-  onLoadTopPlayListHigh: url => dispatch(actions.onLoadTopPlayListHigh(url))
-})
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(SelectedPlaylist)
+export default SelectedPlaylist
 
 const styles = StyleSheet.create({
   conatainer: {

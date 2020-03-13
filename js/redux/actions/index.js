@@ -16,6 +16,7 @@ import {onGetCodeData, onLoginData} from '../actions/personal/user'
 import {onDailySinger} from '../actions/personal/daily'
 import {onLoadWeatherData} from '../actions/index/weather'
 import {onLoadSearchData} from '../actions/index/search'
+import {onLoadRecommendData} from './index/personalized'
 
 export default {
   onThemeChange,
@@ -28,4 +29,5 @@ export default {
   onDailySinger,
   onLoadWeatherData,
   onLoadSearchData,
+  onLoadRecommendData,
 }

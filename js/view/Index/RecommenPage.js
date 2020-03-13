@@ -6,21 +6,32 @@ import {flex,center,row} from '../../styles/constants'
 import {screentWidth} from '../../utils/screenUtil'
 import {connect} from 'react-redux'
 import actions from '../../redux/actions/index'
+import {personalized} from '../../expand/api'
 
 class RecommenPage extends React.Component {
-  async componentDidMount() {}
+  componentDidMount() {
+    this.getData()
+  }
+  getData() {
+    const {onLoadRecommendData} = this.props
+    onLoadRecommendData(personalized)
+  }
   render() {
     return (
       <SafeAreaView style={styles.container}>
-        <Text>排行榜</Text>
+        <Text>推荐</Text>
       </SafeAreaView>
     )
   }
 }
 
-const mapStateToProps = state => ({})
+const mapStateToProps = state => ({
+  recommend: state.recommend,
+})
 
-const mapDispatchToProps = dispatch => ({})
+const mapDispatchToProps = dispatch => ({
+  onLoadRecommendData: url => dispatch(actions.onLoadRecommendData(url))
+})
 
 export default connect(
   mapStateToProps,

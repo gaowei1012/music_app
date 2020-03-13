@@ -16,24 +16,30 @@ class RankingPage extends React.Component {
     this.getData()
   }
   // 获取数据
-  getData() {
+  async getData () {
     const {onLoadTopListData} = this.props
     let url = topList + '1';
     console.log('url-----', url)
-    onLoadTopListData(url)
+    await onLoadTopListData(url)
   }
-  render() {
-    let TopNavigationbar = (
+  _renderTopBar=()=> {
+    let statusbar = {
+      backgroundColor: '#ffffff',
+      barStyle: 'dark-content'
+    };
+    return (
       <TopNavigationBar
-        title="商品详情"
+        title='修改手机号'
         statusBar={statusbar}
-        style={{backgroundColor: THEME_DEFAULT.DEFAULT_COLOR}}
-        leftButton={GoBack(this.props)}
+        style={{ backgroundColor: '#ffffff' }}
+        leftButton={GoBack(this.props,'dark')}
       />
     );
+  }
+  render() {
     return (
       <SafeAreaView style={styles.container}>
-        <TopNavigationbar/>
+        {this._renderTopBar()}
         <Text>排行榜</Text>
       </SafeAreaView>
     )

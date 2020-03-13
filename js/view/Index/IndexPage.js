@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import actions from '../../redux/actions'
 import { View, SafeAreaView, Text, StyleSheet, ScrollView } from 'react-native'
 import { flex, center } from '../../styles/constants'
-import { banner_url, WeatherUrl, search } from '../../expand/api'
+import { banner_url, WeatherUrl, search, topPlaylistHigh } from '../../expand/api'
 import SwiperItem from './components/Swiper'
 import SearchItem from './SearchItem'
 import MenuItem from './components/MenuItem'
@@ -21,20 +21,22 @@ class IndexPage extends React.Component {
       banner: [],
     }
   }
-  async componentDidMount() {
+  componentDidMount() {
     this.getData()
     this._mapBanner()
   }
   // 获取数据
-  getData() {
-    const { onLoadBannerData, onLoadWeatherData, onLoadSearchData} = this.props
-    onLoadBannerData(banner_url)
-    onLoadWeatherData(WeatherUrl)
+  async getData() {
+    const { onLoadBannerData, onLoadWeatherData, onLoadSearchData, onLoadTopPlayListHigh} = this.props
+    await onLoadBannerData(banner_url)
+    await onLoadWeatherData(WeatherUrl)
     let url = search + '海阔天空'
-    onLoadSearchData(url)
+    let player_list_url = topPlaylistHigh + '?' + 'limit=10&order=new'
+    await onLoadSearchData(url)
+    await onLoadTopPlayListHigh(player_list_url)
   }
   // 处理banner数据
-  _mapBanner() {
+ async _mapBanner() {
     const banner = this.props.banner.item
     this.setState({banner: banner})
   }
@@ -43,15 +45,16 @@ class IndexPage extends React.Component {
   }
   renderDailyMood() {
     // <DailyMood data={this.props.weather == null ? null : this.props.weather}/>
-    return null
+    return <DailyMood data={this.props.weather == null ? null : this.props.weather}/>
   }
   renderSelectedPlaylists() {
-    return <SelectedPlaylist />
+    return <SelectedPlaylist play_list={this.props.playHigh} />
   }
   renderGuessLike() {
     return <GuessLikePage />
   }
   render() {
+    console.log('sele data', this.props.playHigh)
     return (
       <SafeAreaView style={styles.container}>
         <SearchItem />
@@ -73,11 +76,13 @@ const mapStateToProps = state => ({
   banner: state.banner,
   weather: state.weather,
   search: state.search,
+  playHigh: state.playHigh,
 })
 const mapDispatchToProps = dispatch => ({
   onLoadBannerData: url => dispatch(actions.onLoadBannerData(url)),
   onLoadWeatherData: url => dispatch(actions.onLoadWeatherData(url)),
   onLoadSearchData: url => dispatch(actions.onLoadSearchData(url)),
+  onLoadTopPlayListHigh: url => dispatch(actions.onLoadTopPlayListHigh(url))
 })
 
 export default connect(

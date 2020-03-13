@@ -7,7 +7,7 @@ import { row, center, spaceBetween, iosFontFmily, defaultFontSize, fontColor } f
 // 首页天气
 export default class DailyMood extends React.Component {
   static propTypes = {
-    data: PropTypes.object.isRequired, // 必传参数
+    data: PropTypes.object, // 必传参数
   }
   state = {
     cond_txt: '',
@@ -16,12 +16,13 @@ export default class DailyMood extends React.Component {
     day: 1
   }
   componentDidMount() {
+    //console.log('天气', this.props.data)
     this.filterData()
     this.formData()
   }
   // 对数据处理
-  filterData() {
-    if (this.props.data !== null) {
+  async filterData() {
+    if (this.props.data !== null && this.props.data.length !== 0) {
       const now = this.props.data.item[0].now
       const cond_txt_data = now.cond_txt
       const fl_data = now.fl
