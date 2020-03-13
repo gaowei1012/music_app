@@ -49,27 +49,30 @@ class GuessLikePage extends React.Component {
   }
   renderGuessLikeItem() {
     const recommend = this.props.recommend.item;
-    if (recommend == null) return;
-    console.log('recommed', recommend);
     return (
       <View>
-        {recommend.map(item => {
-          return (
-            <TouchableOpacity
-              activeOpacity={0.8}
-              onPress={() => this.goGuessLikePage(item)}
-              key={item.id}
-              style={styles.guessBox}>
-              <View style={styles.guessImageBox}>
-                <Image source={{uri: item.picUrl}} style={styles.guessImage} />
-              </View>
-              <View style={styles.guessDesBox}>
-                <Text style={styles.guessTitle}>{item.name}</Text>
-                <Text style={styles.guessDes}>{item.des}</Text>
-              </View>
-            </TouchableOpacity>
-          );
-        })}
+        {recommend == null
+          ? null
+          : recommend.map(item => {
+              return (
+                <TouchableOpacity
+                  activeOpacity={0.8}
+                  onPress={() => this.goGuessLikePage(item)}
+                  key={item.id}
+                  style={styles.guessBox}>
+                  <View style={styles.guessImageBox}>
+                    <Image
+                      source={{uri: item.picUrl}}
+                      style={styles.guessImage}
+                    />
+                  </View>
+                  <View style={styles.guessDesBox}>
+                    <Text style={styles.guessTitle}>{item.name}</Text>
+                    <Text style={styles.guessDes}>{item.des}</Text>
+                  </View>
+                </TouchableOpacity>
+              );
+            })}
       </View>
     );
   }

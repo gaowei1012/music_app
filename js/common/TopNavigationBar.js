@@ -1,18 +1,30 @@
-'use strict'
+'use strict';
 
-import * as React from 'react'
-import {View, Text, StyleSheet, ViewPropTypes, StatusBar} from 'react-native'
-import {row, center, spaceBetween, flexStart} from '../styles/constants'
-import {flexRowEnd} from '../styles/flex'
-import PropTypes from 'prop-types'
-
+import React, {Component} from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+  ViewPropTypes,
+  StatusBar,
+  Platform,
+} from 'react-native';
+import PropTypes from 'prop-types';
+import THEME_DEFAULT from './THEME_DEFAULT';
+import {
+  flexRowCenter,
+  flexRowEnd,
+  flexRowSpaceBtween,
+  flexRowStart,
+} from '../styles/flex';
+import {STATUS_BAR_H, NAV_BAR_H} from '../utils/navBar_StatusBar_Height';
 const StatusBarShape = {
   barStyle: PropTypes.oneOf(['light-content', 'default']),
   hidden: PropTypes.bool,
-  backgroundColor: PropTypes.string
-}
+  backgroundColor: PropTypes.string,
+};
 
-export default class NavigationBar extends React.Component {
+export default class NavigationBar extends Component {
   static propTypes = {
     style: ViewPropTypes.style,
     title: PropTypes.string,
@@ -22,36 +34,40 @@ export default class NavigationBar extends React.Component {
     rightButton: PropTypes.element,
     leftButton: PropTypes.element,
     translucent: PropTypes.bool, // 是否将状态栏设为透明
-    color:PropTypes.string,
-    fontSize:PropTypes.number,
+    color: PropTypes.string,
+    fontSize: PropTypes.number,
     animated: PropTypes.bool, // 状态栏动画
-  }
+  };
 
   static defaultProps = {
+    // transparent: false
     statusBar: {
       barStyle: 'light-content',
       hidden: false,
       translucent: false,
       animated: true,
     },
-    color: '#333',
-    fontSize: 16
-  }
+    color: '#333333',
+    fontSize: 16,
+  };
 
   render() {
-    let {fontSize,color} = this.props
+    let {fontSize, color} = this.props;
     let statusBar = !this.props.statusBar.hidden ? (
       <View style={styles.statusBar}>
-        <StatusBar {...this.props.statusBar}/>
+        <StatusBar {...this.props.statusBar} />
       </View>
-    ) : null
+    ) : null;
     let titleView = this.props.titleView ? (
       this.props.titleView
-    ): (
-      <Text ellipsizeMode='head' numberOfLines={1} style={[styles.title,{color: color, fontSize: px2dp(fontSize),}]}>
+    ) : (
+      <Text
+        ellipsizeMode="head"
+        numberOfLines={1}
+        style={[styles.title, {color: color, fontSize: fontSize}]}>
         {this.props.title}
       </Text>
-    )
+    );
     let content = this.props.hide ? null : (
       <View style={styles.navBar}>
         <View style={styles.leftBtnBox}>
@@ -65,48 +81,53 @@ export default class NavigationBar extends React.Component {
           {this.getButtonElement(this.props.rightButton)}
         </View>
       </View>
-    )
+    );
     return (
       <View style={[styles.container, this.props.style]}>
         {statusBar}
         {content}
       </View>
-    )
+    );
+  }
+
+  /**
+   * @param ele element 元素节点
+   * @returns {*}
+   */
+  getButtonElement(ele) {
+    return <View style={styles.navBarButton}>{ele ? ele : null}</View>;
   }
 }
 
 const styles = StyleSheet.create({
-  statusBar: {
-    flexDirection: row,
-    justifyContent: spaceBetween,
-    alignItems: center,
-    height: 44,
+  navBar: {
+    ...flexRowSpaceBtween,
+    height: NAV_BAR_H, // 根据平台设置高度
     paddingHorizontal: 15,
   },
-  navBar: {
-    alignItems: center,
-    justifyContent: center,
-    flexDirection: row,
+  navBarTitleContainer: {
+    ...flexRowCenter,
   },
   navBarButton: {
-    alignItems: center,
+    alignItems: 'center',
   },
   container: {
-    backgroundColor: '#85DFD2',
+    backgroundColor: THEME_DEFAULT.THEME_DEFAULT,
   },
   title: {
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
-  leftBtnBox:{
-    flexDirection: row,
-    justifyContent: flexStart,
-    alignItems: center,
+  statusBar: {
+    //height: STATUS_BAR_H,
+  },
+  leftBtnBox: {
+    ...flexRowStart,
     width: 50,
-    height: 40, // 根据平台设置高度
-  },
-  rightBtnBox:{
-    ...flexRowEnd,
-    width:50
     // height: NAV_BAR_H, // 根据平台设置高度
-  }
-})
+  },
+  rightBtnBox: {
+    ...flexRowEnd,
+    width: 50,
+    // height: NAV_BAR_H, // 根据平台设置高度
+  },
+});
