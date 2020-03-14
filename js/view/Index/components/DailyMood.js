@@ -1,50 +1,58 @@
-'use strict'
-
-import * as React from 'react'
-import PropTypes from 'prop-types'
-import { View, StyleSheet, Text } from 'react-native'
-import { row, center, spaceBetween, iosFontFmily, defaultFontSize, fontColor } from '../../../styles/constants'
+import * as React from 'react';
+import PropTypes from 'prop-types';
+import {View, StyleSheet, Text} from 'react-native';
+import {
+  row,
+  center,
+  spaceBetween,
+  iosFontFmily,
+  defaultFontSize,
+  fontColor,
+} from '../../../styles/constants';
 // 首页天气
 export default class DailyMood extends React.Component {
   static propTypes = {
-    data: PropTypes.object, // 必传参数
-  }
+    data: PropTypes.object.isRequired, // 必传参数
+  };
   state = {
     cond_txt: '',
     fl: '',
     month: 1,
-    day: 1
-  }
+    day: 1,
+  };
   componentDidMount() {
     //console.log('天气', this.props.data)
-    this.filterData()
-    this.formData()
+    this.filterData();
+    this.formData();
   }
   // 对数据处理
   async filterData() {
     if (this.props.data !== null && this.props.data.length !== 0) {
-      const now = this.props.data.item[0].now
-      const cond_txt_data = now.cond_txt
-      const fl_data = now.fl
+      const now = this.props.data.item[0].now;
+      const cond_txt_data = now.cond_txt;
+      const fl_data = now.fl;
       this.setState({
         cond_txt: cond_txt_data,
-        fl: fl_data
-      })  
+        fl: fl_data,
+      });
     } else {
-      return 
+      return;
     }
   }
   // 对日期处理
   formData() {
-    let date = new Date()
-    let new_month = date.getMonth() + 1// 月份
-    let new_day = date.getHours()// 日期
-    this.setState({
-      month: new_month,
-      day: new_day,
-    }, () => {
-      //console.log('day', this.state.day)
-    })
+    let date = new Date();
+    let new_month = date.getMonth() + 1; // 月份
+    let new_day = date.getHours(); // 日期
+    this.setState(
+      {
+        month: new_month,
+        day: new_day,
+      },
+      () => {
+        //console.log('day', this.state.day)
+      },
+    );
   }
   render() {
     return (
@@ -58,7 +66,7 @@ export default class DailyMood extends React.Component {
           <Text style={styles.weather}>{this.state.cond_txt}</Text>
         </View>
       </View>
-    )
+    );
   }
 }
 
@@ -74,9 +82,7 @@ const styles = StyleSheet.create({
     justifyContent: spaceBetween,
     padding: 8,
   },
-  leftBox: {
-
-  },
+  leftBox: {},
   month: {
     fontFamily: iosFontFmily,
     fontSize: defaultFontSize,
@@ -89,11 +95,11 @@ const styles = StyleSheet.create({
     color: fontColor,
   },
   rightBox: {
-    alignItems: center
+    alignItems: center,
   },
   date: {
     fontFamily: iosFontFmily,
     fontSize: defaultFontSize,
     color: fontColor,
   },
-})
+});

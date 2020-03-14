@@ -54,7 +54,6 @@ class IndexPage extends React.Component {
     return <MenuItem />;
   }
   renderDailyMood() {
-    // <DailyMood data={this.props.weather == null ? null : this.props.weather}/>
     return (
       <DailyMood
         data={this.props.weather == null ? null : this.props.weather}
@@ -74,7 +73,7 @@ class IndexPage extends React.Component {
         <SearchItem />
         <ScrollView>
           <View style={{width: screentWidth, height: 90}}>
-            {/* <SwiperItem data={this.state.banner}/> */}
+            {/* <SwiperItem data={this.state.banner} /> */}
           </View>
           {this.renderMenuItem()}
           {this.renderDailyMood()}
