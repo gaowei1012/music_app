@@ -89,6 +89,8 @@ module.exports = {
   videoDetail: '/video/detail?id=',
   // 视频播放地址
   videoPalyer: '/video/url?id=',
+  // 登录
+  login: '/login/cellphone',
 
   // 首页天气
   WeatherUrl:

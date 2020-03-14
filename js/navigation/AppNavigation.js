@@ -1,11 +1,3 @@
-/*
- * @Author: your name
- * @Date: 2020-01-17 14:05:34
- * @LastEditTime : 2020-01-28 22:00:52
- * @LastEditors  : Please set LastEditors
- * @Description: In User Settings Edit
- * @FilePath: /music_app/js/navigation/AppNavigation.js
- */
 import * as React from 'react';
 import {connect} from 'react-redux';
 import {
@@ -38,6 +30,7 @@ import RadioPage from '../view/Index/RadioPage';
 import RecommenPage from '../view/Index/RecommenPage';
 import PlayListPage from '../view/Index/PlayListPage';
 import GuessLikeMore from '../view/Index/components/GuessLikeMore';
+import SigninPage from '../view/Personal/Signin';
 
 export const rootCom = 'Init';
 
@@ -161,6 +154,12 @@ const MainNavigator = createStackNavigator({
   },
   GuessLikeMore: {
     screen: GuessLikeMore,
+    navigationOptions: {
+      header: null,
+    },
+  },
+  SigninPage: {
+    screen: SigninPage,
     navigationOptions: {
       header: null,
     },

@@ -1,49 +1,90 @@
-'use strict'
-
-import * as React from 'react'
-import {screentWidth} from '../../../utils/screenUtil'
-import {View,Text,StyleSheet,Image,TouchableOpacity} from 'react-native'
-import {spaceBetween,fontColor,defaultFontColor,defaultFontSize,fontSmallSize,iosFontFmily, row, center} from '../../../styles/constants'
-import NavigationUtil from '../../../utils/NavigationUtil'
+import * as React from 'react';
+import {screentWidth} from '../../../utils/screenUtil';
+import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
+import {
+  spaceBetween,
+  fontColor,
+  defaultFontColor,
+  defaultFontSize,
+  fontSmallSize,
+  iosFontFmily,
+  row,
+  center,
+} from '../../../styles/constants';
+import NavigationUtil from '../../../utils/NavigationUtil';
 
 export default class PersonalItem extends React.Component {
   state = {
     list: [
-      {id: 1, icon: require('../../../images/common/bofang.png'), text: '我的私信', arrow: require('../../../images/common/arrow.png'), com: ''},
-      {id: 2, icon: require('../../../images/common/bofang.png'), text: '我的收藏', arrow: require('../../../images/common/arrow.png'), com: ''},
-      {id: 3, icon: require('../../../images/common/bofang.png'), text: '音乐闹钟', arrow: require('../../../images/common/arrow.png'), com: ''},
-      {id: 4, icon: require('../../../images/common/bofang.png'), text: '个性皮肤', arrow: require('../../../images/common/arrow.png'), com: ''},
-      {id: 5, icon: require('../../../images/common/bofang.png'), text: '夜间模式', arrow: require('../../../images/common/arrow.png'), com: ''},
-      {id: 6, icon: require('../../../images/common/bofang.png'), text: '清除缓存', arrow: require('../../../images/common/arrow.png'), com: ''},
-      {id: 7, icon: require('../../../images/common/bofang.png'), text: '隐私条款', arrow: require('../../../images/common/arrow.png'), com: ''}
-    ]
-  }
-  async componentDidMount() {}
-  goToPage=(text,com)=> {
-    NavigationUtil.goPage({title: text}, com)
-  }
+      {
+        id: 1,
+        icon: require('../../../images/common/bofang.png'),
+        text: '我的私信',
+        arrow: require('../../../images/common/arrow.png'),
+        com: '',
+      },
+      {
+        id: 2,
+        icon: require('../../../images/common/bofang.png'),
+        text: '我的收藏',
+        arrow: require('../../../images/common/arrow.png'),
+        com: '',
+      },
+      {
+        id: 5,
+        icon: require('../../../images/common/bofang.png'),
+        text: '夜间模式',
+        arrow: require('../../../images/common/arrow.png'),
+        com: '',
+      },
+      {
+        id: 6,
+        icon: require('../../../images/common/bofang.png'),
+        text: '清除缓存',
+        arrow: require('../../../images/common/arrow.png'),
+        com: '',
+      },
+      {
+        id: 7,
+        icon: require('../../../images/common/bofang.png'),
+        text: '隐私条款',
+        arrow: require('../../../images/common/arrow.png'),
+        com: '',
+      },
+    ],
+  };
+  componentDidMount() {}
+  goToPage = (text, com) => {
+    NavigationUtil.goPage({title: text}, com);
+  };
   _list() {
-    const {list} = this.state
-    return <View>
-      {list.map(item => {
-        return <TouchableOpacity key={item.id} onPress={this.goToPage(item.text, item.com)} activeOpacity={0.8} style={styles.listBox}>
-          <View style={styles.titleBox}>
-            <Image style={styles.icon} source={item.icon}/>
-            <Text style={styles.text}>{item.text}</Text>
-          </View>
-          <View style={styles.arrowBox}>
-            <Image style={styles.arrow} source={item.arrow}/>
-          </View>
-        </TouchableOpacity>
-      })}
-    </View>
+    const {list} = this.state;
+    return (
+      <View>
+        {list == null
+          ? null
+          : list.map(item => {
+              return (
+                <TouchableOpacity
+                  key={item.id}
+                  onPress={this.goToPage(item.text, item.com)}
+                  activeOpacity={0.8}
+                  style={styles.listBox}>
+                  <View style={styles.titleBox}>
+                    <Image style={styles.icon} source={item.icon} />
+                    <Text style={styles.text}>{item.text}</Text>
+                  </View>
+                  <View style={styles.arrowBox}>
+                    <Image style={styles.arrow} source={item.arrow} />
+                  </View>
+                </TouchableOpacity>
+              );
+            })}
+      </View>
+    );
   }
   render() {
-    return (
-      <View style={styles.container}>
-        {this._list()}
-      </View>
-    )
+    return <View style={styles.container}>{this._list()}</View>;
   }
 }
 
@@ -58,12 +99,12 @@ const styles = StyleSheet.create({
     borderBottomColor: '#ddd',
     borderBottomWidth: 1,
     alignItems: center,
-    justifyContent: spaceBetween
+    justifyContent: spaceBetween,
   },
   titleBox: {
     marginLeft: 10,
     flexDirection: row,
-    alignItems: center
+    alignItems: center,
   },
   icon: {
     width: 20,
@@ -80,5 +121,5 @@ const styles = StyleSheet.create({
   arrow: {
     width: 20,
     height: 20,
-  }
-})
+  },
+});

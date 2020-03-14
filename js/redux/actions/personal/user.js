@@ -6,46 +6,48 @@
  * @Description: In User Settings Edit
  * @FilePath: /music_app/js/redux/actions/personal/user.js
  */
-import types from '../../actionTypes/index'
-import {request} from '../../../expand/request'
-import {handleData, handleErrorData} from '../../../utils/asyncActionHandle'
+import types from '../../actionTypes/index';
+import {request} from '../../../expand/request';
+import {handleData, handleErrorData} from '../../../utils/asyncActionHandle';
 
 // 发送验证码
 export function onGetCodeData(url) {
   return dispatch => {
     request(url)
-      .then(data => {
-        handleData(dispatch, data, types.GET_CODE_DATA_SUCCESS)
+      .then(res => {
+        let data = res.data;
+        handleData(dispatch, data, types.GET_CODE_DATA_SUCCESS);
       })
       .catch(err => {
-        handleErrorData(dispatch, err, types.GET_CODE_DATA_FAIL)
-      })
-  }
+        handleErrorData(dispatch, err, types.GET_CODE_DATA_FAIL);
+      });
+  };
 }
 
-
 // 登录
-export function onLoginData(url, data) {
+export function onLoginData(url) {
   return dispatch => {
-    request(url, data)
-      .then(data => {
-        handleData(dispatch, data, types.LOGIN_LOAD_SUCCESS)
+    request(url)
+      .then(res => {
+        let data = res.data;
+        handleData(dispatch, data, types.LOGIN_LOAD_SUCCESS);
       })
       .catch(err => {
-        handleErrorData(dispatch, err, types.LOGIN_LOAD_FAIL)
-      })
-  }
+        handleErrorData(dispatch, err, types.LOGIN_LOAD_FAIL);
+      });
+  };
 }
 
 // 签到
 export function onSignindata(url) {
   return dispatch => {
     request(url)
-      .then(data => {
-        handleData(dispatch, data, types.SIGNIN_LOAD_SUCCESS)
+      .then(res => {
+        let data = res.data;
+        handleData(dispatch, data, types.SIGNIN_LOAD_SUCCESS);
       })
       .catch(err => {
-        handleErrorData(dispatch, err, types.SIGNIN_LOAD_FAIL)
-      })
-  }
+        handleErrorData(dispatch, err, types.SIGNIN_LOAD_FAIL);
+      });
+  };
 }
