@@ -38,6 +38,20 @@ export function onLoginData(url) {
   };
 }
 
+// 获取用户信息
+export function onUserInfoData(url) {
+  return dispatch => {
+    request(url)
+      .then(res => {
+        let data = res;
+        handleData(dispatch, data, types.USER_LOAD_INFO_SUCCESS);
+      })
+      .catch(err => {
+        handleErrorData(dispatch, err, types.USER_LOAD_INFO_FAIL);
+      });
+  };
+}
+
 // 用户关注列表
 export function onFollowsData(url) {
   return dispatch => {

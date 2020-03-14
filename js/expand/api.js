@@ -93,6 +93,8 @@ module.exports = {
   login: '/login/cellphone',
   // 获取用户列表
   userList: '/user/follows',
+  // 获取用户信息
+  userInfo: '/user/subcount',
 
   // 首页天气
   WeatherUrl:

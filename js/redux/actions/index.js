@@ -16,6 +16,7 @@ import {
   onGetCodeData,
   onLoginData,
   onFollowsData,
+  onUserInfoData,
 } from '../actions/personal/user';
 import {onDailySinger} from '../actions/personal/daily';
 import {onLoadWeatherData} from '../actions/index/weather';
@@ -45,4 +46,5 @@ export default {
   onLoadVideoDetailData,
   onLoadVideoRelateData,
   onFollowsData,
+  onUserInfoData,
 };
