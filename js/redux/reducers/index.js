@@ -16,6 +16,7 @@ import mv from './video/mv';
 import group from './video/video';
 import follow from './personal/user/follow';
 import userinfo from './personal/user/userinfo';
+import msgPrivate from './personal/msg/private';
 
 const navState = RootNavigation.router.getStateForAction(
   RootNavigation.router.getActionForPathAndParams(rootCom),
@@ -44,6 +45,7 @@ const root = combineReducers({
   group,
   follow,
   userinfo,
+  msgPrivate,
 });
 
 export default root;

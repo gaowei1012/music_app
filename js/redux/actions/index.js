@@ -28,6 +28,7 @@ import {
   onLoadVideoRelateData,
   onLoadVideoDetailData,
 } from './video/video';
+import {onLoadPrivateData} from './personal/message';
 
 export default {
   onThemeChange,
@@ -47,4 +48,5 @@ export default {
   onLoadVideoRelateData,
   onFollowsData,
   onUserInfoData,
+  onLoadPrivateData,
 };

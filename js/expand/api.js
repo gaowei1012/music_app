@@ -95,6 +95,8 @@ module.exports = {
   userList: '/user/follows',
   // 获取用户信息
   userInfo: '/user/subcount',
+  // 通知 信息
+  priate: '/msg/private',
 
   // 首页天气
   WeatherUrl:
