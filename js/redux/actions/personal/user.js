@@ -29,11 +29,25 @@ export function onLoginData(url) {
   return dispatch => {
     request(url)
       .then(res => {
-        let data = res.data;
+        let data = res;
         handleData(dispatch, data, types.LOGIN_LOAD_SUCCESS);
       })
       .catch(err => {
         handleErrorData(dispatch, err, types.LOGIN_LOAD_FAIL);
+      });
+  };
+}
+
+// 用户关注列表
+export function onFollowsData(url) {
+  return dispatch => {
+    request(url)
+      .then(res => {
+        let data = res;
+        handleData(dispatch, data, types.USER_LOAD_FOLLOWS_SUCCESS);
+      })
+      .catch(err => {
+        handleErrorData(dispatch, err, types.USER_LOAD_FOLLOWS_FAIL);
       });
   };
 }

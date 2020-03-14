@@ -91,6 +91,8 @@ module.exports = {
   videoPalyer: '/video/url?id=',
   // 登录
   login: '/login/cellphone',
+  // 获取用户列表
+  userList: '/user/follows',
 
   // 首页天气
   WeatherUrl:

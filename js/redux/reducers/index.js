@@ -25,6 +25,7 @@ import search from './index/search';
 import recommend from './index/personalized';
 import mv from './video/mv';
 import group from './video/video';
+import follow from './personal/user/follow';
 
 const navState = RootNavigation.router.getStateForAction(
   RootNavigation.router.getActionForPathAndParams(rootCom),
@@ -51,6 +52,7 @@ const root = combineReducers({
   recommend,
   mv,
   group,
+  follow,
 });
 
 export default root;

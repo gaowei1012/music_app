@@ -12,7 +12,11 @@ import {onLoadBannerData} from '../actions/index/banner';
 import {onLoadRadioData} from '../actions/index/radio';
 import {onLoadTopListData} from '../actions/index/list';
 import {onLoadTopPlayListHigh} from '../actions/index/topPlaylistHigh';
-import {onGetCodeData, onLoginData} from '../actions/personal/user';
+import {
+  onGetCodeData,
+  onLoginData,
+  onFollowsData,
+} from '../actions/personal/user';
 import {onDailySinger} from '../actions/personal/daily';
 import {onLoadWeatherData} from '../actions/index/weather';
 import {onLoadSearchData} from '../actions/index/search';
@@ -40,4 +44,5 @@ export default {
   onLoadVideoGroupData,
   onLoadVideoDetailData,
   onLoadVideoRelateData,
+  onFollowsData,
 };
