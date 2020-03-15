@@ -51,12 +51,13 @@ class LoginPage extends React.Component {
     const {onLoginData} = this.props;
     const phone = '13666683140';
     const password = 'qq12345..**';
-    const uid = '430172280';
+    // const uid = '430172280';
     // const url = login + '?' + 'phone=' + phone + '&password=' + password;
     const url = `${login}?phone=${phone}&password=${password}`;
-    const followUrl = `?uid=${uid}`;
+    // const followUrl = `?uid=${uid}`;
     onLoginData(url);
-    onFollowsData(followUrl);
+    // console.log('follwUrl', followUrl);
+    // onFollowsData(followUrl);
     // const {login} = this.props;
     // console.log('login', login);
   }
