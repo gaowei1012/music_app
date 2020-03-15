@@ -97,6 +97,8 @@ module.exports = {
   userInfo: '/user/subcount',
   // 通知 信息
   priate: '/msg/private',
+  // 获取音乐url
+  songUrl: '/song/url',
 
   // 首页天气
   WeatherUrl:

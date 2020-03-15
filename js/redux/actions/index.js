@@ -29,6 +29,7 @@ import {
   onLoadVideoDetailData,
 } from './video/video';
 import {onLoadPrivateData} from './personal/message';
+import {onLoadSongUrl} from './index/song/song';
 
 export default {
   onThemeChange,
@@ -49,4 +50,5 @@ export default {
   onFollowsData,
   onUserInfoData,
   onLoadPrivateData,
+  onLoadSongUrl,
 };
