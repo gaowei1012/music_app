@@ -101,6 +101,8 @@ module.exports = {
   playlist: '/playlist/detail',
   // 获取音乐url
   songUrl: '/song/url',
+  // 获取每日推荐歌单
+  resource: '/recommend/resource',
 
   // 首页天气
   WeatherUrl:

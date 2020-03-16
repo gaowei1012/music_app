@@ -20,6 +20,7 @@ import msgPrivate from './personal/msg/private';
 import songUrl from './index/song/song';
 import play from './index/song/play';
 import check from './index/song/check';
+import resoucre from './index/resoucre';
 
 const navState = RootNavigation.router.getStateForAction(
   RootNavigation.router.getActionForPathAndParams(rootCom),
@@ -52,6 +53,7 @@ const root = combineReducers({
   songUrl,
   play,
   check,
+  resoucre,
 });
 
 export default root;
