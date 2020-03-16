@@ -1,7 +1,6 @@
-'use strict'
-import * as React from 'react'
-import {View, Text, StyleSheet, SafeAreaView} from 'react-native'
-import {flex, center} from '../../styles/constants'
+import * as React from 'react';
+import {View, Text, StyleSheet, SafeAreaView} from 'react-native';
+import {flex, center} from '../../styles/constants';
 
 export default class DressedUp extends React.Component {
   render() {
@@ -9,13 +8,13 @@ export default class DressedUp extends React.Component {
       <SafeAreaView style={sytles.container}>
         <Text>个性装扮</Text>
       </SafeAreaView>
-    )
+    );
   }
 }
 
-const sytles =StyleSheet.create({
+const sytles = StyleSheet.create({
   container: {
     flex: flex,
-    alignItems: center
-  }
-})
+    alignItems: center,
+  },
+});

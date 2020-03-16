@@ -20,6 +20,8 @@ import {Input, Button} from 'react-native-elements';
 import {connect} from 'react-redux';
 import actions from '../../redux/actions/index';
 import {login} from '../../expand/api';
+import AsyncStorage from '@react-native-community/async-storage';
+import NavigationUtil from '../../utils/NavigationUtil';
 
 class LoginPage extends React.Component {
   state = {
@@ -51,15 +53,17 @@ class LoginPage extends React.Component {
     const {onLoginData} = this.props;
     const phone = '13666683140';
     const password = 'qq12345..**';
-    // const uid = '430172280';
-    // const url = login + '?' + 'phone=' + phone + '&password=' + password;
     const url = `${login}?phone=${phone}&password=${password}`;
-    // const followUrl = `?uid=${uid}`;
     onLoginData(url);
-    // console.log('follwUrl', followUrl);
-    // onFollowsData(followUrl);
-    // const {login} = this.props;
-    // console.log('login', login);
+    let token = this.props.login.item.token;
+    // 保存token
+    AsyncStorage.setItem('token', token, err => {
+      if (err) err;
+      // 登录成功后跳转
+      setTimeout(() => {
+        NavigationUtil.goPage({}, 'PersonalPage');
+      }, 1000);
+    });
   }
   // 发送验证码
   getCode = () => {

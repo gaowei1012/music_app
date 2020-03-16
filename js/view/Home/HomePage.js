@@ -1,15 +1,7 @@
-/*
- * @Author: your name
- * @Date: 2020-01-20 14:39:30
- * @LastEditTime : 2020-01-20 14:43:50
- * @LastEditors  : Please set LastEditors
- * @Description: In User Settings Edit
- * @FilePath: /music_app/js/view/Home/HomePage.js
- */
-import * as React from 'react'
-import {BackHandler, ToastAndroid} from 'react-native'
-import NavigationUtil from '../../utils/NavigationUtil'
-import DynamicTabNavigator from '../../navigation/DynamicTabNavigator'
+import * as React from 'react';
+import {BackHandler, ToastAndroid} from 'react-native';
+import NavigationUtil from '../../utils/NavigationUtil';
+import DynamicTabNavigator from '../../navigation/DynamicTabNavigator';
 
 export default class HomePage extends React.Component {
   componentDidMount() {
