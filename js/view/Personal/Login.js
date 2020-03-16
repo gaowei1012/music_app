@@ -56,6 +56,7 @@ class LoginPage extends React.Component {
     const url = `${login}?phone=${phone}&password=${password}`;
     onLoginData(url);
     let token = this.props.login.item.token;
+    console.log('uid', this.props.login.item);
     // 保存token
     AsyncStorage.setItem('token', token, err => {
       if (err) err;

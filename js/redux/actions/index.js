@@ -29,7 +29,14 @@ import {
   onLoadVideoDetailData,
 } from './video/video';
 import {onLoadPrivateData} from './personal/message';
-import {onLoadSongUrl} from './index/song/song';
+import {
+  onLoadSongUrl,
+  onCheckMusic,
+  onLikeMusic,
+  onLikeListMusic,
+  onLoadPlayListData,
+} from './index/song/song';
+import {onLoadResourceData} from './index/resource';
 
 export default {
   onThemeChange,
@@ -51,4 +58,9 @@ export default {
   onUserInfoData,
   onLoadPrivateData,
   onLoadSongUrl,
+  onCheckMusic,
+  onLikeMusic,
+  onLikeListMusic,
+  onLoadPlayListData,
+  onLoadResourceData,
 };
