@@ -103,6 +103,10 @@ module.exports = {
   songUrl: '/song/url',
   // 获取每日推荐歌单
   resource: '/recommend/resource',
+  // 喜欢音乐
+  likeL: '/like',
+  // 喜欢音乐列表
+  likelist: '/likelist',
 
   // 首页天气
   WeatherUrl:

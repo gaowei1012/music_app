@@ -43,3 +43,31 @@ export function onCheckMusic(url) {
       });
   };
 }
+
+// 喜欢音乐
+export function onLikeMusic(url) {
+  return dispatch => {
+    request(url)
+      .then(res => {
+        let data = res;
+        handleData(dispatch, data, types.GET_LIKE_SUCCESS);
+      })
+      .catch(err => {
+        handleErrorData(dispatch, err, types.GET_LIKE_FAIL);
+      });
+  };
+}
+
+// 喜欢音乐列表
+export function onLikeListMusic(url) {
+  return dispatch => {
+    request(url)
+      .then(res => {
+        let data = res;
+        handleData(dispatch, data, types.GET_LIKE_LIST_SUCCESS);
+      })
+      .catch(err => {
+        handleErrorData(dispatch, err, types.GET_LIKE_LIST_FAIL);
+      });
+  };
+}
