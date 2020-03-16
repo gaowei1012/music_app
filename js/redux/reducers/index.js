@@ -6,7 +6,7 @@ import getCode from './personal/user/getCode';
 import login from './personal/user/login';
 import signin from './personal/user/signin';
 import radio from './index/radio';
-import top from './index/list';
+import topList from './index/topList';
 import playHigh from './index/topPlaylistHigh';
 import daily from './personal/daily';
 import weather from './index/weather';
@@ -23,6 +23,7 @@ import check from './index/song/check';
 import resoucre from './index/resoucre';
 import like from './index/song/like';
 import likeList from './index/song/likelist';
+import rankiglist from './index/rakinglist';
 
 const navState = RootNavigation.router.getStateForAction(
   RootNavigation.router.getActionForPathAndParams(rootCom),
@@ -41,7 +42,7 @@ const root = combineReducers({
   login,
   signin,
   radio,
-  top,
+  topList,
   playHigh,
   daily,
   weather,
@@ -58,6 +59,7 @@ const root = combineReducers({
   resoucre,
   like,
   likeList,
+  rankiglist,
 });
 
 export default root;

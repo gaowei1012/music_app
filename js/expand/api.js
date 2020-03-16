@@ -46,7 +46,7 @@ module.exports = {
   // 热门歌手
   topArtists: 'top/artists',
   // mv 排行
-  topMv: '/top/mv?area=',
+  topMv: 'top/mv?area=',
   // 全部mv
   mvAll: 'mv/all?area=',
   // 网易出品mv
@@ -56,19 +56,19 @@ module.exports = {
   // 推荐歌单
   personalized: 'personalized?limit=',
   // 推荐新音乐
-  personalizedNewsong: 'personalized/newsong',
+  personalizedNewsong: '/personalized/newsong',
   // 推荐电台
-  personalizedDjprogram: 'personalized/djprogram',
+  personalizedDjprogram: '/personalized/djprogram',
   // 排行榜
-  topList: 'top/list?idx=',
+  rakingList: 'top/list',
   // 所有排行榜
-  toplist: 'toplist',
+  topAllList: 'toplist',
   // 所有榜单内容摘要
-  toplistDeatil: 'toplist/detail',
+  toplistDeatil: '/toplist/detail',
   // 歌手榜
-  toplistArtist: 'toplist/artist',
+  toplistArtist: '/toplist/artist',
   // 热门电台
-  djHot: 'dj/hot',
+  djHot: '/dj/hot',
   // 电台 - 24小时节目榜
   djProgramToplist: 'dj/program/toplist/hours',
   // 私人FM
@@ -78,35 +78,35 @@ module.exports = {
   // 精选歌单
   topPlaylistHigh: '/top/playlist/highquality',
   // 推荐
-  personalized: '/personalized',
+  personalized: 'personalized',
   // 视频菜单
-  videoList: '/video/group/list',
+  videoList: 'video/group/list',
   // 标签下的视频
-  videoTagList: '/video/group?id=',
+  videoTagList: 'video/group?id=',
   // 相关视频
-  relate: '/related/allvideo?id=',
+  relate: 'related/allvideo?id=',
   // 视频详情
-  videoDetail: '/video/detail?id=',
+  videoDetail: 'video/detail?id=',
   // 视频播放地址
-  videoPalyer: '/video/url?id=',
+  videoPalyer: 'video/url?id=',
   // 登录
-  login: '/login/cellphone',
+  login: 'login/cellphone',
   // 获取用户列表
-  userList: '/user/follows',
+  userList: 'user/follows',
   // 获取用户信息
-  userInfo: '/user/subcount',
+  userInfo: 'user/subcount',
   // 通知 信息
-  priate: '/msg/private',
+  priate: 'msg/private',
   // 获取歌单详情
-  playlist: '/playlist/detail',
+  playlist: 'playlist/detail',
   // 获取音乐url
-  songUrl: '/song/url',
+  songUrl: 'song/url',
   // 获取每日推荐歌单
-  resource: '/recommend/resource',
+  resource: 'recommend/resource',
   // 喜欢音乐
-  likeL: '/like',
+  likeL: 'like',
   // 喜欢音乐列表
-  likelist: '/likelist',
+  likelist: 'likelist',
 
   // 首页天气
   WeatherUrl:

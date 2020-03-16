@@ -10,7 +10,7 @@
 import {onThemeChange} from '../actions/theme/index';
 import {onLoadBannerData} from '../actions/index/banner';
 import {onLoadRadioData} from '../actions/index/radio';
-import {onLoadTopListData} from '../actions/index/list';
+import {onLoadTopListData, onLoadListData} from './index/toplist';
 import {onLoadTopPlayListHigh} from '../actions/index/topPlaylistHigh';
 import {
   onGetCodeData,
@@ -63,4 +63,5 @@ export default {
   onLikeListMusic,
   onLoadPlayListData,
   onLoadResourceData,
+  onLoadListData,
 };
