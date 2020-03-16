@@ -18,6 +18,8 @@ import follow from './personal/user/follow';
 import userinfo from './personal/user/userinfo';
 import msgPrivate from './personal/msg/private';
 import songUrl from './index/song/song';
+import play from './index/song/play';
+import check from './index/song/check';
 
 const navState = RootNavigation.router.getStateForAction(
   RootNavigation.router.getActionForPathAndParams(rootCom),
@@ -48,6 +50,8 @@ const root = combineReducers({
   userinfo,
   msgPrivate,
   songUrl,
+  play,
+  check,
 });
 
 export default root;
