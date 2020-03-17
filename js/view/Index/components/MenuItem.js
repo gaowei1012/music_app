@@ -12,6 +12,7 @@ import {
 } from '../../../styles/constants';
 import {screentWidth} from '../../../utils/screenUtil';
 import NavigationUtil from '../../../utils/NavigationUtil';
+import {px2dp} from '../../../utils/px2dp';
 
 export default class MenuItem extends React.Component {
   state = {
@@ -76,28 +77,28 @@ export default class MenuItem extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 20,
+    marginTop: px2dp(20),
   },
   menuBox: {
-    width: 345,
+    width: px2dp(345),
     flexDirection: row,
     justifyContent: spaceBetween,
     alignSelf: center,
   },
   itemBox: {
-    width: 50,
-    height: 60,
+    width: px2dp(50),
+    height: px2dp(60),
     //backgroundColor: 'red',
     alignItems: center,
   },
   image: {
-    width: 25,
-    height: 25,
+    width: px2dp(25),
+    height: px2dp(25),
   },
   text: {
-    marginTop: 8,
+    marginTop: px2dp(8),
     fontFamily: iosFontFmily,
-    fontSize: 12,
+    fontSize: px2dp(12),
     color: fontColor,
   },
 });

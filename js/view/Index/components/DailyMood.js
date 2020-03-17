@@ -9,6 +9,7 @@ import {
   defaultFontSize,
   fontColor,
 } from '../../../styles/constants';
+import {px2dp} from '../../../utils/px2dp';
 // 首页天气
 export default class DailyMood extends React.Component {
   static propTypes = {
@@ -76,15 +77,15 @@ export default class DailyMood extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 16,
-    width: 345,
-    height: 60,
+    marginTop: px2dp(16),
+    width: px2dp(345),
+    height: px2dp(60),
     backgroundColor: '#eee',
     alignSelf: center,
-    borderRadius: 6,
+    borderRadius: px2dp(6),
     flexDirection: row,
     justifyContent: spaceBetween,
-    padding: 8,
+    padding: px2dp(8),
   },
   leftBox: {},
   month: {
@@ -93,7 +94,7 @@ const styles = StyleSheet.create({
     color: fontColor,
   },
   weather: {
-    marginTop: 8,
+    marginTop: px2dp(8),
     fontFamily: iosFontFmily,
     fontSize: defaultFontSize,
     color: fontColor,
