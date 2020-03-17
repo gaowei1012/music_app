@@ -21,6 +21,7 @@ import {rakingList} from '../../expand/api';
 import {px2dp} from '../../utils/px2dp';
 import {connect} from 'react-redux';
 import {screentWidth} from '../../utils/screenUtil';
+import NavigationUtil from '../../utils/NavigationUtil';
 
 class RankingDetail extends React.Component {
   constructor() {
@@ -49,6 +50,10 @@ class RankingDetail extends React.Component {
       img: img,
     });
   }
+  // 播放页
+  goToPage(id) {
+    NavigationUtil.goPage({id}, 'Player');
+  }
   render() {
     const {tracks, desc, img} = this.state;
     return (
@@ -68,7 +73,10 @@ class RankingDetail extends React.Component {
             ? null
             : tracks.map((item, index) => {
                 return (
-                  <TouchableOpacity key={item.id} style={styles.rankingItemBox}>
+                  <TouchableOpacity
+                    key={item.id}
+                    style={styles.rankingItemBox}
+                    onPress={() => this.goToPage(item.id)}>
                     <View style={styles.nameBox}>
                       <Text style={styles.idx}>{index + 1}</Text>
                       <Text numberOfLines={1} style={styles.name}>

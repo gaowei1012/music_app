@@ -32,6 +32,7 @@ import PlayListPage from '../view/Index/PlayListPage';
 import GuessLikeMore from '../view/Index/components/GuessLikeMore';
 import SigninPage from '../view/Personal/Signin';
 import RankingDetail from '../view/Index/RankingDetail';
+import Player from '../components/Player';
 
 export const rootCom = 'Init';
 
@@ -167,6 +168,12 @@ const MainNavigator = createStackNavigator({
   },
   RankingDetail: {
     screen: RankingDetail,
+    navigationOptions: {
+      header: null,
+    },
+  },
+  Player: {
+    screen: Player,
     navigationOptions: {
       header: null,
     },
