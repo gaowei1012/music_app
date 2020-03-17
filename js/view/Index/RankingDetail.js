@@ -23,19 +23,34 @@ import {connect} from 'react-redux';
 import {screentWidth} from '../../utils/screenUtil';
 
 class RankingDetail extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      tracks: [],
+      desc: '',
+      img: '',
+    };
+  }
   componentDidMount() {
     this.getData();
   }
+
   getData() {
     const {onLoadListData} = this.props;
     let idx = this.props.navigation.state.params.idx;
     let url = `${rakingList}?idx=${idx}`;
     onLoadListData(url);
-  }
-  render() {
     let tracks = this.props.rankiglist.item.tracks;
     let desc = this.props.rankiglist.item.description;
     let img = this.props.rankiglist.item.creator.backgroundUrl;
+    this.setState({
+      tracks: tracks,
+      desc: desc,
+      img: img,
+    });
+  }
+  render() {
+    const {tracks, desc, img} = this.state;
     return (
       <SafeAreaView style={styles.rankingDetailBox}>
         <View style={styles.headerBox}>
