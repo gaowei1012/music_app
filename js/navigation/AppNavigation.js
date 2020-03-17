@@ -31,6 +31,7 @@ import RecommenPage from '../view/Index/RecommenPage';
 import PlayListPage from '../view/Index/PlayListPage';
 import GuessLikeMore from '../view/Index/components/GuessLikeMore';
 import SigninPage from '../view/Personal/Signin';
+import RankingDetail from '../view/Index/RankingDetail';
 
 export const rootCom = 'Init';
 
@@ -160,6 +161,12 @@ const MainNavigator = createStackNavigator({
   },
   SigninPage: {
     screen: SigninPage,
+    navigationOptions: {
+      header: null,
+    },
+  },
+  RankingDetail: {
+    screen: RankingDetail,
     navigationOptions: {
       header: null,
     },
