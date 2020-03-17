@@ -54,11 +54,7 @@ class IndexPage extends React.Component {
     return <MenuItem />;
   }
   renderDailyMood() {
-    return (
-      <DailyMood
-        data={this.props.weather == null ? null : this.props.weather}
-      />
-    );
+    return <DailyMood data={this.props.weather} />;
   }
   renderSelectedPlaylists() {
     return <SelectedPlaylist play_list={this.props.playHigh} />;

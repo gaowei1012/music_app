@@ -59,11 +59,15 @@ export default class DailyMood extends React.Component {
       <View style={styles.container}>
         <View style={styles.leftBox}>
           <Text style={styles.month}>{this.state.month}月你好!</Text>
-          <Text style={styles.weather}>今天天气 {this.state.fl}°C</Text>
+          <Text style={styles.weather}>
+            今天天气 {this.state.fl == null ? null : this.state.fl}°C
+          </Text>
         </View>
         <View style={styles.rightBox}>
           <Text style={styles.date}>Nov.{this.state.day}</Text>
-          <Text style={styles.weather}>{this.state.cond_txt}</Text>
+          <Text style={styles.weather}>
+            {this.state.cond_txt == null ? null : this.state.cond_txt}
+          </Text>
         </View>
       </View>
     );
