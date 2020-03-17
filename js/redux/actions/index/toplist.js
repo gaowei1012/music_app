@@ -21,12 +21,12 @@ export function onLoadListData(url) {
   return dispatch => {
     request(url)
       .then(res => {
-        let data = res;
+        let data = res.playlist;
         console.log('data--data', data);
-        handleData(dispatch, data, types);
+        handleData(dispatch, data, types.GET_RANKING_LIST_SUCCESS);
       })
       .catch(err => {
-        handleErrorData(dispatch, err, types);
+        handleErrorData(dispatch, err, types.GET_RANKING_LIST_FAIL);
       });
   };
 }

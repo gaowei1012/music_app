@@ -19,7 +19,7 @@ class RankingPage extends React.Component {
   // 获取数据
   getData() {
     const {onLoadTopListData, onLoadListData} = this.props;
-    let url = `${rakingList}?idx=${0}`;
+    let url = `${rakingList}?idx=${1}`;
     console.log('url', url);
     onLoadTopListData(topAllList);
     onLoadListData(url);
