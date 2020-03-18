@@ -16,6 +16,8 @@ import {
   flexRowStart,
 } from '../styles/flex';
 import {STATUS_BAR_H, NAV_BAR_H} from '../utils/navBar_StatusBar_Height';
+import {px2dp} from '../utils/px2dp';
+import {center} from '../styles/constants';
 const StatusBarShape = {
   barStyle: PropTypes.oneOf(['light-content', 'default']),
   hidden: PropTypes.bool,
@@ -60,7 +62,7 @@ export default class NavigationBar extends Component {
       this.props.titleView
     ) : (
       <Text
-        ellipsizeMode="head"
+        //ellipsizeMode="head"
         numberOfLines={1}
         style={[styles.title, {color: color, fontSize: fontSize}]}>
         {this.props.title}
@@ -113,7 +115,9 @@ const styles = StyleSheet.create({
     backgroundColor: THEME_DEFAULT.THEME_DEFAULT,
   },
   title: {
+    width: px2dp(200),
     fontWeight: 'bold',
+    textAlign: center,
   },
   statusBar: {
     //height: STATUS_BAR_H,

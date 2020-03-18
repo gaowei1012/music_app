@@ -51,8 +51,9 @@ class RankingDetail extends React.Component {
     });
   }
   // 播放页
-  goToPage(id) {
-    NavigationUtil.goPage({id}, 'Player');
+  goToPage(id, name, al, ar) {
+    console.log('--ar--', ar);
+    NavigationUtil.goPage({id, name, al, ar}, 'Player');
   }
   render() {
     const {tracks, desc, img} = this.state;
@@ -76,7 +77,9 @@ class RankingDetail extends React.Component {
                   <TouchableOpacity
                     key={item.id}
                     style={styles.rankingItemBox}
-                    onPress={() => this.goToPage(item.id)}>
+                    onPress={() =>
+                      this.goToPage(item.id, item.name, item.al, item.ar)
+                    }>
                     <View style={styles.nameBox}>
                       <Text style={styles.idx}>{index + 1}</Text>
                       <Text numberOfLines={1} style={styles.name}>

@@ -21,7 +21,7 @@ export function onLoadSongUrl(url) {
   return dispatch => {
     request(url)
       .then(res => {
-        let data = res;
+        let data = res.data;
         handleData(dispatch, data, types.GET_SONG_URL_SUCCESS);
       })
       .catch(err => {

@@ -1,16 +1,51 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import {View, Text, StyleSheet, SafeAreaView} from 'react-native';
-import {flex, row, center} from '../styles/constants';
+import {
+  View,
+  Text,
+  StyleSheet,
+  SafeAreaView,
+  Slider,
+  Image,
+  TouchableOpacity,
+} from 'react-native';
+import {
+  flex,
+  row,
+  center,
+  spaceBetween,
+  fontSmallSize,
+  defaultFontSize,
+  defaultFontColor,
+} from '../styles/constants';
 import {screentWidth} from '../utils/screenUtil';
 import {px2dp} from '../utils/px2dp';
+import {GoBack} from '../utils/GoBack';
+import TopNavigationBar from '../common/TopNavigationBar';
+import actions from '../redux/actions/index';
+import {connect} from 'react-redux';
+import {songUrl} from '../expand/api';
+import Video from 'react-native-video';
+import AnimatedTabs from 'react-native-animated-tabs';
 
-export default class Player extends React.Component {
-  static propTypes = {};
-  constructor() {
-    super();
+class Player extends React.Component {
+  static propTypes = {
+    data_list: PropTypes.array,
+  };
+  constructor(props) {
+    super(props);
     this.state = {
       id: null,
+      name: null,
+      al: {},
+      activePanel: 0, //当前active的面板
+      activeSong: 0, //正在播放的歌
+      currentTime: 0.0, //当前播放的时间
+      paused: 1.0, //播放
+      sliderValue: 0, //进度条的进度
+      duration: 0.0, //总时长
+      ar: [], // 歌手信息
+      repeat: false, // 是否重复播放
     };
   }
 
@@ -18,24 +53,251 @@ export default class Player extends React.Component {
     this.getData();
   }
 
-  getData() {
-    let id = this.props.navigation.state.params.id;
+  //格式化音乐播放的时间为0：00
+  formatMediaTime(duration) {
+    let min = Math.floor(duration / 60);
+    let second = duration - min * 60;
+    min = min >= 10 ? min : '0' + min;
+    second = second >= 10 ? second : '0' + second;
+    return min + ':' + second;
+  }
+
+  //设置进度条和播放时间的变化
+  setTime(data) {
+    let sliderValue = parseInt(this.state.currentTime);
     this.setState({
-      id,
+      slideValue: sliderValue,
+      currentTime: data.currentTime,
     });
   }
+
+  //设置总时长
+  setDuration(duration) {
+    this.setState({duration: duration.duration});
+  }
+  // 获取数据
+  getData() {
+    const {onLoadSongUrl} = this.props;
+    let {id, name, al, ar} = this.props.navigation.state.params;
+    let url = `${songUrl}?id=${id}`;
+    onLoadSongUrl(url);
+    this.setState({
+      id,
+      name,
+      al,
+      ar,
+    });
+  }
+
+  // 右边elm
+  _rightElm() {
+    return (
+      <View style={styles.topRightBox}>
+        <Text>elm</Text>
+      </View>
+    );
+  }
+
+  _player() {
+    // 播放
+  }
+
+  _playerContent() {
+    const picUrl = this.state.al.picUrl;
+    const ar = this.state.ar;
+    console.log('ar', ar);
+    return (
+      <View style={styles.playerImgBox}>
+        <Image style={styles.image} source={{uri: picUrl}} />
+        <View style={styles.muiscTitleBox}>
+          <Text style={styles.songName}>{this.state.name}</Text>
+          {this.state.ar.map(item => (
+            <Text style={styles.username} key={item.id}>
+              {item.name}
+            </Text>
+          ))}
+        </View>
+      </View>
+    );
+  }
+
+  // 音乐播放
+  _playerCom() {
+    const url = this.props.songUrl.item;
+    console.log('muisc url', url);
+    return url ? (
+      <Video
+        source={{uri: url}} // 视频的URL地址，或者本地地址
+        ref={ref => {
+          this.palyer = ref;
+        }}
+        rate={this.state.isPlay ? 1 : 0} // 控制暂停/播放，0 代表暂停paused, 1代表播放normal.
+        volume={1.0}
+        // 声音的放声音的放大倍数大倍数，0 为静音  ，1 为正常音量 ，更大的数字表示放大的倍数
+        muted={false} // true代表静音，默认为false.
+        paused={false} // true代表暂停，默认为false
+        resizeMode="contain" // 视频的自适应伸缩铺放行为，contain、stretch、cover
+        repeat={this.state.repeat} // 是否重复播放
+        playInBackground={false} // 当app转到后台运行的时候，播放是否暂停
+        playWhenInactive={false} // [iOS] Video continues to play when control or notification center are shown. 仅适用于IOS
+        onLoadStart={this.loadStart} // 当视频开始加载时的回调函数
+        onLoad={this.setDuration} // 当视频加载完毕时的回调函数
+        onProgress={this.setTime} //  进度控制，每250ms调用一次，以获取视频播放的进度
+        onEnd={this.onEnd} // 当视频播放完毕后的回调函数
+        onError={this.videoError} // 当视频不能加载，或出错后的回调函数
+        style={{width: 0, height: 0}}
+      />
+    ) : null;
+  }
+
+  // 进度条
+  _slider() {
+    return (
+      <Slider
+        style={styles.slider}
+        value={this.state.slideValue}
+        maximumValue={this.state.duration}
+        step={1}
+        onValueChange={value => this.setState({currentTime: value})}
+      />
+    );
+  }
+
+  // 切换
+  _switch() {
+    return (
+      <View style={styles.switchBox}>
+        <TouchableOpacity>
+          <Image
+            style={styles.likeIcon}
+            source={require('../images/common/like.png')}
+          />
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <Image
+            style={styles.nextIcon}
+            source={require('../images/common/on.png')}
+          />
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.onOfoFF}></TouchableOpacity>
+        <TouchableOpacity>
+          <Image
+            style={styles.nextIcon}
+            source={require('../images/common/next.png')}
+          />
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <Image
+            style={styles.nextIcon}
+            source={require('../images/common/list.png')}
+          />
+        </TouchableOpacity>
+      </View>
+    );
+  }
+
+  _renderTopBar = () => {
+    let statusbar = {
+      backgroundColor: '#ffffff',
+      barStyle: 'dark-content',
+    };
+    return (
+      <TopNavigationBar
+        title={this.state.name}
+        statusBar={statusbar}
+        style={{backgroundColor: '#ffffff'}}
+        leftButton={GoBack(this.props, 'dark')}
+        rightButton={this._rightElm()}
+      />
+    );
+  };
 
   render() {
     return (
       <SafeAreaView style={styles.playerBox}>
-        <Text>{this.state.id}</Text>
+        {this._renderTopBar()}
+        {this._playerContent()}
+        {this._slider()}
+        {this._switch()}
       </SafeAreaView>
     );
   }
 }
 
+const mapStateToProps = state => ({
+  songUrl: state.songUrl,
+});
+
+const mapDispatchToProps = dispatch => ({
+  onLoadSongUrl: url => dispatch(actions.onLoadSongUrl(url)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Player);
+
 const styles = StyleSheet.create({
   playerBox: {
     flex: flex,
+  },
+  topRightBox: {
+    width: px2dp(30),
+    height: px2dp(30),
+    backgroundColor: '#eee',
+    justifyContent: center,
+    alignItems: center,
+    borderRadius: px2dp(15),
+  },
+  playerImgBox: {
+    alignSelf: center,
+    marginTop: px2dp(20),
+    marginBottom: px2dp(20),
+    width: px2dp(345),
+  },
+  likeIcon: {
+    width: px2dp(30),
+    height: px2dp(30),
+  },
+  image: {
+    width: px2dp(345),
+    height: px2dp(300),
+    borderRadius: px2dp(10),
+    overflow: 'hidden',
+  },
+  username: {
+    marginTop: px2dp(10),
+    fontSize: defaultFontSize,
+  },
+  muiscTitleBox: {
+    width: px2dp(345),
+    marginTop: px2dp(20),
+    height: px2dp(120),
+    backgroundColor: 'red',
+  },
+  songName: {
+    fontSize: px2dp(18),
+  },
+  switchBox: {
+    width: px2dp(345),
+    height: px2dp(30),
+    // backgroundColor: '#eee',
+    flexDirection: row,
+    justifyContent: spaceBetween,
+    alignSelf: center,
+    alignItems: center,
+  },
+  nextIcon: {
+    width: px2dp(30),
+    height: px2dp(30),
+  },
+  onOfoFF: {
+    width: px2dp(40),
+    height: px2dp(40),
+    backgroundColor: '#eee',
+    borderRadius: px2dp(20),
+  },
+  slider: {
+    width: px2dp(345),
+    height: px2dp(50),
+    alignSelf: center,
+    marginBottom: px2dp(40),
   },
 });
