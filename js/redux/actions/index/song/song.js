@@ -30,6 +30,21 @@ export function onLoadSongUrl(url) {
   };
 }
 
+// 获取歌词
+export function onLoadLyricData(url) {
+  return dispatch => {
+    request(url)
+      .then(res => {
+        let data = res.lrc;
+        console.log('获取歌词', data);
+        handleData(dispatch, data, types.GET_LIKE_SUCCESS);
+      })
+      .catch(err => {
+        handleErrorData(dispatch, err, types.GET_LYRIC_FAIL);
+      });
+  };
+}
+
 // 检查音乐是否可用
 export function onCheckMusic(url) {
   return dispatch => {

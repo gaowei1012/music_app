@@ -8,6 +8,8 @@ import {
   Slider,
   Image,
   TouchableOpacity,
+  ScrollView,
+  Alert,
 } from 'react-native';
 import {
   flex,
@@ -24,7 +26,7 @@ import {GoBack} from '../utils/GoBack';
 import TopNavigationBar from '../common/TopNavigationBar';
 import actions from '../redux/actions/index';
 import {connect} from 'react-redux';
-import {songUrl} from '../expand/api';
+import {songUrl, lyric} from '../expand/api';
 import Video from 'react-native-video';
 import AnimatedTabs from 'react-native-animated-tabs';
 
@@ -46,12 +48,15 @@ class Player extends React.Component {
       duration: 0.0, //总时长
       ar: [], // 歌手信息
       repeat: false, // 是否重复播放
+      checkPlayer: false, // 播放
     };
   }
 
   componentDidMount() {
     this.getData();
   }
+
+  componentWillReceiveProps() {}
 
   //格式化音乐播放的时间为0：00
   formatMediaTime(duration) {
@@ -77,10 +82,12 @@ class Player extends React.Component {
   }
   // 获取数据
   getData() {
-    const {onLoadSongUrl} = this.props;
+    const {onLoadSongUrl, onLoadLyricData} = this.props;
     let {id, name, al, ar} = this.props.navigation.state.params;
     let url = `${songUrl}?id=${id}`;
+    const lyricUrl = `${lyric}?id=${id}`;
     onLoadSongUrl(url);
+    onLoadLyricData(lyricUrl);
     this.setState({
       id,
       name,
@@ -89,12 +96,20 @@ class Player extends React.Component {
     });
   }
 
+  // 分享
+  handleShare = () => {
+    Alert.alert('确定分享');
+  };
+
   // 右边elm
   _rightElm() {
     return (
-      <View style={styles.topRightBox}>
-        <Text>elm</Text>
-      </View>
+      <TouchableOpacity onPress={this.handleShare} style={styles.topRightBox}>
+        <Image
+          style={styles.shareIcon}
+          source={require('../images/common/share.png')}
+        />
+      </TouchableOpacity>
     );
   }
 
@@ -117,6 +132,13 @@ class Player extends React.Component {
             </Text>
           ))}
         </View>
+        {/* 歌词 */}
+        <ScrollView style={{backgroundColor: 'red'}}>
+          <Text>geci</Text>
+          <Text>geci</Text>
+          <Text>geci</Text>
+          <Text>geci</Text>
+        </ScrollView>
       </View>
     );
   }
@@ -163,6 +185,9 @@ class Player extends React.Component {
     );
   }
 
+  // 暂停播放
+  handleCheck = () => {};
+
   // 切换
   _switch() {
     return (
@@ -179,7 +204,19 @@ class Player extends React.Component {
             source={require('../images/common/on.png')}
           />
         </TouchableOpacity>
-        <TouchableOpacity style={styles.onOfoFF}></TouchableOpacity>
+        <TouchableOpacity onPress={this.handleCheck} style={styles.onOfoFF}>
+          {this.state.checkPlayer ? (
+            <Image
+              style={styles.muiscPlayer}
+              source={require('../images/common/music_player.png')}
+            />
+          ) : (
+            <Image
+              style={styles.muiscPlayer}
+              source={require('../images/common/stop.png')}
+            />
+          )}
+        </TouchableOpacity>
         <TouchableOpacity>
           <Image
             style={styles.nextIcon}
@@ -226,10 +263,12 @@ class Player extends React.Component {
 
 const mapStateToProps = state => ({
   songUrl: state.songUrl,
+  lyric: state.lyric,
 });
 
 const mapDispatchToProps = dispatch => ({
   onLoadSongUrl: url => dispatch(actions.onLoadSongUrl(url)),
+  onLoadLyricData: url => dispatch(actions.onLoadLyricData(url)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Player);
@@ -241,10 +280,13 @@ const styles = StyleSheet.create({
   topRightBox: {
     width: px2dp(30),
     height: px2dp(30),
-    backgroundColor: '#eee',
     justifyContent: center,
     alignItems: center,
     borderRadius: px2dp(15),
+  },
+  shareIcon: {
+    width: px2dp(30),
+    height: px2dp(30),
   },
   playerImgBox: {
     alignSelf: center,
@@ -270,15 +312,15 @@ const styles = StyleSheet.create({
     width: px2dp(345),
     marginTop: px2dp(20),
     height: px2dp(120),
-    backgroundColor: 'red',
+    // backgroundColor: 'red',
   },
   songName: {
     fontSize: px2dp(18),
   },
   switchBox: {
+    marginTop: px2dp(10),
     width: px2dp(345),
-    height: px2dp(30),
-    // backgroundColor: '#eee',
+    height: px2dp(60),
     flexDirection: row,
     justifyContent: spaceBetween,
     alignSelf: center,
@@ -288,15 +330,15 @@ const styles = StyleSheet.create({
     width: px2dp(30),
     height: px2dp(30),
   },
-  onOfoFF: {
+  onOfoFF: {},
+  muiscPlayer: {
     width: px2dp(40),
     height: px2dp(40),
-    backgroundColor: '#eee',
-    borderRadius: px2dp(20),
   },
   slider: {
+    marginTop: px2dp(30),
     width: px2dp(345),
-    height: px2dp(50),
+    height: px2dp(20),
     alignSelf: center,
     marginBottom: px2dp(40),
   },

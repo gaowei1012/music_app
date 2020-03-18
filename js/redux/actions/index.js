@@ -35,6 +35,7 @@ import {
   onLikeMusic,
   onLikeListMusic,
   onLoadPlayListData,
+  onLoadLyricData,
 } from './index/song/song';
 import {onLoadResourceData} from './index/resource';
 
@@ -64,4 +65,5 @@ export default {
   onLoadPlayListData,
   onLoadResourceData,
   onLoadListData,
+  onLoadLyricData,
 };

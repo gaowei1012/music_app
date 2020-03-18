@@ -52,7 +52,6 @@ class RankingDetail extends React.Component {
   }
   // 播放页
   goToPage(id, name, al, ar) {
-    console.log('--ar--', ar);
     NavigationUtil.goPage({id, name, al, ar}, 'Player');
   }
   render() {

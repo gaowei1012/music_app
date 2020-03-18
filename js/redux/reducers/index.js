@@ -24,6 +24,7 @@ import resoucre from './index/resoucre';
 import like from './index/song/like';
 import likeList from './index/song/likelist';
 import rankiglist from './index/rakinglist';
+import lyric from './index/song/lyric';
 
 const navState = RootNavigation.router.getStateForAction(
   RootNavigation.router.getActionForPathAndParams(rootCom),
@@ -60,6 +61,7 @@ const root = combineReducers({
   like,
   likeList,
   rankiglist,
+  lyric,
 });
 
 export default root;
