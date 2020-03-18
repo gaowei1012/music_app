@@ -138,7 +138,7 @@ class Player extends React.Component {
         paused={false} // true代表暂停，默认为false
         resizeMode="contain" // 视频的自适应伸缩铺放行为，contain、stretch、cover
         repeat={this.state.repeat} // 是否重复播放
-        playInBackground={false} // 当app转到后台运行的时候，播放是否暂停
+        playInBackground={true} // 当app转到后台运行的时候，播放是否暂停
         playWhenInactive={false} // [iOS] Video continues to play when control or notification center are shown. 仅适用于IOS
         onLoadStart={this.loadStart} // 当视频开始加载时的回调函数
         onLoad={this.setDuration} // 当视频加载完毕时的回调函数
