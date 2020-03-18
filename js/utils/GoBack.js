@@ -1,17 +1,7 @@
-/* eslint-disable no-undef */
-/*
- * @Author: your name
- * @Date: 2019-12-25 17:19:41
- * @LastEditTime : 2019-12-25 17:32:27
- * @LastEditors  : Please set LastEditors
- * @Description: In User Settings Edit
- * @FilePath: /v2ex/js/utils/GoBack.js
- */
-'use strict';
-
 import React from 'react';
 import {View, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import NavigationUtil from '../utils/NavigationUtil';
+import {Icon} from '../icon/index';
 
 function GoBack(props) {
   return (
