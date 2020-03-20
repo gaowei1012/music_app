@@ -47,6 +47,8 @@ module.exports = {
   topArtists: 'top/artists',
   // mv 排行
   topMv: 'top/mv?area=',
+  // 获取mv数据
+  mvDetail: '/mv/detail?mvid=',
   // 全部mv
   mvAll: 'mv/all?area=',
   // 网易出品mv

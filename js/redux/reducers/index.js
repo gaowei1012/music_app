@@ -27,6 +27,7 @@ import rankiglist from './index/rakinglist';
 import lyric from './index/song/lyric';
 import djprogram from './index/djprogram';
 import personaliz from './index/song/personaliz';
+import mvDetail from './video/mvDetail';
 
 const navState = RootNavigation.router.getStateForAction(
   RootNavigation.router.getActionForPathAndParams(rootCom),
@@ -66,6 +67,7 @@ const root = combineReducers({
   lyric,
   djprogram,
   personaliz,
+  mvDetail,
 });
 
 export default root;

@@ -1,12 +1,3 @@
-/*
- * @Author: your name
- * @Date: 2020-01-19 10:21:06
- * @LastEditTime : 2020-01-28 18:25:47
- * @LastEditors  : Please set LastEditors
- * @Description: In User Settings Edit
- * @FilePath: /music_app/js/redux/actions/index.js
- */
-
 import {onThemeChange} from '../actions/theme/index';
 import {onLoadBannerData} from '../actions/index/banner';
 import {onLoadRadioData} from '../actions/index/radio';
@@ -22,7 +13,7 @@ import {onDailySinger} from '../actions/personal/daily';
 import {onLoadWeatherData} from '../actions/index/weather';
 import {onLoadSearchData} from '../actions/index/search';
 import {onLoadRecommendData, onLoadPersonalizData} from './index/personalized';
-import {onLoadMv} from './video/mv';
+import {onLoadMv, onLoadMvDetail} from './video/mv';
 import {
   onLoadVideoGroupData,
   onLoadVideoRelateData,
@@ -53,6 +44,7 @@ export default {
   onLoadSearchData,
   onLoadRecommendData,
   onLoadMv,
+  onLoadMvDetail,
   onLoadVideoGroupData,
   onLoadVideoDetailData,
   onLoadVideoRelateData,
