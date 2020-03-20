@@ -107,6 +107,8 @@ module.exports = {
   likeL: 'like',
   // 喜欢音乐列表
   likelist: 'likelist',
+  // 歌单
+  recommend: '/recommend/resource',
 
   // 首页天气
   WeatherUrl:

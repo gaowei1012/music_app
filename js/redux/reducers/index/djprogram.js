@@ -1,15 +1,14 @@
 import types from '../../actionTypes/index';
 
-// 每日推荐歌单
-export default function onResoucreAction(state = {}, action) {
+export default function onDjprogramAction(state = {}, action) {
   switch (action.type) {
-    case types.GET_RECOMMEND_SUCCESS:
+    case types.GET_DJPROGRAM_SUCCESS:
       return {
         ...state,
         item: action.item,
         loading: false,
       };
-    case types.GET_RECOMMEND_FAIL:
+    case types.GET_DJPROGRAM_FAIL:
       return {
         ...state,
         loading: true,

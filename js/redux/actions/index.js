@@ -38,6 +38,7 @@ import {
   onLoadLyricData,
 } from './index/song/song';
 import {onLoadResourceData} from './index/resource';
+import {onLoadDjprogramData} from './index/djprogram';
 
 export default {
   onThemeChange,
@@ -66,4 +67,5 @@ export default {
   onLoadResourceData,
   onLoadListData,
   onLoadLyricData,
+  onLoadDjprogramData,
 };

@@ -8,6 +8,8 @@ import {
   SafeAreaView,
   Image,
   TouchableOpacity,
+  Animated,
+  Alert,
 } from 'react-native';
 import {flex, center, row} from '../../styles/constants';
 import {screentWidth} from '../../utils/screenUtil';
@@ -16,16 +18,19 @@ import actions from '../../redux/actions/index';
 import {radio} from '../../expand/api';
 import TopNavigationBar from '../../common/TopNavigationBar';
 import {GoBack} from '../../utils/GoBack';
+import {px2dp} from '../../utils/px2dp';
 
 class RaioPage extends React.Component {
   componentDidMount() {
     this.getData();
   }
-  getData() {
+  getData = () => {
     const {onLoadRadioData} = this.props;
     onLoadRadioData(radio);
-    console.log('radio', this.props);
-  }
+  };
+  goToRadioDetail = () => {
+    Alert.alert('hhh');
+  };
   _renderTopBar = () => {
     let statusbar = {
       backgroundColor: '#ffffff',
@@ -51,14 +56,19 @@ class RaioPage extends React.Component {
             ? null
             : radio.map(item => {
                 return (
-                  <View style={styles.raioBox} key={item.id}>
-                    <View style={styles.imageBox}>
+                  <TouchableOpacity
+                    onPress={this.goToRadioDetail}
+                    style={styles.raioBox}
+                    key={item.id}>
+                    <Animated.View style={styles.imageBox}>
                       <Image source={{uri: item.picUrl}} style={styles.image} />
-                    </View>
+                    </Animated.View>
                     <View>
-                      <Text>{item.name}</Text>
+                      <Text style={styles.text} numberOfLines={1}>
+                        {item.name}
+                      </Text>
                     </View>
-                  </View>
+                  </TouchableOpacity>
                 );
               })}
         </>
@@ -83,22 +93,25 @@ const styles = StyleSheet.create({
   },
   raioBox: {
     flexDirection: row,
-    width: 345,
-    height: 80,
+    width: px2dp(345),
+    height: px2dp(80),
     backgroundColor: '#eee',
     alignItems: center,
-    marginBottom: 2,
+    marginBottom: px2dp(2),
     alignSelf: center,
-    paddingLeft: 4,
+    paddingLeft: px2dp(4),
   },
   imageBox: {
-    width: 60,
-    height: 60,
+    width: px2dp(60),
+    height: px2dp(60),
     overflow: 'hidden',
-    borderRadius: 6,
+    borderRadius: px2dp(6),
   },
   image: {
-    width: 60,
-    height: 60,
+    width: px2dp(60),
+    height: px2dp(60),
+  },
+  text: {
+    width: px2dp(200),
   },
 });
