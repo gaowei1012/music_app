@@ -17,3 +17,17 @@ export function onLoadRecommendData(url) {
       });
   };
 }
+
+// 推荐歌单
+export function onLoadPersonalizData(url) {
+  return dispatch => {
+    request(url)
+      .then(res => {
+        const data = res.result;
+        handleData(dispatch, data, types.GET_PERSONALIZ_SUCCESS);
+      })
+      .catch(err => {
+        handleErrorData(dispatch, err, types.GET_PERSONALIZ_FAIL);
+      });
+  };
+}

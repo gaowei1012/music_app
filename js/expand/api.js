@@ -77,8 +77,6 @@ module.exports = {
   radio: 'personalized/djprogram',
   // 精选歌单
   topPlaylistHigh: '/top/playlist/highquality',
-  // 推荐
-  personalized: 'personalized',
   // 视频菜单
   videoList: 'video/group/list',
   // 标签下的视频

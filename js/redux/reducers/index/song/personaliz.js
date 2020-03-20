@@ -1,14 +1,15 @@
-import types from '../../actionTypes/index';
-// 今日推荐
-export default function onRecommendAction(state = {}, action) {
+import types from '../../../actionTypes/index';
+
+// 推荐歌单
+export default function onPersonalizAction(state = {}, action) {
   switch (action.type) {
-    case types.RECOMMED_LOAD_SUCCESS:
+    case types.GET_PERSONALIZ_SUCCESS:
       return {
         ...state,
         item: action.item,
         loading: false,
       };
-    case types.RECOMMED_LOAD_FAIL:
+    case types.GET_PERSONALIZ_FAIL:
       return {
         ...state,
         loading: true,

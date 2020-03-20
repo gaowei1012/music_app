@@ -4,15 +4,15 @@ import {flex, center, row} from '../../styles/constants';
 import {screentWidth} from '../../utils/screenUtil';
 import {connect} from 'react-redux';
 import actions from '../../redux/actions/index';
-import {personalizedDjprogram} from '../../expand/api';
+import {personalized} from '../../expand/api';
 
 class RecommenPage extends React.Component {
   componentDidMount() {
     this.getData();
   }
   getData() {
-    const {onLoadRecommendData} = this.props;
-    onLoadRecommendData(personalizedDjprogram);
+    const {onLoadPersonalizData} = this.props;
+    onLoadPersonalizData(personalized);
   }
   render() {
     return (
@@ -24,11 +24,11 @@ class RecommenPage extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  djprogram: state.djprogram,
+  personaliz: state.personaliz,
 });
 
 const mapDispatchToProps = dispatch => ({
-  onLoadDjprogramData: url => dispatch(actions.onLoadDjprogramData(url)),
+  onLoadPersonalizData: url => dispatch(actions.onLoadPersonalizData(url)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(RecommenPage);

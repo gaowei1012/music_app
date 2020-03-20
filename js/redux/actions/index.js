@@ -21,7 +21,7 @@ import {
 import {onDailySinger} from '../actions/personal/daily';
 import {onLoadWeatherData} from '../actions/index/weather';
 import {onLoadSearchData} from '../actions/index/search';
-import {onLoadRecommendData} from './index/personalized';
+import {onLoadRecommendData, onLoadPersonalizData} from './index/personalized';
 import {onLoadMv} from './video/mv';
 import {
   onLoadVideoGroupData,
@@ -68,4 +68,5 @@ export default {
   onLoadListData,
   onLoadLyricData,
   onLoadDjprogramData,
+  onLoadPersonalizData,
 };
