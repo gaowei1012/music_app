@@ -1,11 +1,10 @@
+import qs from 'qs';
 import axios from 'axios';
 import {base_url} from './api';
-import qs from 'qs';
 import AsyncStorage from '@react-native-community/async-storage';
 
 export function request(url, data = {}) {
-  let token = AsyncStorage.getItem('token');
-  console.log('---token----', token);
+  //let token = AsyncStorage.getItem('token');
   return new Promise((resolve, reject) => {
     axios({
       url: url,
@@ -17,11 +16,10 @@ export function request(url, data = {}) {
       method: 'POST',
     })
       .then(res => {
-        console.log('res ======== data', res.data);
+        if (res.code !== 200 && res == null) return;
         resolve(res.data);
       })
       .catch(err => {
-        console.log('err ======== data', err);
         reject(err);
       });
   });
