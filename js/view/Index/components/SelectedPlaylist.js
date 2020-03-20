@@ -22,6 +22,7 @@ import {
   defaultFontColor,
   fontSmallSize,
 } from '../../../styles/constants';
+import {px2dp} from '../../../utils/px2dp';
 // 精选歌单
 class SelectedPlaylist extends React.Component {
   static propTypes = {
@@ -108,20 +109,20 @@ export default SelectedPlaylist;
 
 const styles = StyleSheet.create({
   conatainer: {
-    marginTop: 20,
+    marginTop: px2dp(20),
     width: screentWidth,
     backgroundColor: '#eee',
-    height: 170,
+    height: px2dp(170),
   },
   topBox: {
     flexDirection: row,
     justifyContent: spaceBetween,
-    padding: 6,
+    padding: px2dp(6),
   },
   topTitle: {
     fontFamily: iosFontFmily,
     color: fontColor,
-    fontSize: 16,
+    fontSize: px2dp(16),
   },
   moreBox: {
     flexDirection: row,
@@ -133,28 +134,28 @@ const styles = StyleSheet.create({
     fontSize: fontSmallSize,
   },
   arrow: {
-    width: 15,
-    height: 15,
+    width: px2dp(15),
+    height: px2dp(15),
   },
   itemBox: {
-    marginTop: 4,
-    marginLeft: 10,
-    width: 100,
-    height: 100,
+    marginTop: px2dp(4),
+    marginLeft: px2dp(4),
+    width: px2dp(100),
+    height: px2dp(100),
     backgroundColor: '#fff',
-    borderRadius: 6,
+    borderRadius: px2dp(6),
     overflow: 'hidden',
     justifyContent: center,
   },
   playImage: {
-    width: 100,
-    height: 100,
+    width: px2dp(100),
+    height: px2dp(100),
   },
   itemText: {
-    width: 90,
+    width: px2dp(90),
     textAlign: center,
-    marginTop: 6,
-    marginLeft: 10,
+    marginTop: px2dp(6),
+    marginLeft: px2dp(10),
     fontFamily: iosFontFmily,
     fontSize: defaultFontSize,
     color: fontColor,
@@ -162,22 +163,22 @@ const styles = StyleSheet.create({
   // 播放量
   palyerNumBox: {
     position: 'absolute',
-    top: 2,
-    marginLeft: 2,
+    top: px2dp(2),
+    marginLeft: px2dp(2),
     flexDirection: row,
     alignItems: center,
   },
   // 播放
   palyerBox: {
     position: 'absolute',
-    height: 25,
-    width: 25,
-    borderRadius: 4,
+    height: px2dp(25),
+    width: px2dp(25),
+    borderRadius: px2dp(4),
     //backgroundColor: 'red',
     alignSelf: center,
   },
   palyerBtn: {
-    height: 25,
-    width: 25,
+    height: px2dp(25),
+    width: px2dp(25),
   },
 });
