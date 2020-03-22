@@ -1,6 +1,15 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
 import actions from '../../redux/actions';
+import {flex, center} from '../../styles/constants';
+import SearchItem from './SearchItem';
+import MenuItem from './components/MenuItem';
+import {screentWidth} from '../../utils/screenUtil';
+import DailyMood from './components/DailyMood';
+import GuessLikePage from './components/GuessLike';
+import SelectedPlaylist from './components/SelectedPlaylist';
+import Swiper from 'react-native-swiper';
+import {px2dp} from '../../utils/px2dp';
 import {
   SafeAreaView,
   StyleSheet,
@@ -10,21 +19,12 @@ import {
   View,
   Text,
 } from 'react-native';
-import {flex, center} from '../../styles/constants';
 import {
   banner_url,
   WeatherUrl,
   search,
   topPlaylistHigh,
 } from '../../expand/api';
-import SearchItem from './SearchItem';
-import MenuItem from './components/MenuItem';
-import {screentWidth} from '../../utils/screenUtil';
-import DailyMood from './components/DailyMood';
-import GuessLikePage from './components/GuessLike';
-import SelectedPlaylist from './components/SelectedPlaylist';
-import Swiper from 'react-native-swiper';
-import {px2dp} from '../../utils/px2dp';
 
 class IndexPage extends React.Component {
   state = {
