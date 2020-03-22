@@ -1,4 +1,4 @@
 // 集中管理 icon
-import Icon from './assets/common/index';
+import Common from './assets/common/index';
 
-export {Icon};
+export {Common};
