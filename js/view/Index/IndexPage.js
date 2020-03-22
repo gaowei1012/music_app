@@ -15,7 +15,6 @@ import {
   search,
   topPlaylistHigh,
 } from '../../expand/api';
-import SwiperItem from './components/Swiper';
 import SearchItem from './SearchItem';
 import MenuItem from './components/MenuItem';
 import {screentWidth} from '../../utils/screenUtil';
