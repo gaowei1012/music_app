@@ -1,5 +1,10 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
+import {flex, row, center} from '../../styles/constants';
+import TopNavigationBar from '../../common/TopNavigationBar';
+import actions from '../../redux/actions/index';
+import {topMv} from '../../expand/api';
+import {px2dp} from '../../utils/px2dp';
 import {
   StyleSheet,
   View,
@@ -8,11 +13,6 @@ import {
   SafeAreaView,
   ScrollView,
 } from 'react-native';
-import {flex, row, center} from '../../styles/constants';
-import TopNavigationBar from '../../common/TopNavigationBar';
-import actions from '../../redux/actions/index';
-import {topMv} from '../../expand/api';
-import {px2dp} from '../../utils/px2dp';
 
 class VideoPage extends React.Component {
   state = {
