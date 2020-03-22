@@ -16,7 +16,6 @@ export function request(url, data = {}) {
       method: 'POST',
     })
       .then(res => {
-        if (res.code !== 200 && res == null) return;
         resolve(res.data);
       })
       .catch(err => {
