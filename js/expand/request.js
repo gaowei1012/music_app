@@ -3,7 +3,7 @@ import axios from 'axios';
 import {base_url} from './api';
 import AsyncStorage from '@react-native-community/async-storage';
 
-export function request(url, data = {}) {
+export function request(url, data = {}, method) {
   //let token = AsyncStorage.getItem('token');
   return new Promise((resolve, reject) => {
     axios({
@@ -13,7 +13,7 @@ export function request(url, data = {}) {
       headers: {
         'Content-Type': 'application/json',
       },
-      method: 'POST',
+      method: method,
     })
       .then(res => {
         resolve(res.data);
