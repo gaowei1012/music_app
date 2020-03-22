@@ -7,6 +7,8 @@ import {
   ScrollView,
   Animated,
   Image,
+  View,
+  Text,
 } from 'react-native';
 import {flex, center} from '../../styles/constants';
 import {
@@ -34,42 +36,44 @@ class IndexPage extends React.Component {
     this._mapBanner();
   }
   // 获取数据
-  async getData() {
+  getData() {
     const {
       onLoadBannerData,
       onLoadWeatherData,
       onLoadSearchData,
       onLoadTopPlayListHigh,
     } = this.props;
-    await onLoadBannerData(banner_url);
-    await onLoadWeatherData(WeatherUrl);
+    onLoadBannerData(banner_url);
+    onLoadWeatherData(WeatherUrl);
     let url = search + '海阔天空';
     let player_list_url = topPlaylistHigh + '?' + 'limit=10&order=new';
-    await onLoadSearchData(url);
-    await onLoadTopPlayListHigh(player_list_url);
+    onLoadSearchData(url);
+    onLoadTopPlayListHigh(player_list_url);
   }
   // 处理banner数据
-  async _mapBanner() {
+  _mapBanner() {
     const banner = this.props.banner.item;
     this.setState({banner: banner});
   }
   renderBanner = () => {
-    const banner = this.props.banner.item;
+    const banner = this.state.banner;
     // console.log('banner', banner);
     return (
       <Animated.View style={styles.bannerBox}>
         <Swiper autoplay={true}>
-          {banner !== null
-            ? banner.map(item => {
-                return (
-                  <Image
-                    style={styles.bannerImage}
-                    key={item.id}
-                    source={{uri: item.imageUrl}}
-                  />
-                );
-              })
-            : undefined}
+          {banner == null ? (
+            <Text>加载中...</Text>
+          ) : (
+            banner.map(item => {
+              return (
+                <Image
+                  style={styles.bannerImage}
+                  key={item.id}
+                  source={{uri: item.imageUrl}}
+                />
+              );
+            })
+          )}
         </Swiper>
       </Animated.View>
     );
@@ -87,7 +91,7 @@ class IndexPage extends React.Component {
     return <GuessLikePage />;
   };
   render() {
-    console.log('sele data', this.props.playHigh);
+    // console.log('sele data', this.props.playHigh);
     return (
       <SafeAreaView style={styles.container}>
         <SearchItem />
