@@ -33,7 +33,6 @@ class IndexPage extends React.Component {
   };
   componentDidMount() {
     this.getData();
-    this._mapBanner();
   }
   // 获取数据
   getData() {
@@ -50,13 +49,8 @@ class IndexPage extends React.Component {
     onLoadSearchData(url);
     onLoadTopPlayListHigh(player_list_url);
   }
-  // 处理banner数据
-  _mapBanner() {
-    const banner = this.props.banner.item;
-    this.setState({banner: banner});
-  }
   renderBanner = () => {
-    const banner = this.state.banner;
+    const banner = this.props.banner.item;
     // console.log('banner', banner);
     return (
       <Animated.View style={styles.bannerBox}>
