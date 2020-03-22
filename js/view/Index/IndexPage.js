@@ -51,7 +51,6 @@ class IndexPage extends React.Component {
   }
   renderBanner = () => {
     const banner = this.props.banner.item;
-    // console.log('banner', banner);
     return (
       <Animated.View style={styles.bannerBox}>
         <Swiper autoplay={true}>
@@ -85,7 +84,6 @@ class IndexPage extends React.Component {
     return <GuessLikePage />;
   };
   render() {
-    // console.log('sele data', this.props.playHigh);
     return (
       <SafeAreaView style={styles.container}>
         <SearchItem />
