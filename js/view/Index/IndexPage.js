@@ -1,7 +1,13 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
 import actions from '../../redux/actions';
-import {View, SafeAreaView, Text, StyleSheet, ScrollView} from 'react-native';
+import {
+  SafeAreaView,
+  StyleSheet,
+  ScrollView,
+  Animated,
+  Image,
+} from 'react-native';
 import {flex, center} from '../../styles/constants';
 import {
   banner_url,
@@ -16,15 +22,14 @@ import {screentWidth} from '../../utils/screenUtil';
 import DailyMood from './components/DailyMood';
 import GuessLikePage from './components/GuessLike';
 import SelectedPlaylist from './components/SelectedPlaylist';
+import Swiper from 'react-native-swiper';
+import {px2dp} from '../../utils/px2dp';
 
 class IndexPage extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      daily_data: [],
-      banner: [],
-    };
-  }
+  state = {
+    daily_data: [],
+    banner: [],
+  };
   componentDidMount() {
     this.getData();
     this._mapBanner();
@@ -49,27 +54,46 @@ class IndexPage extends React.Component {
     const banner = this.props.banner.item;
     this.setState({banner: banner});
   }
-  renderMenuItem() {
+  renderBanner = () => {
+    const banner = this.props.banner.item;
+    // console.log('banner', banner);
+    return (
+      <Animated.View style={styles.bannerBox}>
+        <Swiper autoplay={true}>
+          {banner !== null
+            ? banner.map(item => {
+                return (
+                  <Image
+                    style={styles.bannerImage}
+                    key={item.id}
+                    source={{uri: item.imageUrl}}
+                  />
+                );
+              })
+            : undefined}
+        </Swiper>
+      </Animated.View>
+    );
+  };
+  renderMenuItem = () => {
     return <MenuItem />;
-  }
-  renderDailyMood() {
+  };
+  renderDailyMood = () => {
     return <DailyMood data={this.props.weather} />;
-  }
-  renderSelectedPlaylists() {
+  };
+  renderSelectedPlaylists = () => {
     return <SelectedPlaylist play_list={this.props.playHigh} />;
-  }
-  renderGuessLike() {
+  };
+  renderGuessLike = () => {
     return <GuessLikePage />;
-  }
+  };
   render() {
     console.log('sele data', this.props.playHigh);
     return (
       <SafeAreaView style={styles.container}>
         <SearchItem />
         <ScrollView>
-          <View style={{width: screentWidth, height: 90}}>
-            {/* <SwiperItem data={this.state.banner} /> */}
-          </View>
+          {this.renderBanner()}
           {this.renderMenuItem()}
           {this.renderDailyMood()}
           {this.renderSelectedPlaylists()}
@@ -101,13 +125,20 @@ const styles = StyleSheet.create({
   },
   bannerBox: {
     marginTop: 10,
-    //backgroundColor: '#eee',
-    width: 345,
-    height: 80,
+    width: px2dp(345),
+    height: px2dp(120),
     alignSelf: center,
+    borderRadius: px2dp(6),
+    overflow: 'hidden',
+  },
+  bannerImage: {
+    width: px2dp(345),
+    height: px2dp(120),
+    borderRadius: px2dp(6),
+    overflow: 'hidden',
   },
   shopSwiperBox: {
     width: screentWidth,
-    height: 99,
+    height: px2dp(99),
   },
 });
