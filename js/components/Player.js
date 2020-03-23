@@ -34,23 +34,20 @@ class Player extends React.Component {
   static propTypes = {
     data_list: PropTypes.array,
   };
-  constructor(props) {
-    super(props);
-    this.state = {
-      id: null,
-      name: null,
-      al: {},
-      activePanel: 0, //当前active的面板
-      activeSong: 0, //正在播放的歌
-      currentTime: 0.0, //当前播放的时间
-      paused: 1.0, //播放
-      sliderValue: 0, //进度条的进度
-      duration: 0.0, //总时长
-      ar: [], // 歌手信息
-      repeat: false, // 是否重复播放
-      checkPlayer: false, // 播放
-    };
-  }
+  state = {
+    id: null,
+    name: null,
+    al: {},
+    activePanel: 0, //当前active的面板
+    activeSong: 0, //正在播放的歌
+    currentTime: 0.0, //当前播放的时间
+    paused: 1.0, //播放
+    sliderValue: 0, //进度条的进度
+    duration: 0.0, //总时长
+    ar: [], // 歌手信息
+    repeat: false, // 是否重复播放
+    checkPlayer: false, // 播放
+  };
 
   componentDidMount() {
     this.getData();
@@ -59,29 +56,29 @@ class Player extends React.Component {
   componentWillReceiveProps() {}
 
   //格式化音乐播放的时间为0：00
-  formatMediaTime(duration) {
+  formatMediaTime = duration => {
     let min = Math.floor(duration / 60);
     let second = duration - min * 60;
     min = min >= 10 ? min : '0' + min;
     second = second >= 10 ? second : '0' + second;
     return min + ':' + second;
-  }
+  };
 
   //设置进度条和播放时间的变化
-  setTime(data) {
+  setTime = data => {
     let sliderValue = parseInt(this.state.currentTime);
     this.setState({
       slideValue: sliderValue,
       currentTime: data.currentTime,
     });
-  }
+  };
 
   //设置总时长
-  setDuration(duration) {
+  setDuration = duration => {
     this.setState({duration: duration.duration});
-  }
+  };
   // 获取数据
-  getData() {
+  getData = () => {
     const {onLoadSongUrl, onLoadLyricData} = this.props;
     let {id, name, al, ar} = this.props.navigation.state.params;
     let url = `${songUrl}?id=${id}`;
@@ -94,7 +91,7 @@ class Player extends React.Component {
       al,
       ar,
     });
-  }
+  };
 
   // 分享
   handleShare = () => {
@@ -102,7 +99,7 @@ class Player extends React.Component {
   };
 
   // 右边elm
-  _rightElm() {
+  _rightElm = () => {
     return (
       <TouchableOpacity onPress={this.handleShare} style={styles.topRightBox}>
         <Image
@@ -111,13 +108,13 @@ class Player extends React.Component {
         />
       </TouchableOpacity>
     );
-  }
+  };
 
-  _player() {
+  _player = () => {
     // 播放
-  }
+  };
 
-  _playerContent() {
+  _playerContent = () => {
     const picUrl = this.state.al.picUrl;
     const ar = this.state.ar;
     console.log('ar', ar);
@@ -141,10 +138,10 @@ class Player extends React.Component {
         </ScrollView>
       </View>
     );
-  }
+  };
 
   // 音乐播放
-  _playerCom() {
+  _playerCom = () => {
     const url = this.props.songUrl.item;
     console.log('muisc url', url);
     return url ? (
@@ -170,10 +167,10 @@ class Player extends React.Component {
         style={{width: 0, height: 0}}
       />
     ) : null;
-  }
+  };
 
   // 进度条
-  _slider() {
+  _slider = () => {
     return (
       <Slider
         style={styles.slider}
@@ -183,13 +180,13 @@ class Player extends React.Component {
         onValueChange={value => this.setState({currentTime: value})}
       />
     );
-  }
+  };
 
   // 暂停播放
   handleCheck = () => {};
 
   // 切换
-  _switch() {
+  _switch = () => {
     return (
       <View style={styles.switchBox}>
         <TouchableOpacity>
@@ -231,7 +228,7 @@ class Player extends React.Component {
         </TouchableOpacity>
       </View>
     );
-  }
+  };
 
   _renderTopBar = () => {
     let statusbar = {
