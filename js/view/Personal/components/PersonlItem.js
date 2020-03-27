@@ -106,7 +106,7 @@ export default class PersonalItem extends React.Component {
               return (
                 <TouchableOpacity
                   key={item.id}
-                  onPress={this.goToPage(item.text, item.com)}
+                  onPress={() => this.goToPage(item.text, item.com)}
                   activeOpacity={0.8}
                   style={styles.listBox}>
                   <View style={styles.titleBox}>
