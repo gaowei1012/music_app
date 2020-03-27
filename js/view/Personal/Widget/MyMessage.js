@@ -1,21 +1,40 @@
-import React, {useState, useEffect} from 'react';
+import * as React from 'react';
+import {GoBack} from '../../../utils/GoBack';
+import TopNavigationBar from '../../../common/TopNavigationBar';
 import {View, Text, StyleSheet, SafeAreaView} from 'react-native';
 
 // 我的私信
-export default function MyMessage() {
-  const [name, setName] = useState('name');
-
-  const _list = () => {
+export default class MyMessage extends React.Component {
+  shouldComponentUpdate(preState, nextState) {}
+  _renderTopBar = () => {
+    let statusbar = {
+      backgroundColor: '#ffffff',
+      barStyle: 'dark-content',
+    };
+    const title = this.props.navigation.state.params.title;
     return (
-      <View>
-        <Text>{name}</Text>
-      </View>
+      <TopNavigationBar
+        title={title}
+        statusBar={statusbar}
+        style={{backgroundColor: '#ffffff'}}
+        leftButton={GoBack(this.props, 'dark')}
+      />
     );
   };
 
-  return (
-    <SafeAreaView>
-      <Text>{name}</Text>
-    </SafeAreaView>
-  );
+  render() {
+    const name = this.props.navigation.state.params.title;
+    return (
+      <SafeAreaView style={styles.container}>
+        {this._renderTopBar()}
+        <Text style={{textAlign: 'center'}}>{name}</Text>
+      </SafeAreaView>
+    );
+  }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});
