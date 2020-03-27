@@ -22,9 +22,12 @@ import {screentWidth} from '../../utils/screenUtil';
 
 class PersonalPage extends React.Component {
   async componentDidMount() {}
-  handleExit = () => {};
+  handleExit = () => {
+    // 退出登录，清楚用户信息
+    // 调取用户退出接口
+  };
   // 退出
-  _exit() {
+  _exit = () => {
     return (
       <TouchableOpacity
         onPress={this.handleExit}
@@ -33,7 +36,7 @@ class PersonalPage extends React.Component {
         <Text style={styles.exitText}>退出登录</Text>
       </TouchableOpacity>
     );
-  }
+  };
   render() {
     return (
       <SafeAreaView style={styles.container}>

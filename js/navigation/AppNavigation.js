@@ -33,6 +33,7 @@ import GuessLikeMore from '../view/Index/components/GuessLikeMore';
 import SigninPage from '../view/Personal/Signin';
 import RankingDetail from '../view/Index/RankingDetail';
 import Player from '../components/Player';
+import MyMessage from '../view/Personal/Widget/MyMessage';
 
 export const rootCom = 'Init';
 
@@ -174,6 +175,12 @@ const MainNavigator = createStackNavigator({
   },
   Player: {
     screen: Player,
+    navigationOptions: {
+      header: null,
+    },
+  },
+  MyMessage: {
+    screen: MyMessage,
     navigationOptions: {
       header: null,
     },

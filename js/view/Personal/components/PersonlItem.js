@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, {useState, useEffect} from 'react';
 import {screentWidth} from '../../../utils/screenUtil';
 import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import {
@@ -13,6 +13,44 @@ import {
 } from '../../../styles/constants';
 import NavigationUtil from '../../../utils/NavigationUtil';
 
+const listArr = [
+  {
+    id: 1,
+    icon: require('../../../images/common/bofang.png'),
+    text: '我的私信',
+    arrow: require('../../../images/common/arrow.png'),
+    com: 'MyMessage',
+  },
+  {
+    id: 2,
+    icon: require('../../../images/common/bofang.png'),
+    text: '我的收藏',
+    arrow: require('../../../images/common/arrow.png'),
+    com: 'MyMessage',
+  },
+  {
+    id: 5,
+    icon: require('../../../images/common/bofang.png'),
+    text: '夜间模式',
+    arrow: require('../../../images/common/arrow.png'),
+    com: 'MyMessage',
+  },
+  {
+    id: 6,
+    icon: require('../../../images/common/bofang.png'),
+    text: '清除缓存',
+    arrow: require('../../../images/common/arrow.png'),
+    com: 'MyMessage',
+  },
+  {
+    id: 7,
+    icon: require('../../../images/common/bofang.png'),
+    text: '隐私条款',
+    arrow: require('../../../images/common/arrow.png'),
+    com: 'MyMessage',
+  },
+];
+
 export default class PersonalItem extends React.Component {
   state = {
     list: [
@@ -21,40 +59,41 @@ export default class PersonalItem extends React.Component {
         icon: require('../../../images/common/bofang.png'),
         text: '我的私信',
         arrow: require('../../../images/common/arrow.png'),
-        com: '',
+        com: 'MyMessage',
       },
       {
         id: 2,
         icon: require('../../../images/common/bofang.png'),
         text: '我的收藏',
         arrow: require('../../../images/common/arrow.png'),
-        com: '',
+        com: 'MyMessage',
       },
       {
         id: 5,
         icon: require('../../../images/common/bofang.png'),
         text: '夜间模式',
         arrow: require('../../../images/common/arrow.png'),
-        com: '',
+        com: 'MyMessage',
       },
       {
         id: 6,
         icon: require('../../../images/common/bofang.png'),
         text: '清除缓存',
         arrow: require('../../../images/common/arrow.png'),
-        com: '',
+        com: 'MyMessage',
       },
       {
         id: 7,
         icon: require('../../../images/common/bofang.png'),
         text: '隐私条款',
         arrow: require('../../../images/common/arrow.png'),
-        com: '',
+        com: 'MyMessage',
       },
     ],
   };
   componentDidMount() {}
   goToPage = (text, com) => {
+    console.log('com', com);
     NavigationUtil.goPage({title: text}, com);
   };
   _list() {
