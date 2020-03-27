@@ -55,7 +55,9 @@ class IndexPage extends React.Component {
       <Animated.View style={styles.bannerBox}>
         <Swiper autoplay={true}>
           {banner == null ? (
-            <Text>加载中...</Text>
+            <Text style={{textAlign: 'center', flexDirection: 'row'}}>
+              加载中...
+            </Text>
           ) : (
             banner.map(item => {
               return (
