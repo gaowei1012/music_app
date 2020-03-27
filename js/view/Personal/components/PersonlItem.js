@@ -92,10 +92,10 @@ export default class PersonalItem extends React.Component {
     ],
   };
   componentDidMount() {}
-  goToPage = (text, com) => {
+  goToPage(text, com) {
     console.log('com', com);
     NavigationUtil.goPage({title: text}, com);
-  };
+  }
   _list() {
     const {list} = this.state;
     return (

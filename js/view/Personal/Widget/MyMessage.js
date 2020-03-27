@@ -1,9 +1,17 @@
-import react, {useState, useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, Text, StyleSheet, SafeAreaView} from 'react-native';
 
 // 我的私信
-export function MyMessage() {
+export default function MyMessage() {
   const [name, setName] = useState('name');
+
+  const _list = () => {
+    return (
+      <View>
+        <Text>{name}</Text>
+      </View>
+    );
+  };
 
   return (
     <SafeAreaView>
