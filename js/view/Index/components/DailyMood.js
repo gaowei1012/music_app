@@ -45,15 +45,10 @@ export default class DailyMood extends React.Component {
     let date = new Date();
     let new_month = date.getMonth() + 1; // 月份
     let new_day = date.getHours(); // 日期
-    this.setState(
-      {
-        month: new_month,
-        day: new_day,
-      },
-      () => {
-        //console.log('day', this.state.day)
-      },
-    );
+    this.setState({
+      month: new_month,
+      day: new_day,
+    });
   }
   render() {
     return (
@@ -61,6 +56,7 @@ export default class DailyMood extends React.Component {
         <View style={styles.leftBox}>
           <Text style={styles.month}>{this.state.month}月你好!</Text>
           <Text style={styles.weather}>
+            {/* 今天天气 {this.state.fl == null ? null : this.state.fl}°C */}
             今天天气 {this.state.fl == null ? null : this.state.fl}°C
           </Text>
         </View>
