@@ -3,7 +3,7 @@ import {GoBack} from '../../../utils/GoBack';
 import TopNavigationBar from '../../../common/TopNavigationBar';
 import {View, Text, StyleSheet, SafeAreaView} from 'react-native';
 
-// 我的私信
+// 个人中心菜单二级公共页面
 export default class MyMessage extends React.Component {
   shouldComponentUpdate(preState, nextState) {}
   _renderTopBar = () => {
