@@ -1,7 +1,15 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
 import actions from '../../../redux/actions/index';
-import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+  FlatList,
+  RefreshControl,
+} from 'react-native';
 import {screentWidth} from '../../../utils/screenUtil';
 import NavigationUtil from '../../../utils/NavigationUtil';
 import {
@@ -18,19 +26,21 @@ import {
 } from '../../../styles/constants';
 import {personalizedNewsong} from '../../../expand/api';
 
+const THEME_COLOR = 'red';
+
 class GuessLikePage extends React.Component {
   async componentDidMount() {
     this.getData();
   }
-  getData() {
+  getData = () => {
     const {onLoadRecommendData} = this.props;
     onLoadRecommendData(personalizedNewsong);
-  }
+  };
   // 更多
   goToMore = () => {
     NavigationUtil.goPage({}, 'GuessLikeMore');
   };
-  renderTopCom() {
+  renderTopCom = () => {
     return (
       <View style={styles.topBox}>
         <Text style={styles.topTitle}>今日推荐</Text>
@@ -43,39 +53,61 @@ class GuessLikePage extends React.Component {
         </TouchableOpacity> */}
       </View>
     );
-  }
-  goGuessLikePage() {
+  };
+  /**
+   * 跳转页面
+   */
+  goGuessLikePage = () => {
     NavigationUtil.goPage({title: '猜你喜欢'}, 'GuessLikeMore');
-  }
-  renderGuessLikeItem() {
-    const recommend = this.props.recommend.item;
+  };
+  /**
+   * 渲染列表
+   */
+  _renderItem = data => {
+    // console.log('data', data)
+    const item = data.item;
     return (
-      <View>
-        {recommend == null
-          ? null
-          : recommend.map(item => {
-              return (
-                <TouchableOpacity
-                  activeOpacity={0.8}
-                  onPress={() => this.goGuessLikePage(item)}
-                  key={item.id}
-                  style={styles.guessBox}>
-                  <View style={styles.guessImageBox}>
-                    <Image
-                      source={{uri: item.picUrl}}
-                      style={styles.guessImage}
-                    />
-                  </View>
-                  <View style={styles.guessDesBox}>
-                    <Text style={styles.guessTitle}>{item.name}</Text>
-                    <Text style={styles.guessDes}>{item.des}</Text>
-                  </View>
-                </TouchableOpacity>
-              );
-            })}
-      </View>
+      <TouchableOpacity
+        activeOpacity={0.8}
+        onPress={() => this.goGuessLikePage(item)}
+        key={item.id}
+        style={styles.guessBox}>
+        <View style={styles.guessImageBox}>
+          <Image source={{uri: item.picUrl}} style={styles.guessImage} />
+        </View>
+        <View style={styles.guessDesBox}>
+          <Text style={styles.guessTitle}>{item.name}</Text>
+          <Text style={styles.guessDes}>{item.des}</Text>
+        </View>
+      </TouchableOpacity>
     );
-  }
+  };
+  /**
+   * 渲染推荐喜欢列表
+   */
+  renderGuessLikeItem = () => {
+    const recommend = this.props.recommend.item;
+    const isLoading = this.props.recommend.isLoading;
+    if (!recommend) {
+      return <Text style={{justifyContent: center}}>加载中...</Text>;
+    }
+    return (
+      <FlatList
+        data={recommend}
+        keyExtractor={item => '' + item.id}
+        renderItem={data => this._renderItem(data)}
+        refreshControl={
+          <RefreshControl
+            title={'loading'}
+            titleColor={THEME_COLOR}
+            colors={THEME_COLOR}
+            refreshing={isLoading}
+            onRefresh={this.getData()}
+          />
+        }
+      />
+    );
+  };
   render() {
     return (
       <View style={styles.container}>
