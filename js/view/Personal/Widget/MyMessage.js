@@ -5,7 +5,11 @@ import {View, Text, StyleSheet, SafeAreaView} from 'react-native';
 
 // 个人中心菜单二级公共页面
 export default class MyMessage extends React.Component {
-  shouldComponentUpdate(preState, nextState) {}
+  shouldComponentUpdate(preState, nextState) {
+    if (this.props.color !== this.state.color) {
+      return false;
+    }
+  }
   _renderTopBar = () => {
     let statusbar = {
       backgroundColor: '#ffffff',
