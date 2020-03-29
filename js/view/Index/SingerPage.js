@@ -7,6 +7,8 @@ import {
   StyleSheet,
   Animated,
   ScrollView,
+  FlatList,
+  RefreshControl,
 } from 'react-native';
 import {
   flex,
@@ -21,6 +23,8 @@ import {personalized} from '../../expand/api';
 import {px2dp} from '../../utils/px2dp';
 import {GoBack} from '../../utils/GoBack';
 
+const THEME_COLOR = 'red';
+
 class SingerPage extends React.Component {
   state = {
     loading: false,
@@ -29,15 +33,29 @@ class SingerPage extends React.Component {
   componentDidMount() {
     this.getPeraonaliz();
     this.getRouterParams();
+    this.animated();
   }
+  /**
+   * 获取数据
+   */
   getPeraonaliz = () => {
     const {onLoadPersonalizData} = this.props;
     onLoadPersonalizData(personalized);
   };
+  /**
+   * 获取上级传参
+   */
   getRouterParams = () => {
     const title = this.props.navigation.state.params.title;
     this.setState({title});
   };
+  /**
+   * 渲染动画
+   */
+  animated = () => {};
+  /**
+   * 渲染头部
+   */
   _renderTopBar = () => {
     const statusbar = {
       backgroundColor: '#ffffff',
@@ -53,25 +71,42 @@ class SingerPage extends React.Component {
       />
     );
   };
+  /**
+   * 渲染组件item
+   */
+  _renderItem = data => {
+    const item = data.item;
+    return (
+      <Animated.View style={styles.personalBox}>
+        <View style={styles.imageBox}>
+          <Image style={styles.image} source={{uri: item.picUrl}} />
+        </View>
+        <Text numberOfLines={1} style={styles.name}>
+          {item.name}
+        </Text>
+      </Animated.View>
+    );
+  };
   render() {
     const personaliz = this.props.personaliz.item;
     return (
       <SafeAreaView style={styles.container}>
         {this._renderTopBar()}
-        <ScrollView showsVerticalScrollIndicator={false}>
-          {personaliz == null
-            ? null
-            : personaliz.map(item => (
-                <Animated.View style={styles.personalBox} key={item.id}>
-                  <View style={styles.imageBox}>
-                    <Image style={styles.image} source={{uri: item.picUrl}} />
-                  </View>
-                  <Text numberOfLines={1} style={styles.name}>
-                    {item.name}
-                  </Text>
-                </Animated.View>
-              ))}
-        </ScrollView>
+        <FlatList
+          data={personaliz}
+          horizontal={false}
+          renderItem={data => this._renderItem(data)}
+          keyExtractor={item => '' + item.id}
+          refreshControl={
+            <RefreshControl
+              title={'loading'}
+              tintColor={THEME_COLOR}
+              colors={THEME_COLOR}
+              refreshin={this.state.loading}
+              onRefresh={this.getPeraonaliz()}
+            />
+          }
+        />
       </SafeAreaView>
     );
   }
