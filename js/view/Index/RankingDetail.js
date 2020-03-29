@@ -36,7 +36,7 @@ class RankingDetail extends React.Component {
     this.getData();
   }
 
-  getData() {
+  getData = () => {
     const {onLoadListData} = this.props;
     let idx = this.props.navigation.state.params.idx;
     let url = `${rakingList}?idx=${idx}`;
@@ -49,11 +49,11 @@ class RankingDetail extends React.Component {
       desc: desc,
       img: img,
     });
-  }
+  };
   // 播放页
-  goToPage(id, name, al, ar) {
+  goToPage = (id, name, al, ar) => {
     NavigationUtil.goPage({id, name, al, ar}, 'Player');
-  }
+  };
   render() {
     const {tracks, desc, img} = this.state;
     return (

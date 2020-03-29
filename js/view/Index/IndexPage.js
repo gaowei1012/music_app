@@ -35,7 +35,7 @@ class IndexPage extends React.Component {
     this.getData();
   }
   // 获取数据
-  getData() {
+  getData = () => {
     const {
       onLoadBannerData,
       onLoadWeatherData,
@@ -48,7 +48,7 @@ class IndexPage extends React.Component {
     let player_list_url = topPlaylistHigh + '?' + 'limit=10&order=new';
     onLoadSearchData(url);
     onLoadTopPlayListHigh(player_list_url);
-  }
+  };
   renderBanner = () => {
     const banner = this.props.banner.item;
     return (
