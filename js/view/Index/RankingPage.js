@@ -6,6 +6,8 @@ import {
   StyleSheet,
   SafeAreaView,
   ScrollView,
+  FlatList,
+  RefreshControl,
   TouchableOpacity,
 } from 'react-native';
 import {flex, center, row} from '../../styles/constants';
@@ -16,17 +18,28 @@ import TopNavigationBar from '../../common/TopNavigationBar';
 import {GoBack} from '../../utils/GoBack';
 import {px2dp} from '../../utils/px2dp';
 import NavigationUtil from '../../utils/NavigationUtil';
+// import {LazyloadImage} from 'react-native-lazyload';
+
+const THEME_COLOR = 'red';
 
 // 排行榜
 class RankingPage extends React.Component {
+  state = {
+    loadingTitle: '加载中...',
+  };
   componentDidMount() {
     this.getData();
   }
-  // 获取数据
+  /**
+   * 获取数据
+   */
   getData() {
     const {onLoadTopListData} = this.props;
     onLoadTopListData(topAllList);
   }
+  /**
+   * 渲染头部
+   */
   _renderTopBar = () => {
     let statusbar = {
       backgroundColor: '#ffffff',
@@ -41,36 +54,58 @@ class RankingPage extends React.Component {
       />
     );
   };
+  /**
+   * 跳转对应详情页
+   */
   goToPage(idx) {
     NavigationUtil.goPage({idx}, 'RankingDetail');
   }
+
+  /**
+   * 渲染列表
+   */
+  _rederItem = data => {
+    const item = data.item;
+    return (
+      <TouchableOpacity
+        key={item.id}
+        onPress={this.goToPage}
+        style={styles.rankingBox}>
+        <View style={styles.leftBox}>
+          <Image style={styles.image} source={{uri: item.coverImgUrl}} />
+          {/* <LazyloadImage
+            style={styles.image}
+            source={{uri: item.coverImgUrl}}
+          /> */}
+        </View>
+        <View style={styles.rightBox}>
+          <Text style={styles.text}>{item.description}</Text>
+        </View>
+      </TouchableOpacity>
+    );
+  };
+
   render() {
     const toplist = this.props.topList.item;
+    if (!toplist) {
+      return <Text style={{justifyContent: center}}>加载中...</Text>;
+    }
+    console.log('toplist', toplist);
     return (
       <SafeAreaView style={styles.container}>
         {this._renderTopBar()}
-        <ScrollView>
-          {toplist == null
-            ? null
-            : toplist.map((item, index) => {
-                return (
-                  <TouchableOpacity
-                    key={item.id}
-                    onPress={() => this.goToPage(index)}
-                    style={styles.rankingBox}>
-                    <View style={styles.leftBox}>
-                      <Image
-                        style={styles.image}
-                        source={{uri: item.coverImgUrl}}
-                      />
-                    </View>
-                    <View style={styles.rightBox}>
-                      <Text style={styles.text}>{item.description}</Text>
-                    </View>
-                  </TouchableOpacity>
-                );
-              })}
-        </ScrollView>
+        <FlatList
+          data={toplist}
+          renderItem={data => this._rederItem(data)}
+          keyExtractor={item => '' + item.id}
+          refreshControl={
+            <RefreshControl
+              title={this.state.loadingTitle}
+              tintColor={THEME_COLOR}
+              color={THEME_COLOR}
+            />
+          }
+        />
       </SafeAreaView>
     );
   }
