@@ -62,7 +62,7 @@ class RaioPage extends React.Component {
   /**
    * 渲染列表
    */
-  _renderItem = data => {
+  _renderItem(data) {
     const item = data.item;
     return (
       <TouchableOpacity
@@ -79,10 +79,10 @@ class RaioPage extends React.Component {
         </View>
       </TouchableOpacity>
     );
-  };
+  }
   render() {
     const radio = this.props.radio.item;
-    console.log('radio', radio);
+    // console.log('radio', radio);
     const isLoading = this.props.radio.isLoading;
     if (!radio) {
       return <Text style={{justifyContent: center}}>加载中...</Text>;
@@ -94,6 +94,7 @@ class RaioPage extends React.Component {
           data={radio}
           renderItem={data => this._renderItem(data)}
           keyExtractor={item => '' + item.id}
+          refreshing={false}
           refreshControl={
             <RefreshControl
               tintColor={THEME_COLOR}

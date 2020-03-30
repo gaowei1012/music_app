@@ -90,7 +90,7 @@ class RankingPage extends React.Component {
     if (!toplist) {
       return <Text style={{justifyContent: center}}>加载中...</Text>;
     }
-    console.log('toplist', toplist);
+    const isLoading = false;
     return (
       <SafeAreaView style={styles.container}>
         {this._renderTopBar()}
@@ -102,7 +102,9 @@ class RankingPage extends React.Component {
             <RefreshControl
               title={this.state.loadingTitle}
               tintColor={THEME_COLOR}
+              refreshing={isLoading}
               color={THEME_COLOR}
+              onRefresh={this.getData()}
             />
           }
         />

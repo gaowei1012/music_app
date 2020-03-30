@@ -28,14 +28,16 @@ class SelectedPlaylist extends React.Component {
   static propTypes = {
     play_list: PropTypes.object,
   };
-  _mapData() {
+  _mapData = () => {
     const {play_list} = this.props;
     let result = play_list.item;
-    console.log('处理数据', result);
-  }
+  };
   goToPage(com) {
     //NavigationUtil.goPage({title: 'more'}, com)
   }
+  /**
+   * 跳转更多页面
+   */
   goToMorePage = () => {
     const list = this.props.play_list.item;
     NavigationUtil.goPage({list}, 'MorePlayPage');

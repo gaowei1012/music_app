@@ -1,52 +1,60 @@
-'use strict'
+'use strict';
 
-import * as React from 'react'
-import PropTypes from 'prop-types'
-import {View,Text,StyleSheet,TouchableOpacity,Image,ScrollView} from 'react-native'
-import {row,center,spaceBetween} from '../../../styles/constants'
+import * as React from 'react';
+import PropTypes from 'prop-types';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Image,
+  ScrollView,
+  FlatList,
+  RefreshControl,
+} from 'react-native';
+import {row, center, spaceBetween} from '../../../styles/constants';
 export default class PlayList extends React.Component {
   static propTypes = {
     data: PropTypes.array.isRequired, // 渲染数据
-  }
-  async componentDidMount() {
-    console.log('props data', this.props.data)
-  }
+  };
   goPage(userId) {
-    console.log('userId', userId)
+    console.log('userId', userId);
   }
-  _renderItem() {
-    return <View>
-      {this.props.data.map(item => (
-        <TouchableOpacity
-          onPress={() => this.goPage(item.userId)}
-          style={styles.playBox}
-          key={item.id}
-          >
-          <View style={styles.leftBox}>
-            <View style={styles.imageBox}>
-              <Image style={styles.image} source={{uri: item.coverImgUrl}}/>
+  _renderItem = () => {
+    return (
+      <View>
+        {this.props.data.map(item => (
+          <TouchableOpacity
+            onPress={() => this.goPage(item.userId)}
+            style={styles.playBox}
+            key={item.id}>
+            <View style={styles.leftBox}>
+              <View style={styles.imageBox}>
+                <Image style={styles.image} source={{uri: item.coverImgUrl}} />
+              </View>
+              <View style={styles.nameBox}>
+                <Text numberOfLines={1}>{item.name}</Text>
+              </View>
             </View>
-            <View style={styles.nameBox}>
-              <Text numberOfLines={1}>{item.name}</Text>
+            <View style={styles.bofanBox}>
+              <Image
+                style={styles.player}
+                source={require('../../../images/common/playerIcon.png')}
+              />
             </View>
-          </View>
-          <View style={styles.bofanBox}>
-            <Image style={styles.player} source={require('../../../images/common/playerIcon.png')}/>
-          </View>
-        </TouchableOpacity>
-      ))}
-    </View>
-  }
+          </TouchableOpacity>
+        ))}
+      </View>
+    );
+  };
   render() {
     return (
       <View style={styles.playListBox}>
-       <ScrollView
-        showsVerticalScrollIndicator={true}
-       >
-         {this._renderItem()}
-       </ScrollView>
+        <ScrollView showsVerticalScrollIndicator={true}>
+          {this._renderItem()}
+        </ScrollView>
       </View>
-    )
+    );
   }
 }
 
@@ -87,5 +95,5 @@ const styles = StyleSheet.create({
   player: {
     width: 20,
     height: 20,
-  }
-})
+  },
+});

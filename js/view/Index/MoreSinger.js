@@ -1,47 +1,121 @@
-'use strict'
-import * as React from 'react'
-import {connect} from 'react-redux'
-import actions from '../../redux/actions/index'
-import {View,Text,StyleSheet,SafeAreaView} from 'react-native'
-import {flex,center,row,iosFontFmily,defaultFontColor,defaultFontSize} from '../../styles/constants'
-import {screentWidth} from '../../utils/screenUtil'
-import PlayList from './components/PalyList'
-
+import * as React from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+  SafeAreaView,
+  FlatList,
+  RefreshControl,
+} from 'react-native';
+import {flex, center, row, spaceBetween} from '../../styles/constants';
+import THEME from '../../common/THEME_DEFAULT';
 
 class MorePlayPage extends React.Component {
   state = {
-    data: []
-  }
-  async componentDidMount() {
-    let data = this.props.navigation.state.params.list
+    data: [],
+  };
+  componentDidMount() {
+    let data = this.props.navigation.state.params.list;
     this.setState({
-      data
-    }, () => {
-      console.log('component data', this.state.data)
-    })
+      data,
+    });
   }
+  /**
+   * 渲染列表数据
+   */
+  _remderItem = data => {
+    const item = data.item;
+    console.log('item', item);
+    return (
+      <TouchableOpacity
+        onPress={() => this.goPage(item.userId)}
+        style={styles.playBox}
+        key={item.id}>
+        <View style={styles.leftBox}>
+          <View style={styles.imageBox}>
+            <Image style={styles.image} source={{uri: item.coverImgUrl}} />
+          </View>
+          <View style={styles.nameBox}>
+            <Text numberOfLines={1}>{item.name}</Text>
+          </View>
+        </View>
+        <View style={styles.bofanBox}>
+          <Image
+            style={styles.player}
+            source={require('../../images/common/playerIcon.png')}
+          />
+        </View>
+      </TouchableOpacity>
+    );
+  };
   render() {
+    const data = this.state;
+    // console.log('data', data);
+    if (!data) {
+      return <Text style={{justifyContent: center}}>加载中...</Text>;
+    }
+    const isLoading = false;
     return (
       <SafeAreaView style={styles.container}>
-        <PlayList data={this.state.data}/>
+        <FlatList
+          data={data}
+          keyExtractor={item => '' + item.id}
+          renderItem={data => this._remderItem(data)}
+          refreshControl={
+            <RefreshControl
+              title={'loading'}
+              titleColor={THEME.THEME_COLOR}
+              colors={THEME.THEME_COLOR}
+              refreshing={isLoading}
+            />
+          }
+        />
       </SafeAreaView>
-    )
+    );
   }
 }
 
-const mapStateToProps = state => ({
-  
-})
-
-const mapDispatchToProps = dispatch => ({})
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(MorePlayPage)
+export default MorePlayPage;
 
 const styles = StyleSheet.create({
   container: {
-    flex: flex
-  }
-})
+    flex: flex,
+  },
+  playListBox: {
+    padding: 10,
+  },
+  playBox: {
+    flexDirection: row,
+    justifyContent: spaceBetween,
+    alignItems: center,
+  },
+  leftBox: {
+    flexDirection: row,
+    marginTop: 10,
+  },
+  imageBox: {
+    width: 60,
+    height: 60,
+    overflow: 'hidden',
+    borderRadius: 10,
+  },
+  nameBox: {
+    marginLeft: 6,
+    marginBottom: 10,
+    alignSelf: center,
+    width: 180,
+  },
+  image: {
+    width: 60,
+    height: 60,
+  },
+  bofanBox: {
+    flexDirection: row,
+    width: 60,
+    justifyContent: center,
+  },
+  player: {
+    width: 20,
+    height: 20,
+  },
+});
