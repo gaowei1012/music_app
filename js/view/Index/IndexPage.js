@@ -26,7 +26,7 @@ import {
   topPlaylistHigh,
 } from '../../expand/api';
 
-class IndexPage extends React.Component {
+class IndexPage extends React.PureComponent {
   state = {
     daily_data: [],
     banner: [],

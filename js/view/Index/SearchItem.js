@@ -3,9 +3,9 @@
 import * as React from 'react';
 import {
   View,
-  TextInput,
   StyleSheet,
   Image,
+  Text,
   TouchableOpacity,
 } from 'react-native';
 import {center, row, spaceBetween} from '../../styles/constants';
@@ -13,7 +13,9 @@ import NavigationUtil from '../../utils/NavigationUtil';
 import {px2dp} from '../../utils/px2dp';
 export default class SearchItem extends React.Component {
   renderTextInput() {
-    return <TextInput placeholder="搜索" style={styles.textInput} />;
+    return <View style={styles.textInput}>
+      <Text>搜索</Text>
+    </View>;
   }
   goToNoticePage = () => {
     NavigationUtil.goPage({}, '');
@@ -21,6 +23,9 @@ export default class SearchItem extends React.Component {
   goToMuiscPage = () => {
     NavigationUtil.goPage({}, '');
   };
+  goToSearchPage=()=> {
+    NavigationUtil.goPage({}, 'SearchPage')
+  }
   render() {
     return (
       <View style={styles.container}>
@@ -30,7 +35,10 @@ export default class SearchItem extends React.Component {
             source={require('../../images/common/notice.png')}
           />
         </TouchableOpacity>
-        <View style={styles.inputBox}>{this.renderTextInput()}</View>
+        <TouchableOpacity 
+          onPress={this.goToSearchPage}
+          activeOpacity={1}
+          style={styles.inputBox}>{this.renderTextInput()}</TouchableOpacity>
         <TouchableOpacity onPress={() => this.goToMuiscPage}>
           <Image
             style={styles.music}
@@ -68,5 +76,6 @@ const styles = StyleSheet.create({
     width: px2dp(260),
     height: px2dp(36),
     marginLeft: px2dp(10),
+    justifyContent: center,
   },
 });

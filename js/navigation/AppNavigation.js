@@ -34,6 +34,7 @@ import SigninPage from '../view/Personal/Signin';
 import RankingDetail from '../view/Index/RankingDetail';
 import Player from '../components/Player';
 import MyMessage from '../view/Personal/Widget/MyMessage';
+import SearchPage from '../view/Index/SerachPage';
 
 export const rootCom = 'Init';
 
@@ -185,6 +186,12 @@ const MainNavigator = createStackNavigator({
       header: null,
     },
   },
+  SearchPage: {
+    screen: SearchPage,
+    navigationOptions: {
+      header: null
+    }
+  }
 });
 
 export const RootNavigation = createAppContainer(
