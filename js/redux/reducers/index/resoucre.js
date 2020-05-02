@@ -1,7 +1,8 @@
 import types from '../../actionTypes/index';
+import { initState } from '../../../utils/asyncActionHandle'
 
 // 每日推荐歌单
-export default function onResoucreAction(state = {}, action) {
+export default function onResoucreAction(state = initState, action) {
   switch (action.type) {
     case types.GET_RECOMMEND_SUCCESS:
       return {

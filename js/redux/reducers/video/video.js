@@ -1,7 +1,8 @@
 import types from '../../actionTypes/index';
+import {initState} from '../../../utils/asyncActionHandle';
 
 // 视频菜单列表
-function onLoadVideoGroupAction(state = {}, action) {
+function onLoadVideoGroupAction(state = initState, action) {
   switch (action.type) {
     case types.VIDEO_LOAD_MENU_SUCCESS:
       return {
@@ -18,7 +19,7 @@ function onLoadVideoGroupAction(state = {}, action) {
 }
 
 // 视频详情
-function onLoadVideoDetailAction(state = {}, action) {
+function onLoadVideoDetailAction(state = initState, action) {
   switch (action.type) {
     case types.VIDEO_LOAD_DETAIL_SUCCESS:
       return {
@@ -33,7 +34,7 @@ function onLoadVideoDetailAction(state = {}, action) {
 }
 
 // 相关视频
-function onLoadVideoRelateAction(satte = {}, action) {
+function onLoadVideoRelateAction(satte = initState, action) {
   switch (action.type) {
     case types.VIDEO_LOAD_RELATE_SUCCESS:
       return {

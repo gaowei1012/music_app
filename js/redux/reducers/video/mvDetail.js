@@ -1,7 +1,8 @@
 import types from '../../actionTypes/index';
+import {initState} from '../../../utils/asyncActionHandle';
 
 // 获取mv数据
-export default function onMvDetailAction(state = {}, action) {
+export default function onMvDetailAction(state = initState, action) {
   switch (action.type) {
     case types.GET_MV_DETAIL_SUCCESS:
       return {

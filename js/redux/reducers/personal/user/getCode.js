@@ -1,7 +1,8 @@
 import types from '../../../actionTypes/index';
+import { initState } from '../../../../utils/asyncActionHandle';
 
 // 发送验证码
-export default function onGetCodeAction(state = {}, action) {
+export default function onGetCodeAction(state = initState, action) {
   switch (action.type) {
     case types.GET_CODE_DATA_SUCCESS:
       return {

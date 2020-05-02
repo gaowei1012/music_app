@@ -1,7 +1,8 @@
 'use strict'
 import types from '../../actionTypes/index'
+import { initState } from '../../../utils/asyncActionHandle'
 
-export default function onBannerAction(state = {}, action) {
+export default function onBannerAction(state = initState, action) {
   switch(action.type) {
     case types.BANNER_LOAD_SUCCESS:
       return {

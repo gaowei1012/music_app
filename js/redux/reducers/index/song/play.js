@@ -1,6 +1,7 @@
 import types from '../../../actionTypes/index';
+import { initState } from '../../../../utils/asyncActionHandle';
 
-export default function onPlayListAction(state = {}, action) {
+export default function onPlayListAction(state = initState, action) {
   switch (action.type) {
     case types.GET_PLAY_LIST_SUCCESS:
       return {

@@ -1,6 +1,7 @@
 import types from '../../actionTypes/index';
+import { initState } from '../../../utils/asyncActionHandle'
 
-export default function onDjprogramAction(state = {}, action) {
+export default function onDjprogramAction(state = initState, action) {
   switch (action.type) {
     case types.GET_DJPROGRAM_SUCCESS:
       return {

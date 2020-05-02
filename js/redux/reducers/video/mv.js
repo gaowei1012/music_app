@@ -1,6 +1,7 @@
 import types from '../../actionTypes/index';
+import { initState } from '../../../utils/asyncActionHandle';
 
-export default function onMvAction(state = {}, action) {
+export default function onMvAction(state = initState, action) {
   switch (action.type) {
     case types.VIDEO_LOAD_SUCCESS:
       return {

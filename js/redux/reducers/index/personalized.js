@@ -1,6 +1,7 @@
 import types from '../../actionTypes/index';
+import { initState } from '../../../utils/asyncActionHandle'
 // 今日推荐
-export default function onRecommendAction(state = {}, action) {
+export default function onRecommendAction(state = initState, action) {
   switch (action.type) {
     case types.RECOMMED_LOAD_SUCCESS:
       return {

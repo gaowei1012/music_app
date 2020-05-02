@@ -25,3 +25,8 @@ export function handleErrorData(dispatch, err, type) {
     err,
   })
 }
+
+/**
+ * 初始化 state
+ */
+export const initState = {}

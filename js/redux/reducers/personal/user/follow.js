@@ -1,6 +1,7 @@
 import types from '../../../actionTypes/index';
+import { initState } from '../../../../utils/asyncActionHandle';
 
-export default function onFollowAction(state = {}, action) {
+export default function onFollowAction(state = initState, action) {
   switch (action.type) {
     case types.USER_LOAD_FOLLOWS_SUCCESS:
       return {

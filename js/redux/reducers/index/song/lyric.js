@@ -1,7 +1,8 @@
 import types from '../../../actionTypes/index';
+import { initState } from '../../../../utils/asyncActionHandle';
 
 // 获取歌词
-export default function onLyricAction(state = {}, action) {
+export default function onLyricAction(state = initState, action) {
   switch (action.type) {
     case types.GET_LYRIC_SUCCESS:
       return {

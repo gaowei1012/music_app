@@ -1,7 +1,8 @@
 import types from '../../../actionTypes/index';
+import { initState } from '../../../../utils/asyncActionHandle';
 
 // 推荐歌单
-export default function onPersonalizAction(state = {}, action) {
+export default function onPersonalizAction(state = initState, action) {
   switch (action.type) {
     case types.GET_PERSONALIZ_SUCCESS:
       return {

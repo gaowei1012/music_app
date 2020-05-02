@@ -1,8 +1,10 @@
 'use strict'
 
 import types from '../../actionTypes/index'
+import { initState } from '../../../utils/asyncActionHandle'
+
 // 首页天气
-export default function onWeatherAction(state = {}, action) {
+export default function onWeatherAction(state = initState, action) {
   switch(action.type) {
     case types.INDEX_WEATHER_LOAD_SUCCESS:
       return {

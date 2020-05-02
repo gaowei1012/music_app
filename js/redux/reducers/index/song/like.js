@@ -1,7 +1,8 @@
 import types from '../../../actionTypes/index';
+import { initState } from '../../../../utils/asyncActionHandle';
 
 // 获取喜欢音乐
-export default function onLikeAction(state = {}, action) {
+export default function onLikeAction(state = initState, action) {
   switch (action.type) {
     case types.GET_LIKE_SUCCESS:
       return {
