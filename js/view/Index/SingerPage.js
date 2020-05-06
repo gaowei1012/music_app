@@ -7,8 +7,6 @@ import {
   StyleSheet,
   Animated,
   ScrollView,
-  FlatList,
-  RefreshControl,
 } from 'react-native';
 import {
   flex,
@@ -71,42 +69,33 @@ class SingerPage extends React.Component {
       />
     );
   };
-  /**
-   * 渲染组件item
-   */
-  _renderItem = data => {
-    const item = data.item;
-    return (
-      <Animated.View style={styles.personalBox}>
-        <View style={styles.imageBox}>
-          <Image style={styles.image} source={{uri: item.picUrl}} />
-        </View>
-        <Text numberOfLines={1} style={styles.name}>
-          {item.name}
-        </Text>
-      </Animated.View>
-    );
-  };
-  render() {
+  /* 渲染列表 */
+  _renderList = () => {
     const personaliz = this.props.personaliz.item;
+    return (
+      <>
+        {personaliz && personaliz.map(item => {
+          return (
+            <Animated.View style={styles.personalBox}>
+              <View style={styles.imageBox}>
+                <Image style={styles.image} source={{uri: item.picUrl}} />
+              </View>
+              <Text numberOfLines={1} style={styles.name}>
+                {item.name}
+              </Text>
+            </Animated.View>
+          )
+        })}
+      </>
+    )
+  }
+  render() {
     return (
       <SafeAreaView style={styles.container}>
         {this._renderTopBar()}
-        <FlatList
-          data={personaliz}
-          horizontal={false}
-          renderItem={data => this._renderItem(data)}
-          keyExtractor={item => '' + item.id}
-          refreshControl={
-            <RefreshControl
-              title={'loading'}
-              tintColor={THEME_COLOR}
-              colors={THEME_COLOR}
-              refreshin={this.state.loading}
-              onRefresh={this.getPeraonaliz()}
-            />
-          }
-        />
+        <ScrollView>
+          {this._renderList()}
+        </ScrollView>
       </SafeAreaView>
     );
   }

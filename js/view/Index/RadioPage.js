@@ -10,8 +10,7 @@ import {
   TouchableOpacity,
   Animated,
   Alert,
-  FlatList,
-  RefreshControl,
+  ScrollView,
 } from 'react-native';
 import {flex, center, row} from '../../styles/constants';
 import {screentWidth} from '../../utils/screenUtil';
@@ -21,8 +20,6 @@ import {radio} from '../../expand/api';
 import TopNavigationBar from '../../common/TopNavigationBar';
 import {GoBack} from '../../utils/GoBack';
 import {px2dp} from '../../utils/px2dp';
-
-const THEME_COLOR = 'red';
 
 class RaioPage extends React.Component {
   componentDidMount() {
@@ -59,51 +56,42 @@ class RaioPage extends React.Component {
       />
     );
   };
-  /**
-   * 渲染列表
-   */
-  _renderItem(data) {
-    const item = data.item;
-    return (
-      <TouchableOpacity
-        onPress={this.goToRadioDetail}
-        style={styles.raioBox}
-        key={item.id}>
-        <Animated.View style={styles.imageBox}>
-          <Image source={{uri: item.picUrl}} style={styles.image} />
-        </Animated.View>
-        <View>
-          <Text style={styles.text} numberOfLines={1}>
-            {item.name}
-          </Text>
-        </View>
-      </TouchableOpacity>
-    );
-  }
-  render() {
+
+  _renderList = () => {
     const radio = this.props.radio.item;
-    // console.log('radio', radio);
-    const isLoading = this.props.radio.isLoading;
     if (!radio) {
       return <Text style={{justifyContent: center}}>加载中...</Text>;
     }
     return (
+      <>
+        {radio && radio.map(item => {
+          return (
+            <TouchableOpacity
+              onPress={this.goToRadioDetail}
+              style={styles.raioBox}
+              key={item.id}>
+              <Animated.View style={styles.imageBox}>
+                <Image source={{uri: item.picUrl}} style={styles.image} />
+              </Animated.View>
+              <View>
+                <Text style={styles.text} numberOfLines={1}>
+                  {item.name}
+                </Text>
+              </View>
+            </TouchableOpacity>
+          )
+        })}
+      </>
+    )
+  }
+ 
+  render() {
+    return (
       <SafeAreaView style={styles.container}>
         {this._renderTopBar()}
-        <FlatList
-          data={radio}
-          renderItem={data => this._renderItem(data)}
-          keyExtractor={item => '' + item.id}
-          refreshing={false}
-          refreshControl={
-            <RefreshControl
-              tintColor={THEME_COLOR}
-              colors={THEME_COLOR}
-              refreshing={isLoading}
-              onRefresh={this.getData()}
-            />
-          }
-        />
+        <ScrollView>
+          {this._renderList()}
+        </ScrollView>
       </SafeAreaView>
     );
   }

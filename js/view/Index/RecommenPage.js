@@ -7,9 +7,9 @@ import actions from '../../redux/actions/index';
 import {personalized} from '../../expand/api';
 
 class RecommenPage extends React.Component {
-  componentDidMount() {
-    this.getData();
-  }
+  // componentDidMount() {
+  //   this.getData();
+  // }
   getData() {
     const {onLoadPersonalizData} = this.props;
     onLoadPersonalizData(personalized);

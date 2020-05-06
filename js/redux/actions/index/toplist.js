@@ -22,7 +22,7 @@ export function onLoadListData(url) {
     request(url)
       .then(res => {
         let data = res.playlist;
-        console.log('data--data', data);
+        //console.log('data--data', data);
         handleData(dispatch, data, types.GET_RANKING_LIST_SUCCESS);
       })
       .catch(err => {

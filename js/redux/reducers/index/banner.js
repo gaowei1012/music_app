@@ -7,7 +7,7 @@ export default function onBannerAction(state = initState, action) {
     case types.BANNER_LOAD_SUCCESS:
       return {
         ...state,
-        item: action.item,
+        item: action.item, // banners
       }
     case types.BANNER_LOAD_FAIL:
       return {

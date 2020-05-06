@@ -77,6 +77,14 @@ module.exports = {
   persoanlFm: 'personal_fm',
   // 电台
   radio: 'personalized/djprogram',
+  // 电台 banner
+  radioBanner: 'dj/banner',
+  // 热门电台
+  radioHot: 'dj/hot',
+  // 推荐 电台
+  radioRaking: 'dj/recommend',
+  // 电台详情
+  radioDetail: 'dj/detail',
   // 精选歌单
   topPlaylistHigh: '/top/playlist/highquality',
   // 视频菜单
@@ -108,7 +116,10 @@ module.exports = {
   // 喜欢音乐列表
   likelist: 'likelist',
   // 歌单
-  recommend: '/recommend/resource',
+  recommend: 'recommend/resource',
+  // 设置
+  setting: 'setting',
+
 
   // 首页天气
   WeatherUrl:

@@ -61,28 +61,6 @@ class GuessLikePage extends React.Component {
     NavigationUtil.goPage({title: '猜你喜欢'}, 'GuessLikeMore');
   };
   /**
-   * 渲染列表
-   */
-  _renderItem = data => {
-    // console.log('data', data)
-    const item = data.item;
-    return (
-      <TouchableOpacity
-        activeOpacity={0.8}
-        onPress={() => this.goGuessLikePage(item)}
-        key={item.id}
-        style={styles.guessBox}>
-        <View style={styles.guessImageBox}>
-          <Image source={{uri: item.picUrl}} style={styles.guessImage} />
-        </View>
-        <View style={styles.guessDesBox}>
-          <Text style={styles.guessTitle}>{item.name}</Text>
-          <Text style={styles.guessDes}>{item.des}</Text>
-        </View>
-      </TouchableOpacity>
-    );
-  };
-  /**
    * 渲染推荐喜欢列表
    */
   renderGuessLikeItem = () => {
@@ -92,20 +70,25 @@ class GuessLikePage extends React.Component {
       return <Text style={{justifyContent: center}}>加载中...</Text>;
     }
     return (
-      <FlatList
-        data={recommend}
-        keyExtractor={item => '' + item.id}
-        renderItem={data => this._renderItem(data)}
-        refreshControl={
-          <RefreshControl
-            title={'loading'}
-            titleColor={THEME_COLOR}
-            colors={THEME_COLOR}
-            refreshing={isLoading}
-            onRefresh={this.getData()}
-          />
-        }
-      />
+      <>
+        {recommend  && recommend.map(item=> {
+          return (
+            <TouchableOpacity
+              activeOpacity={0.8}
+              onPress={() => this.goGuessLikePage(item)}
+              key={item.id}
+              style={styles.guessBox}>
+              <View style={styles.guessImageBox}>
+                <Image source={{uri: item.picUrl}} style={styles.guessImage} />
+              </View>
+              <View style={styles.guessDesBox}>
+                <Text style={styles.guessTitle}>{item.name}</Text>
+                <Text style={styles.guessDes}>{item.des}</Text>
+              </View>
+            </TouchableOpacity>
+          )
+        })}
+      </>
     );
   };
   render() {

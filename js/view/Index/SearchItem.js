@@ -18,10 +18,10 @@ export default class SearchItem extends React.Component {
     </View>;
   }
   goToNoticePage = () => {
-    NavigationUtil.goPage({}, '');
+    NavigationUtil.goPage({}, 'NoticesPage');
   };
   goToMuiscPage = () => {
-    NavigationUtil.goPage({}, '');
+    NavigationUtil.goPage({}, 'Player');
   };
   goToSearchPage=()=> {
     NavigationUtil.goPage({}, 'SearchPage')
@@ -29,7 +29,7 @@ export default class SearchItem extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <TouchableOpacity onPress={() => this.goToNoticePage}>
+        <TouchableOpacity activeOpacity={.8} onPress={this.goToNoticePage}>
           <Image
             style={styles.notice}
             source={require('../../images/common/notice.png')}
@@ -39,7 +39,7 @@ export default class SearchItem extends React.Component {
           onPress={this.goToSearchPage}
           activeOpacity={1}
           style={styles.inputBox}>{this.renderTextInput()}</TouchableOpacity>
-        <TouchableOpacity onPress={() => this.goToMuiscPage}>
+        <TouchableOpacity onPress={this.goToMuiscPage}>
           <Image
             style={styles.music}
             source={require('../../images/common/topMusic.png')}

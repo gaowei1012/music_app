@@ -1,6 +1,6 @@
 import {onThemeChange} from '../actions/theme/index';
 import {onLoadBannerData} from '../actions/index/banner';
-import {onLoadRadioData} from '../actions/index/radio';
+import {onLoadRadioData, onRadioBanner, onRadioRaking, onRadioDetail} from '../actions/index/radio';
 import {onLoadTopListData, onLoadListData} from './index/toplist';
 import {onLoadTopPlayListHigh} from '../actions/index/topPlaylistHigh';
 import {
@@ -8,6 +8,7 @@ import {
   onLoginData,
   onFollowsData,
   onUserInfoData,
+  onSettingData,
 } from '../actions/personal/user';
 import {onDailySinger} from '../actions/personal/daily';
 import {onLoadWeatherData} from '../actions/index/weather';
@@ -61,4 +62,7 @@ export default {
   onLoadLyricData,
   onLoadDjprogramData,
   onLoadPersonalizData,
+  onRadioBanner,
+  onRadioRaking,
+  onRadioDetail
 };

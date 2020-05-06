@@ -23,7 +23,7 @@ import {
   spaceAround,
   fontSmallSize,
 } from '../../styles/constants';
-import {dailySignin} from '../../expand/api';
+import {dailySignin,setting} from '../../expand/api';
 
 class UserInfo extends React.Component {
   state = {
@@ -61,8 +61,9 @@ class UserInfo extends React.Component {
   }
   // 签到
   getDailyData() {
-    const {onDailySinger} = this.props;
+    const {onDailySinger, onSettingData} = this.props;
     onDailySinger(dailySignin);
+    onSettingData(setting);
   }
   // 跳转
   handleUserInfo = () => {
@@ -137,10 +138,12 @@ class UserInfo extends React.Component {
 
 const mapStateToProps = state => ({
   daily: state.daily,
+  setting: state.setting,
 });
 
 const mapDispatchToProps = dispatch => ({
   onDailySinger: url => dispatch(actions.onDailySinger(url)),
+  onSettingData: url => dispatch(actions.onSettingData(url)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserInfo);

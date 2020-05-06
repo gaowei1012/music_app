@@ -6,8 +6,6 @@ import {
   StyleSheet,
   SafeAreaView,
   ScrollView,
-  FlatList,
-  RefreshControl,
   TouchableOpacity,
 } from 'react-native';
 import {flex, center, row} from '../../styles/constants';
@@ -61,53 +59,43 @@ class RankingPage extends React.Component {
     NavigationUtil.goPage({idx}, 'RankingDetail');
   }
 
-  /**
-   * 渲染列表
-   */
-  _rederItem = data => {
-    const item = data.item;
-    return (
-      <TouchableOpacity
-        key={item.id}
-        onPress={this.goToPage}
-        style={styles.rankingBox}>
-        <View style={styles.leftBox}>
-          <Image style={styles.image} source={{uri: item.coverImgUrl}} />
-          {/* <LazyloadImage
-            style={styles.image}
-            source={{uri: item.coverImgUrl}}
-          /> */}
-        </View>
-        <View style={styles.rightBox}>
-          <Text style={styles.text}>{item.description}</Text>
-        </View>
-      </TouchableOpacity>
-    );
-  };
-
-  render() {
+  _renderContent = () => {
     const toplist = this.props.topList.item;
     if (!toplist) {
       return <Text style={{justifyContent: center}}>加载中...</Text>;
     }
-    const isLoading = false;
+    return (
+      <>
+        {toplist && toplist.map(item => {
+          return (
+            <TouchableOpacity
+              key={item.id}
+              onPress={this.goToPage}
+              style={styles.rankingBox}>
+              <View style={styles.leftBox}>
+                <Image style={styles.image} source={{uri: item.coverImgUrl}} />
+                {/* <LazyloadImage
+                  style={styles.image}
+                  source={{uri: item.coverImgUrl}}
+                /> */}
+              </View>
+              <View style={styles.rightBox}>
+                <Text style={styles.text}>{item.description}</Text>
+              </View>
+            </TouchableOpacity>
+          )
+        })}
+      </>
+    )
+  }
+
+  render() {
     return (
       <SafeAreaView style={styles.container}>
         {this._renderTopBar()}
-        <FlatList
-          data={toplist}
-          renderItem={data => this._rederItem(data)}
-          keyExtractor={item => '' + item.id}
-          refreshControl={
-            <RefreshControl
-              title={this.state.loadingTitle}
-              tintColor={THEME_COLOR}
-              refreshing={isLoading}
-              color={THEME_COLOR}
-              onRefresh={this.getData()}
-            />
-          }
-        />
+        <ScrollView>
+          {this._renderContent()}
+        </ScrollView>
       </SafeAreaView>
     );
   }

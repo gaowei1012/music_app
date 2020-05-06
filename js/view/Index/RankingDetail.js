@@ -32,6 +32,7 @@ class RankingDetail extends React.Component {
       img: '',
     };
   }
+
   componentDidMount() {
     this.getData();
   }

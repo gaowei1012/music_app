@@ -26,7 +26,7 @@ import SingerDetailPage from '../view/Index/SingerDetail';
 import MorePlayPage from '../view/Index/MoreSinger';
 import GuessLikePage from '../view/Index/GuessLikePage';
 import RankingPage from '../view/Index/RankingPage';
-import RadioPage from '../view/Index/RadioPage';
+import RadioPage from '../view/Radio/RadioPage';
 import RecommenPage from '../view/Index/RecommenPage';
 import PlayListPage from '../view/Index/PlayListPage';
 import GuessLikeMore from '../view/Index/components/GuessLikeMore';
@@ -35,6 +35,11 @@ import RankingDetail from '../view/Index/RankingDetail';
 import Player from '../components/Player';
 import MyMessage from '../view/Personal/Widget/MyMessage';
 import SearchPage from '../view/Index/SerachPage';
+import Anchors from '../view/Radio/Anchor';
+import Classification from '../view/Radio/Classification';
+import Selected from '../view/Radio/Selected';
+import MoreRadio from '../view/Radio/MoreRadio';
+import NoticesPage from '../view/Notices/NoticesPage';
 
 export const rootCom = 'Init';
 
@@ -188,6 +193,36 @@ const MainNavigator = createStackNavigator({
   },
   SearchPage: {
     screen: SearchPage,
+    navigationOptions: {
+      header: null
+    }
+  },
+  Anchors: {
+    screen: Anchors,
+    navigationOptions: {
+      header: null
+    }
+  },
+  Classification: {
+    screen: Classification,
+    navigationOptions: {
+      header: null
+    }
+  },
+  Selected: {
+    screen: Selected,
+    navigationOptions: {
+      header: null
+    }
+  },
+  MoreRadio: {
+    screen: MoreRadio,
+    navigationOptions: {
+      header: null
+    }
+  },
+  NoticesPage: {
+    screen: NoticesPage,
     navigationOptions: {
       header: null
     }

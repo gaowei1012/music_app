@@ -250,9 +250,9 @@ class Player extends React.Component {
     return (
       <SafeAreaView style={styles.playerBox}>
         {this._renderTopBar()}
-        {this._playerContent()}
+        {/* {this._playerContent()}
         {this._slider()}
-        {this._switch()}
+        {this._switch()} */}
       </SafeAreaView>
     );
   }

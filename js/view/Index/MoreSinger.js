@@ -20,34 +20,38 @@ class MorePlayPage extends React.Component {
       data,
     });
   }
-  /**
-   * 渲染列表数据
-   */
-  _remderItem = data => {
-    const item = data.item;
-    console.log('item', item);
+
+  _renderList=()=> {
+    const {data} = this.state;
     return (
-      <TouchableOpacity
-        onPress={() => this.goPage(item.userId)}
-        style={styles.playBox}
-        key={item.id}>
-        <View style={styles.leftBox}>
-          <View style={styles.imageBox}>
-            <Image style={styles.image} source={{uri: item.coverImgUrl}} />
-          </View>
-          <View style={styles.nameBox}>
-            <Text numberOfLines={1}>{item.name}</Text>
-          </View>
-        </View>
-        <View style={styles.bofanBox}>
-          <Image
-            style={styles.player}
-            source={require('../../images/common/playerIcon.png')}
-          />
-        </View>
-      </TouchableOpacity>
-    );
-  };
+      <>
+        {data && data.map(item => {
+          return (
+            <TouchableOpacity
+              onPress={() => this.goPage(item.userId)}
+              style={styles.playBox}
+              key={item.id}>
+              <View style={styles.leftBox}>
+                <View style={styles.imageBox}>
+                  <Image style={styles.image} source={{uri: item.coverImgUrl}} />
+                </View>
+                <View style={styles.nameBox}>
+                  <Text numberOfLines={1}>{item.name}</Text>
+                </View>
+              </View>
+              <View style={styles.bofanBox}>
+                <Image
+                  style={styles.player}
+                  source={require('../../images/common/playerIcon.png')}
+                />
+              </View>
+            </TouchableOpacity>
+          )
+        })}
+      </>
+    )
+  }
+  
   render() {
     const data = this.state;
     // console.log('data', data);
@@ -57,19 +61,7 @@ class MorePlayPage extends React.Component {
     const isLoading = false;
     return (
       <SafeAreaView style={styles.container}>
-        <FlatList
-          data={data}
-          keyExtractor={item => '' + item.id}
-          renderItem={data => this._remderItem(data)}
-          refreshControl={
-            <RefreshControl
-              title={'loading'}
-              titleColor={THEME.THEME_COLOR}
-              colors={THEME.THEME_COLOR}
-              refreshing={isLoading}
-            />
-          }
-        />
+        {this._renderList()}
       </SafeAreaView>
     );
   }

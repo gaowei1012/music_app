@@ -19,19 +19,19 @@ export default class MenuItem extends React.Component {
     list: [
       {
         id: 1,
-        text: '推荐歌曲',
+        text: '每日推荐',
         icon: require('../../../images/common/user.png'),
         com: 'SingerPage',
       },
       {
         id: 2,
-        text: '排行榜',
+        text: '歌单',
         icon: require('../../../images/common/ranking.png'),
         com: 'RankingPage',
       },
       {
         id: 3,
-        text: '歌单',
+        text: '排行榜',
         icon: require('../../../images/common/singerList.png'),
         com: 'PlayListPage',
       },
