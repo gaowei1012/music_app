@@ -27,10 +27,27 @@ class MoreRadio extends PureComponent {
       <Text style={styles.desc}>{desc}</Text>
     </View>
   }
+  _renderContent=()=> {
+    const radioDetail = this.props.radioDetail.item
+    if (!radioDetail) return
+    const content = radioDetail.commentDatas
+    if (!content) return
+    console.log('commentDatas', content)
+    return <View style={styles.contentBox}>
+      {content && content.map(item => {
+        const url = item.userProfile.backgroundUrl
+        return <View style={styles.contentText}>
+          <Text>{item.content}</Text>
+          <Image style={{width: px2dp(50), height: px2dp(50), borderRadius: px2dp(25)}} source={{uri: url}}/>
+        </View>
+      })}
+    </View>
+  }
   render() {
     return (
       <View>
         {this._renderMoreBac()}
+        {this._renderContent()}
       </View>
     )
   }
@@ -56,9 +73,23 @@ const styles = StyleSheet.create({
   desc: {
     position: 'absolute',
     lineHeight: px2dp(22),
-    bottom: px2dp(4),
+    bottom: px2dp(16),
     left: 0,
     padding: px2dp(6),
     color: '#fff'
+  },
+  contentBox: {
+    width: screentWidth,
+    height: px2dp(400),
+    position: 'relative',
+    top: px2dp(-16),
+    left: 0,
+    zIndex: 99,
+    backgroundColor: '#eee',
+    borderTopLeftRadius: px2dp(20),
+    borderTopRightRadius: px2dp(20),
+  },
+  contentText: {
+    marginTop: px2dp(20),
   }
 })
