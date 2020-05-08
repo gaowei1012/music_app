@@ -30,3 +30,17 @@ export function onLoadMvDetail(url) {
       });
   };
 }
+
+// 获取视频播放源
+export function onLoadMvUrl(url) {
+  return dispatch => {
+    request(url)
+      .then(res => {
+        const data = res;
+        handleData(dispatch, data,types.GET_VIDEO_PLAYER_SUCCESS)
+      })
+      .catch(err => {
+        handleErrorData(dispatch, err, types.GET_VIDEO_PLAYER_FAIL)
+      })
+  }
+}
