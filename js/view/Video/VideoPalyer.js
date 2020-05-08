@@ -2,8 +2,12 @@ import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import Video from 'react-native-video';
 import {mvUrl} from '../../expand/api';
+import {connect} from 'react-redux';
+import actions from '../../redux/actions';
+import {screentWidth, screentHeight} from '../../utils/screenUtil';
+import { px2dp } from '../../utils/px2dp';
 
-export default class VideoPalyer extends React.PureComponent {
+class VideoPalyer extends React.PureComponent {
     state = {
         rate: 1,
         volume: 1,
@@ -14,9 +18,10 @@ export default class VideoPalyer extends React.PureComponent {
         paused: true,
     }
     componentDidMount() {
+        const {onLoadMvUrl} = this.props;
         const id = this.props.navigation.state.params.id;
-        const url = `${mvUrl}id=${id}`;
-        console.log('mv url', url)
+        const url = `${mvUrl}?id=${id}`;
+        onLoadMvUrl(url);
     }
 
     // onLoad 
@@ -37,31 +42,41 @@ export default class VideoPalyer extends React.PureComponent {
   onAudioFocusChanged = () => {}
 
     render() {
+        const videoUrl = this.props.mvUrl.item;
+        if (!videoUrl) return 
+        const url = videoUrl.url;
+        const {rate, muted, resizeMode} = this.state;
         return (
-            <View>
-                <Text>video palyer</Text>
-                {/* <Video
-                    ref={(ref: Video) => { //方法对引用Video元素的ref引用进行操作
-                      this.video = ref
-                    }}
-                    source={null}
-                    style={styles.videoPlayer}
-                    rate={rate}//播放速率
-                    paused={paused}//暂停
-                    volume={volume}//调节音量
-                    muted={muted}//控制音频是否静音
-                    resizeMode={resizeMode}//缩放模式
-                    onLoad={this.onLoad}//加载媒体并准备播放时调用的回调函数。
-                    onProgress={this.onProgress}//视频播放过程中每个间隔进度单位调用的回调函数
-                    onEnd={this.onEnd}//视频播放结束时的回调函数
-                    onAudioBecomingNoisy={this.onAudioBecomingNoisy}//音频变得嘈杂时的回调 - 应暂停视频
-                    onAudioFocusChanged={this.onAudioFocusChanged}//音频焦点丢失时的回调 - 如果焦点丢失则暂停
-                    repeat={false}//确定在到达结尾时是否重复播放视频。
-                  /> */}
+            <View style={{backgroundColor: 'rgb(0, 0, 0)'}}>
+                <Video
+                    style={{width: screentWidth, height: screentHeight}}
+                    source={{uri: url}}
+                    rate={rate}
+                    muted={muted}
+                    resizeMode={resizeMode}
+                    onLoad={this.onLoad}
+                    onEnd={this.onEnd}
+                    onAudioBecomingNoisy={this.onAudioBecomingNoisy}
+                    onAudioFocusChanged={this.onAudioFocusChanged}
+                    repeat={false}
+                />
             </View>
         )
     }
 }
+
+const mapStateToProps = state => ({
+    mvUrl: state.mvUrl
+})
+
+const mapDispatchToProps = dispatch => ({
+    onLoadMvUrl: url => dispatch(actions.onLoadMvUrl(url))
+})
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(VideoPalyer)
 
 const styles = StyleSheet.create({
     container: {

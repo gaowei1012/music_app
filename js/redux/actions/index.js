@@ -14,7 +14,7 @@ import {onDailySinger} from '../actions/personal/daily';
 import {onLoadWeatherData} from '../actions/index/weather';
 import {onLoadSearchData} from '../actions/index/search';
 import {onLoadRecommendData, onLoadPersonalizData} from './index/personalized';
-import {onLoadMv, onLoadMvDetail} from './video/mv';
+import {onLoadMv, onLoadMvDetail, onLoadMvUrl} from './video/mv';
 import {
   onLoadVideoGroupData,
   onLoadVideoRelateData,
@@ -64,5 +64,6 @@ export default {
   onLoadPersonalizData,
   onRadioBanner,
   onRadioRaking,
-  onRadioDetail
+  onRadioDetail,
+  onLoadMvUrl,
 };

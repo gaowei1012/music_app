@@ -36,7 +36,8 @@ export function onLoadMvUrl(url) {
   return dispatch => {
     request(url)
       .then(res => {
-        const data = res;
+        const data = res.data;
+        console.log('----data', data)
         handleData(dispatch, data,types.GET_VIDEO_PLAYER_SUCCESS)
       })
       .catch(err => {
