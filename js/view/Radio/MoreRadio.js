@@ -35,13 +35,14 @@ class MoreRadio extends PureComponent {
   };
   _renderContent = () => {
     const radioDetail = this.props.radioDetail.item;
+    const str = radioDetail.dj;
     if (!radioDetail) return;
     const content = radioDetail.commentDatas;
     if (!content) return;
     console.log('commentDatas', content);
     return (
       <View style={styles.contentBox}>
-        <List str={{str}} goPlayer={() => null} />
+        <List str={str} goPlayer={() => null} />
         {/* {content && content.map(item => {
         const url = item.userProfile.backgroundUrl
         return <View style={styles.contentText}>
