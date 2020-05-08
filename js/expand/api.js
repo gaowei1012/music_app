@@ -119,6 +119,8 @@ module.exports = {
   recommend: 'recommend/resource',
   // 设置
   setting: 'setting',
+  // MV 视频
+  mvUrl: '/mv/url',
 
 
   // 首页天气

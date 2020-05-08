@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import Video from 'react-native-video';
+import {mvUrl} from '../../expand/api';
 
 export default class VideoPalyer extends React.PureComponent {
     state = {
@@ -13,7 +14,9 @@ export default class VideoPalyer extends React.PureComponent {
         paused: true,
     }
     componentDidMount() {
-        
+        const id = this.props.navigation.state.params.id;
+        const url = `${mvUrl}id=${id}`;
+        console.log('mv url', url)
     }
 
     // onLoad 
