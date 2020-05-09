@@ -36,25 +36,54 @@ class VideoPalyer extends React.PureComponent {
     onAudioFocusChanged = () => {}
 
     render() {
-        const videoUrl = this.props.mvUrl.item;
-        if (!videoUrl) return;
-        const url = videoUrl.url;
-        const {rate, muted, resizeMode} = this.state;
-        return <View style={{ backgroundColor: 'rgb(0, 0, 0)' }}>
-            <Video
-                style={{width: screentWidth, height: screentHeight}}
-                source={{uri: url}}
-                rate={rate}
-                muted={muted}
-                resizeMode={resizeMode}
-                onLoad={this.onLoad}
-                onEnd={this.onEnd}
-                onAudioBecomingNoisy={this.onAudioBecomingNoisy}
-                onAudioFocusChanged={this.onAudioFocusChanged}
-                repeat={false}
-            />
+      const videoUrl = this.props.mvUrl.item;
+      if (!videoUrl) {
+        return <View>
+          <Text>test</Text>
         </View>
+      };
+      const url = videoUrl.url;
+      const {rate, muted, resizeMode} = this.state;
+      return (
+        <View style={{ backgroundColor: 'rgb(0, 0, 0)' }}>
+           <Video
+              style={{width: screentWidth, height: screentHeight}}
+              source={{uri: url}}
+              rate={rate}
+              muted={muted}
+              resizeMode={resizeMode}
+              onLoad={this.onLoad}
+              onEnd={this.onEnd}
+              onAudioBecomingNoisy={this.onAudioBecomingNoisy}
+              onAudioFocusChanged={this.onAudioFocusChanged}
+              repeat={false}
+          />
+        </View>
+      )
     }
+
+    // render() {
+    //   const videoUrl = this.props.mvUrl.item;
+    //   if (!videoUrl) return;
+    //   const url = videoUrl.url;
+    //   const {rate, muted, resizeMode} = this.state;
+    //   return (
+    //     <View style={{ backgroundColor: 'rgb(0, 0, 0)' }}>
+    //       <Video
+    //           style={{width: screentWidth, height: screentHeight}}
+    //           source={{uri: url}}
+    //           rate={rate}
+    //           muted={muted}
+    //           resizeMode={resizeMode}
+    //           onLoad={this.onLoad}
+    //           onEnd={this.onEnd}
+    //           onAudioBecomingNoisy={this.onAudioBecomingNoisy}
+    //           onAudioFocusChanged={this.onAudioFocusChanged}
+    //           repeat={false}
+    //       />
+    //     </View>
+    //   )
+    // }
 }
 
 const mapStateToProps = state => ({
