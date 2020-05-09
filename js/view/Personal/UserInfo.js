@@ -23,7 +23,7 @@ import {
   spaceAround,
   fontSmallSize,
 } from '../../styles/constants';
-import {dailySignin,setting} from '../../expand/api';
+import {dailySignin, setting} from '../../expand/api';
 
 class UserInfo extends React.Component {
   state = {
@@ -57,7 +57,7 @@ class UserInfo extends React.Component {
     ],
   };
   componentDidMount() {
-    //this.getDailyData()
+    //this.getDailyData()z
   }
   // 签到
   getDailyData() {
@@ -146,7 +146,10 @@ const mapDispatchToProps = dispatch => ({
   onSettingData: url => dispatch(actions.onSettingData(url)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserInfo);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(UserInfo);
 
 const styles = StyleSheet.create({
   container: {

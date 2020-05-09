@@ -22,6 +22,7 @@ import actions from '../../redux/actions/index';
 import {login} from '../../expand/api';
 import AsyncStorage from '@react-native-community/async-storage';
 import NavigationUtil from '../../utils/NavigationUtil';
+import {px2dp} from '../../utils/px2dp';
 
 class LoginPage extends React.Component {
   state = {
@@ -55,14 +56,23 @@ class LoginPage extends React.Component {
     const password = 'qq12345..**';
     const url = `${login}?phone=${phone}&password=${password}`;
     onLoginData(url);
-    let token = this.props.login.item.token;
-    console.log('uid', this.props.login.item);
+    const item = this.props.login.item;
+    console.log('login--item:', item);
+    console.log('login---token:', item.token);
+    if (!item) return;
     // 保存token
-    AsyncStorage.setItem('token', token, err => {
+    AsyncStorage.setItem('token', item.token, err => {
       if (err) err;
+
       // 登录成功后跳转
       setTimeout(() => {
-        NavigationUtil.goPage({}, 'PersonalPage');
+        // 带参跳转页面
+        NavigationUtil.goPage(
+          {
+            item,
+          },
+          'PersonalPage',
+        );
       }, 1000);
     });
   }
@@ -120,15 +130,18 @@ const mapDiaptchToProps = dispacth => ({
   onFollowsData: url => dispacth(actions.onFollowsData(url)),
 });
 
-export default connect(mapStateToProps, mapDiaptchToProps)(LoginPage);
+export default connect(
+  mapStateToProps,
+  mapDiaptchToProps,
+)(LoginPage);
 
 const styles = StyleSheet.create({
   container: {
     flex: flex,
-    backgroundColor: backgroundColor,
+    backgroundColor: '#DA3A2F',
   },
   titleBox: {
-    marginTop: 20,
+    marginTop: px2dp(20),
   },
   topTitle: {
     alignSelf: center,
@@ -138,25 +151,29 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   textInputBox: {
-    marginTop: 10,
+    marginTop: px2dp(50),
     alignSelf: center,
-    width: 345,
-    height: 140,
+    width: px2dp(345),
+    height: px2dp(140),
   },
   phoneBox: {
-    height: 60,
-    marginTop: 20,
+    height: px2dp(60),
+    marginTop: px2dp(20),
+    color: '#fff',
+  },
+  codeBox: {
+    color: '#fff',
   },
   codeNumBox: {
     position: 'absolute',
-    top: 0,
-    right: 10,
-    width: 96,
-    height: 30,
+    top: px2dp(0),
+    right: px2dp(10),
+    width: px2dp(96),
+    height: px2dp(30),
     alignItems: center,
     justifyContent: center,
-    borderRadius: 20,
-    borderWidth: 1,
+    borderRadius: px2dp(20),
+    borderWidth: px2dp(1),
     borderStyle: 'solid',
     borderColor: '#d5d5d5d5',
   },
@@ -165,12 +182,12 @@ const styles = StyleSheet.create({
     color: fontColor,
   },
   submitBox: {
-    marginTop: 30,
+    marginTop: px2dp(30),
     alignSelf: center,
-    width: 345,
-    height: 42,
+    width: px2dp(345),
+    height: px2dp(42),
     alignItems: center,
     justifyContent: center,
-    borderRadius: 10,
+    borderRadius: px2dp(10),
   },
 });
