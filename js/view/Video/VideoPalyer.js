@@ -25,43 +25,35 @@ class VideoPalyer extends React.PureComponent {
     }
 
     // onLoad 
-  onLoad = () => {
-
-  }
-
-  // onProgress
-  onProgress = () => {}
-
-  // onEnd
-  onEnd  = () => {}
-
-  //onAudioBecomingNoisy
-  onAudioBecomingNoisy = () => {}
-
-  // onAudioFocusChanged 
-  onAudioFocusChanged = () => {}
+    onLoad = () => {}
+    // onProgress
+    onProgress = () => {}
+    // onEnd
+    onEnd  = () => {}
+    //onAudioBecomingNoisy
+    onAudioBecomingNoisy = () => {}
+    // onAudioFocusChanged 
+    onAudioFocusChanged = () => {}
 
     render() {
         const videoUrl = this.props.mvUrl.item;
-        if (!videoUrl) return 
+        if (!videoUrl) return;
         const url = videoUrl.url;
         const {rate, muted, resizeMode} = this.state;
-        return (
-            <View style={{backgroundColor: 'rgb(0, 0, 0)'}}>
-                <Video
-                    style={{width: screentWidth, height: screentHeight}}
-                    source={{uri: url}}
-                    rate={rate}
-                    muted={muted}
-                    resizeMode={resizeMode}
-                    onLoad={this.onLoad}
-                    onEnd={this.onEnd}
-                    onAudioBecomingNoisy={this.onAudioBecomingNoisy}
-                    onAudioFocusChanged={this.onAudioFocusChanged}
-                    repeat={false}
-                />
-            </View>
-        )
+        return <View style={{ backgroundColor: 'rgb(0, 0, 0)' }}>
+            <Video
+                style={{width: screentWidth, height: screentHeight}}
+                source={{uri: url}}
+                rate={rate}
+                muted={muted}
+                resizeMode={resizeMode}
+                onLoad={this.onLoad}
+                onEnd={this.onEnd}
+                onAudioBecomingNoisy={this.onAudioBecomingNoisy}
+                onAudioFocusChanged={this.onAudioFocusChanged}
+                repeat={false}
+            />
+        </View>
     }
 }
 
