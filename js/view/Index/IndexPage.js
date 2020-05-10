@@ -39,14 +39,11 @@ class IndexPage extends React.PureComponent {
     const {
       onLoadBannerData,
       onLoadWeatherData,
-      onLoadSearchData,
       onLoadTopPlayListHigh,
     } = this.props;
     onLoadBannerData(banner_url);
     onLoadWeatherData(WeatherUrl);
-    let url = search + '海阔天空';
     let player_list_url = topPlaylistHigh + '?' + 'limit=10&order=new';
-    onLoadSearchData(url);
     onLoadTopPlayListHigh(player_list_url);
   };
   renderBanner = () => {
@@ -104,13 +101,11 @@ class IndexPage extends React.PureComponent {
 const mapStateToProps = state => ({
   banner: state.banner,
   weather: state.weather,
-  search: state.search,
   playHigh: state.playHigh,
 });
 const mapDispatchToProps = dispatch => ({
   onLoadBannerData: url => dispatch(actions.onLoadBannerData(url)),
   onLoadWeatherData: url => dispatch(actions.onLoadWeatherData(url)),
-  onLoadSearchData: url => dispatch(actions.onLoadSearchData(url)),
   onLoadTopPlayListHigh: url => dispatch(actions.onLoadTopPlayListHigh(url)),
 });
 

@@ -1,15 +1,25 @@
 import React, {PureComponent} from 'react'
 import TopNavigationBar from '../../common/TopNavigationBar'
-import {SafeAreaView, View, Text, StyleSheet, TextInput} from 'react-native'
+import {SafeAreaView, View, Text, StyleSheet, TextInput, ScrollView, TouchableOpacity} from 'react-native'
+import actions from '../../redux/actions'
+import {connect} from 'react-redux'
+import {search} from '../../expand/api'
 
 import {px2dp} from '../../utils/px2dp'
 import {GoBack} from '../../utils/GoBack'
 
-export default class SearchPage extends PureComponent {
+class SearchPage extends PureComponent {
     state = {
         data: [
-            {id: 1, title: '天堂'},{id: 2, title: '天堂'},{id: 3, title: '天堂'}
-        ]
+            {id: 112, title: '天堂'},{id: 221, title: '天堂'},{id: 213, title: '天堂'}
+        ],
+        value: ''
+    }
+
+    componentDidMount() {
+        const {onLoadSearchData} = this.props;
+        const url = search + '海阔天空';
+        onLoadSearchData(url);
     }
 
     topnavigationbar = () => {
@@ -27,9 +37,35 @@ export default class SearchPage extends PureComponent {
         );
     }
 
-    searchHistory = () => {
-        const {data} = this.state
-        return (
+    // 搜索
+    onChangeText(value) {
+        this.setState({
+            value
+        }, () => {
+            console.log('vvvvvv', this.state.value)
+        })
+        console.log('value', value)
+    }
+
+    render() {
+        const {data, value} = this.state;
+        const search = this.props.search.item;
+        if (!search) {
+            return <View>
+                <Text>没有相关歌曲</Text>
+            </View>
+        };
+        // 搜索区域
+        const searchInput = (
+            <TextInput
+                style={styles.textInput}
+                onChangeText={value => this.onChangeText(value)}
+                clearTextOnFocus={true}
+                placeholder='搜索'
+            />
+        )
+        // 搜索历史记录
+        const searchHistory = (
             <View style={styles.searchHistory}>
                 <Text>搜索历史</Text>
                 <View style={styles.itemBox}>
@@ -38,19 +74,44 @@ export default class SearchPage extends PureComponent {
                     })}
                 </View>
             </View>
-        )
-    }
+        );
 
-    render() {
+        // 搜索内容展示区
+        const searchContent = (
+            <View style={styles.searchContentBox}>
+                {search && search.map(item => (
+                    <TouchableOpacity onPress={null} style={styles.searchItemBox} key={item.id}>
+                        <Text>{item.name}</Text>
+                    </TouchableOpacity>
+                ))}
+            </View>
+        );
+
         return (
             <SafeAreaView style={styles.container}>
-               {this.topnavigationbar()}
-               <TextInput style={styles.textInput} placeholder='搜索'/>
-               {this.searchHistory()}
+                {this.topnavigationbar()}
+                {searchInput}
+                {searchHistory}
+                <ScrollView>
+                    {searchContent}
+                </ScrollView>
             </SafeAreaView>
         )
     }
 }
+
+const mapStateToProps = state => ({
+    search: state.search,
+})
+
+const mapDispatchToProps = dispatch => ({
+    onLoadSearchData: url => dispatch(actions.onLoadSearchData(url))
+})
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(SearchPage)
 
 const styles = StyleSheet.create({
     container: {
@@ -63,8 +124,8 @@ const styles = StyleSheet.create({
         borderStyle: "solid",
         marginLeft:  px2dp(24),
         marginRight: px2dp(24),
-        borderRadius: 6,
-        paddingLeft: px2dp(4),
+        borderRadius: px2dp(6),
+        paddingLeft: px2dp(6),
     },
     searchHistory: {
         marginTop: px2dp(20),
@@ -84,6 +145,15 @@ const styles = StyleSheet.create({
         borderColor: '#eee',
         borderStyle: "solid",
         textAlign: 'center',
+        lineHeight: px2dp(26)
+    },
+    searchContentBox: {
+        width: px2dp(345),
+        paddingTop: px2dp(12),
+        alignSelf: 'center'
+    },
+    searchItemBox: {
+        marginTop: px2dp(10),
     }
 
 })
