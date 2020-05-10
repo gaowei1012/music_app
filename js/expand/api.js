@@ -66,11 +66,11 @@ module.exports = {
   // 所有排行榜
   topAllList: 'toplist',
   // 所有榜单内容摘要
-  toplistDeatil: '/toplist/detail',
+  rakingListDeatil: 'toplist/detail',
   // 歌手榜
-  toplistArtist: '/toplist/artist',
+  toplistArtist: 'toplist/artist',
   // 热门电台
-  djHot: '/dj/hot',
+  djHot: 'dj/hot',
   // 电台 - 24小时节目榜
   djProgramToplist: 'dj/program/toplist/hours',
   // 私人FM
@@ -120,7 +120,7 @@ module.exports = {
   // 设置
   setting: 'setting',
   // MV 视频
-  mvUrl: '/mv/url',
+  mvUrl: 'mv/url',
 
 
   // 首页天气

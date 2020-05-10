@@ -1,17 +1,9 @@
 import * as React from 'react';
-import {
-  View,
-  Text,
-  Image,
-  StyleSheet,
-  SafeAreaView,
-  ScrollView,
-  TouchableOpacity,
-} from 'react-native';
+import { View, Text, Image, StyleSheet, SafeAreaView, ScrollView, TouchableOpacity} from 'react-native';
 import {flex, center, row} from '../../styles/constants';
 import {connect} from 'react-redux';
 import actions from '../../redux/actions/index';
-import {topAllList} from '../../expand/api';
+import {rakingListDeatil} from '../../expand/api';
 import TopNavigationBar from '../../common/TopNavigationBar';
 import {GoBack} from '../../utils/GoBack';
 import {px2dp} from '../../utils/px2dp';
@@ -33,7 +25,7 @@ class RankingPage extends React.Component {
    */
   getData() {
     const {onLoadTopListData} = this.props;
-    onLoadTopListData(topAllList);
+    onLoadTopListData(rakingListDeatil);
   }
   /**
    * 渲染头部
@@ -62,7 +54,7 @@ class RankingPage extends React.Component {
   _renderContent = () => {
     const toplist = this.props.topList.item;
     if (!toplist) {
-      return <Text style={{justifyContent: center}}>加载中...</Text>;
+      return <Text style={{justifyContent: 'center'}}>加载中...</Text>;
     }
     return (
       <>
@@ -70,7 +62,7 @@ class RankingPage extends React.Component {
           return (
             <TouchableOpacity
               key={item.id}
-              onPress={this.goToPage}
+              onPress={() => this.goToPage(item.id)}
               style={styles.rankingBox}>
               <View style={styles.leftBox}>
                 <Image style={styles.image} source={{uri: item.coverImgUrl}} />
