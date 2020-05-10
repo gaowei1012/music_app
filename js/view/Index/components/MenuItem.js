@@ -25,13 +25,13 @@ export default class MenuItem extends React.Component {
       },
       {
         id: 2,
-        text: '歌单',
+        text: '排行榜',
         icon: require('../../../images/common/ranking.png'),
         com: 'RankingPage',
       },
       {
         id: 3,
-        text: '排行榜',
+        text: '歌单',
         icon: require('../../../images/common/singerList.png'),
         com: 'PlayListPage',
       },
