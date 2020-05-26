@@ -32,7 +32,7 @@ import PlayListPage from '../view/Index/PlayListPage';
 import GuessLikeMore from '../view/Index/components/GuessLikeMore';
 import SigninPage from '../view/Personal/Signin';
 import RankingDetail from '../view/Index/RankingDetail';
-import Player from '../components/Player';
+import Player from '../view/Player/Player';
 import MyMessage from '../view/Personal/Widget/MyMessage';
 import SearchPage from '../view/Index/SerachPage';
 import Anchors from '../view/Radio/Anchor';
