@@ -4,6 +4,7 @@ import {SafeAreaView, ScrollView, Text, View, StyleSheet, Image, TouchableOpacit
 import {rakingList} from '../../expand/api';
 import {px2dp} from '../../utils/px2dp';
 import TopNavigationBar from '../../common/TopNavigationBar';
+import {GoBack} from '../../utils/GoBack';
 
 import {connect} from 'react-redux';
 import actions from '../../redux/actions';
@@ -23,7 +24,20 @@ class RankingDetail extends PureComponent {
   render() {
     const item = this.props.rankiglist;
     console.log('ietn ----iten', item)
-    return <SafeAreaView>
+    const StatusBar = {
+      backgroundColor: '#ffffff',
+      barStyle: 'dark-content',
+    };
+    const renderTopBar = (
+      <TopNavigationBar
+        title={'详情'}
+        statusBar={StatusBar}
+        style={{backgroundColor: '#ffffff'}}
+        leftButton={GoBack(this.props, 'dark')}
+      />
+    )
+    return <SafeAreaView style={styles.container}>
+      {renderTopBar}
       <Text>raking detail</Text>
     </SafeAreaView>
   }
@@ -41,3 +55,9 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(RankingDetail)
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1
+  }
+})

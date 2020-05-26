@@ -43,7 +43,7 @@ class IndexPage extends React.PureComponent {
     } = this.props;
     onLoadBannerData(banner_url);
     onLoadWeatherData(WeatherUrl);
-    let player_list_url = topPlaylistHigh + '?' + 'limit=10&order=new';
+    const player_list_url = topPlaylistHigh + '?' + 'limit=10&order=new';
     onLoadTopPlayListHigh(player_list_url);
   };
   renderBanner = () => {
@@ -89,7 +89,7 @@ class IndexPage extends React.PureComponent {
         <ScrollView>
           {this.renderBanner()}
           {this.renderMenuItem()}
-          {this.renderDailyMood()}
+          {/* {this.renderDailyMood()} */}
           {this.renderSelectedPlaylists()}
           {this.renderGuessLike()}
         </ScrollView>

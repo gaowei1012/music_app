@@ -1,14 +1,11 @@
-'use strict'
-import * as React from 'react'
+import React from 'react'
 import {View, Text, StyleSheet} from 'react-native'
 import NavigationUtil from '../../utils/NavigationUtil'
 import {flex, flexDirectionRow, center} from '../../styles/constants'
+import { px2dp } from '../../utils/px2dp'
 
-export default class WeclomePage extends React.Component {
-  constructor(props) {
-    super(props)
-  }
-
+export default class WeclomePage extends React.PureComponent {
+  
   componentDidMount() {
     this.init();
   }
@@ -19,7 +16,7 @@ export default class WeclomePage extends React.Component {
       NavigationUtil.restToHomePage({
         navigation: this.props.navigation,
       });
-    }, 300);
+    }, 1000);
   }
   componentWillMount() {
     this.timer && clearTimeout(this.timer);
@@ -28,7 +25,7 @@ export default class WeclomePage extends React.Component {
     return (
       <View style={styles.container}>
         <View style={styles.containerBox}>
-          <Text>欢迎页</Text>
+          <Text style={styles.musicTitle}>音乐的力量</Text>
         </View>
       </View>
     );
@@ -38,6 +35,7 @@ export default class WeclomePage extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: flex,
+    backgroundColor: 'red'
   },
   containerBox: {
     flexDirection: flexDirectionRow,
@@ -46,4 +44,8 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
   },
+  musicTitle: {
+    fontSize: px2dp(36),
+    color: '#fff',
+  }
 });
