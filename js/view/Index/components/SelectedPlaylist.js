@@ -32,20 +32,20 @@ class SelectedPlaylist extends React.Component {
     const {play_list} = this.props;
     let result = play_list.item;
   };
-  goToPage(com) {
-    //NavigationUtil.goPage({title: 'more'}, com)
+  goToPage(id) {
+    NavigationUtil.goPage({id}, 'SelectMorePage')
   }
   /**
    * 跳转更多页面
    */
   goToMorePage = () => {
-    const list = this.props.play_list.item;
-    NavigationUtil.goPage({list}, 'MorePlayPage');
+    //const list = this.props.play_list.item;
+    NavigationUtil.goPage({}, 'MorePlayPage');
   };
   renderItem() {
     const result = this.props.play_list.item;
     return (
-      <View style={{flexDirection: row, height: 130}}>
+      <View style={{flexDirection: row, height: px2dp(130), paddingLeft: px2dp(6), marginRight: px2dp(6)}}>
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
           {result == null
             ? null

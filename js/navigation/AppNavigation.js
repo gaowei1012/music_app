@@ -41,6 +41,7 @@ import Selected from '../view/Radio/Selected';
 import MoreRadio from '../view/Radio/MoreRadio';
 import NoticesPage from '../view/Notices/NoticesPage';
 import VideoPalyer from '../view/Video/VideoPalyer';
+import SelectMorePage from '../view/Index/SelectMorePage';
 
 export const rootCom = 'Init';
 
@@ -230,6 +231,12 @@ const MainNavigator = createStackNavigator({
   },
   VideoPalyer: {
     screen: VideoPalyer,
+    navigationOptions: {
+      header: null
+    }
+  },
+  SelectMorePage: {
+    screen: SelectMorePage,
     navigationOptions: {
       header: null
     }
