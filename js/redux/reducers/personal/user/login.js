@@ -1,7 +1,6 @@
 import types from '../../../actionTypes/index';
 import { initState } from '../../../../utils/asyncActionHandle';
 
-// 登录
 export default function onLoginAction(state = initState, action) {
   switch (action.type) {
     case types.LOGIN_LOAD_SUCCESS:
@@ -13,6 +12,7 @@ export default function onLoginAction(state = initState, action) {
       return {
         ...state,
       };
+
     default:
       return state;
   }

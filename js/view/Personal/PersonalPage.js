@@ -1,9 +1,7 @@
 import * as React from 'react';
 import UserInfo from './UserInfo';
-import {connect} from 'react-redux';
-import actions from '../../redux/actions';
+import { connect } from 'react-redux';
 import {
-  View,
   Text,
   ScrollView,
   StyleSheet,
@@ -18,10 +16,18 @@ import {
   iosFontFmily,
 } from '../../styles/constants';
 import PersonalItem from './components/PersonlItem';
-import {screentWidth} from '../../utils/screenUtil';
+import { screentWidth } from '../../utils/screenUtil';
 
 class PersonalPage extends React.Component {
-  async componentDidMount() {}
+  state = {
+    item:{}
+  }
+  async componentDidMount() {
+    let { item } = this.props.navigation.state.params;
+    this.setState({
+      item:item.profile
+    })
+  }
   handleExit = () => {
     // 退出登录，清楚用户信息
     // 调取用户退出接口
@@ -38,10 +44,11 @@ class PersonalPage extends React.Component {
     );
   };
   render() {
+    const {item} = this.state
     return (
       <SafeAreaView style={styles.container}>
         <ScrollView>
-          <UserInfo />
+          <UserInfo username={item.nickname} avatar_url={item.avatarUrl}/>
           <PersonalItem />
           {this._exit()}
         </ScrollView>

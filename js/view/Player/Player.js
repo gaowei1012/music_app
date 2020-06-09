@@ -1,6 +1,7 @@
 import React from 'react'
 import {px2dp} from '../../utils/px2dp'
 import Slider from '@react-native-community/slider'
+import Video from 'react-native-video'
 import {SafeAreaView,View,Text,StyleSheet,TouchableOpacity,Image} from 'react-native'
 
 export default class Player extends React.PureComponent {
@@ -14,12 +15,13 @@ export default class Player extends React.PureComponent {
             {id: 5, icon: require('../../images/player/more.png')},
         ],
         iconFotter: [
-            {id: 11, icon: require('../../images/player/cycle.png')},
-            {id: 22, icon: require('../../images/player/prev.png')},
-            {id: 33, icon: require('../../images/player/player.png')},
-            {id: 44, icon: require('../../images/player/next.png')},
-            {id: 55, icon: require('../../images/player/moreIocn.png')}
-        ]
+            {id: 11, icon: require('../../images/player/cycle.png'), className: 'icon'},
+            {id: 22, icon: require('../../images/player/prev.png'), className: 'icon'},
+            {id: 33, icon: require('../../images/player/player.png'), className: 'icon'},
+            {id: 44, icon: require('../../images/player/next.png'), className: 'icon'},
+            {id: 55, icon: require('../../images/player/moreIocn.png'), className: 'icon'}
+        ],
+        url: 'http://m8.music.126.net/20200528094608/8aed0cf62a533d298f057f130d6c87e5/ymusic/0fd6/4f65/43ed/a8772889f38dfcb91c04da915b301617.mp3'
     }
 
     componentDidMount() {
@@ -69,7 +71,12 @@ export default class Player extends React.PureComponent {
             <View style={styles.playerFooterBox}>
                 {iconFotter && iconFotter.map(item => (
                     <TouchableOpacity key={item.id} style={styles.fotterImgBox}>
-                        <Image style={{width: '100%', height: '100%'}} source={item.icon}/>
+                        {
+                            item.className == 'icon' ? 
+                                <Image style={{width: px2dp(30), height: px2dp(30)}} source={item.icon}/> 
+                                :
+                                <Image style={{width: px2dp(50), height: px2dp(50)}} source={item.icon}/>
+                        }
                     </TouchableOpacity>
                 ))}
             </View>
@@ -155,6 +162,6 @@ const styles = StyleSheet.create({
     },
     fotterImgBox: {
         width: px2dp(30),
-        height: px2dp(30)
+        height: px2dp(60),
     }
 })

@@ -2,27 +2,24 @@ import * as React from 'react';
 import {
   View,
   Text,
-  TouchableOpacity,
   StyleSheet,
   SafeAreaView,
+  TextInput
 } from 'react-native';
 import {
   flex,
-  backgroundColor,
   center,
-  row,
   fontColor,
   defaultFontSize,
   iosFontFmily,
-  defaultBackgroundColor,
 } from '../../styles/constants';
-import {Input, Button} from 'react-native-elements';
-import {connect} from 'react-redux';
+import { Input, Button } from 'react-native-elements';
+import { connect } from 'react-redux';
 import actions from '../../redux/actions/index';
-import {login} from '../../expand/api';
+// import Storage from 'react-native-storage';
 import AsyncStorage from '@react-native-community/async-storage';
 import NavigationUtil from '../../utils/NavigationUtil';
-import {px2dp} from '../../utils/px2dp';
+import { px2dp } from '../../utils/px2dp';
 
 class LoginPage extends React.Component {
   state = {
@@ -31,11 +28,12 @@ class LoginPage extends React.Component {
     isLoading: false,
     isWXInstalled: '',
     code: 0, // 验证码
-    phone: 0, // 手机号
+    phone: '13666683140', // 手机号
+    password: 'qq12345..**' // 密码
   };
   // 验证码
   countDown() {
-    const {count} = this.state;
+    const { count } = this.state;
     if (count === 1) {
       this.setState({
         count: 60,
@@ -49,30 +47,33 @@ class LoginPage extends React.Component {
       setTimeout(this.countDown.bind(this), 1000);
     }
   }
+  // 获取输入信息
+  onChangeText(name, value) {
+    name == '手机号' ? (this.setState({
+      phone: value
+    })) : (this.setState({
+      password: value
+    }))
+  }
 
+  // 登录
   getData() {
-    const {onLoginData} = this.props;
-    const phone = '13666683140';
-    const password = 'qq12345..**';
-    const url = `${login}?phone=${phone}&password=${password}`;
+    const { onLoginData } = this.props;
+    const { phone, password } = this.state;
+    const url = `login/cellphone?phone=${phone}&password=${password}`;
     onLoginData(url);
-    const item = this.props.login.item;
-    console.log('login--item:', item);
-    console.log('login---token:', item.token);
-    if (!item) return;
-    // 保存token
+    const item = this.props.token.item;
+    if (!item) {
+      // TODO: 弹框-->正在登录中
+      return <div>正在登录中</div>;
+    }
     AsyncStorage.setItem('token', item.token, err => {
       if (err) err;
 
       // 登录成功后跳转
       setTimeout(() => {
         // 带参跳转页面
-        NavigationUtil.goPage(
-          {
-            item,
-          },
-          'PersonalPage',
-        );
+        NavigationUtil.goPage({ item }, 'PersonalPage');
       }, 1000);
     });
   }
@@ -83,8 +84,8 @@ class LoginPage extends React.Component {
   handleSubmit = () => {
     this.getData();
   };
-  handleKeyPress = () => {};
-  handleCodePress = () => {};
+  handleKeyPress = () => { };
+  handleCodePress = () => { };
   renderTopTitle() {
     // const {liked, count} = this.state;
     return (
@@ -92,10 +93,18 @@ class LoginPage extends React.Component {
         <Text style={styles.topTitle}>登录</Text>
         <View style={styles.textInputBox}>
           <View style={styles.phoneBox}>
-            <Input placeholder="手机号" ref="phone" />
+            <TextInput
+              onChangeText={value => this.onChangeText('手机号', value)}
+              clearTextOnFocus={true}
+              placeholder='手机号'
+            />
           </View>
           <View style={styles.codeBox}>
-            <Input ref="code" placeholder="密码" />
+            <TextInput
+              onChangeText={value => this.onChangeText('密码', value)}
+              clearTextOnFocus={true}
+              placeholder='密码'
+            />
             {/* <TouchableOpacity onPress={this.getCode} style={styles.codeNumBox}>
               <Text style={styles.textInput}>
                 {liked ? '获取验证码' : `${count} 秒后重发`}
@@ -121,7 +130,7 @@ class LoginPage extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  login: state.login,
+  token: state.login,
   follow: state.follow,
 });
 
