@@ -23,6 +23,7 @@ import {
   fontSmallSize,
 } from '../../../styles/constants';
 import {px2dp} from '../../../utils/px2dp';
+import SpinnerLoading from '../../../components/Spinner';
 // 精选歌单
 class SelectedPlaylist extends React.Component {
   static propTypes = {
@@ -44,12 +45,13 @@ class SelectedPlaylist extends React.Component {
   };
   renderItem() {
     const result = this.props.play_list.item;
+    if(!result) {
+      return <SpinnerLoading/>
+    }
     return (
       <View style={{flexDirection: row, height: 130}}>
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-          {result == null
-            ? null
-            : result.map(item => (
+          {result.map(item => (
                 <View key={item.id}>
                   <TouchableOpacity
                     onPress={() => this.goToPage(item.userId)}

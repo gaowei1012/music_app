@@ -25,11 +25,13 @@ import {
   search,
   topPlaylistHigh,
 } from '../../expand/api';
+import Spinner from 'react-native-spinkit'
+import SpinnerLoading from '../../components/Spinner'
 
 class IndexPage extends React.PureComponent {
   state = {
     daily_data: [],
-    banner: [],
+    banner: []
   };
   componentDidMount() {
     this.getData();
@@ -48,24 +50,19 @@ class IndexPage extends React.PureComponent {
   };
   renderBanner = () => {
     const banner = this.props.banner.item;
+    if (!banner) {
+      return <SpinnerLoading/>
+    }
     return (
       <Animated.View style={styles.bannerBox}>
         <Swiper autoplay={true}>
-          {banner == null ? (
-            <Text style={{textAlign: 'center', flexDirection: 'row'}}>
-              加载中...
-            </Text>
-          ) : (
-            banner.map(item => {
-              return (
-                <Image
-                  style={styles.bannerImage}
-                  key={item.id}
-                  source={{uri: item.imageUrl}}
-                />
-              );
-            })
-          )}
+          {banner.map(item => {
+            return <Image
+              style={styles.bannerImage}
+              key={item.id}
+              source={{uri: item.imageUrl}}
+           />
+          })}
         </Swiper>
       </Animated.View>
     );

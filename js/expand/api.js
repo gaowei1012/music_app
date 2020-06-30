@@ -48,9 +48,9 @@ module.exports = {
   // mv 排行
   topMv: 'top/mv?area=',
   // 获取mv数据
-  mvDetail: '/mv/detail?mvid=',
+  mvDetail: 'mv/detail?mvid=',
   // 全部mv
-  mvAll: 'mv/all?area=',
+  mvAll: 'mv/all?type=',
   // 网易出品mv
   mvExclusiveRcmd: 'mv/exclusive/rcmd',
   // 推荐mv
@@ -58,9 +58,9 @@ module.exports = {
   // 推荐歌单
   personalized: 'personalized?limit=',
   // 推荐新音乐
-  personalizedNewsong: '/personalized/newsong',
+  personalizedNewsong: 'personalized/newsong',
   // 推荐电台
-  personalizedDjprogram: '/personalized/djprogram',
+  personalizedDjprogram: 'personalized/djprogram',
   // 排行榜
   rakingList: 'top/list',
   // 所有排行榜

@@ -25,8 +25,7 @@ import {
   fontSmallSize,
 } from '../../../styles/constants';
 import {personalizedNewsong} from '../../../expand/api';
-
-const THEME_COLOR = 'red';
+import SpinnerLoading from '../../../components/Spinner';
 
 class GuessLikePage extends React.Component {
   async componentDidMount() {
@@ -65,9 +64,8 @@ class GuessLikePage extends React.Component {
    */
   renderGuessLikeItem = () => {
     const recommend = this.props.recommend.item;
-    const isLoading = this.props.recommend.isLoading;
     if (!recommend) {
-      return <Text style={{justifyContent: center}}>加载中...</Text>;
+      return <SpinnerLoading/>
     }
     return (
       <>

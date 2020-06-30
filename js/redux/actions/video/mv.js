@@ -45,3 +45,17 @@ export function onLoadMvUrl(url) {
       })
   }
 }
+
+// 获取推荐mv
+export function onPersonalizedData(url) {
+  return dispatch => {
+    request(url)
+      .then(res => {
+        const data = res.result;
+        handleData(dispatch, data,types.get_personal_mv_success)
+      })
+      .catch(err => {
+        handleErrorData(dispatch, err, types.get_personal_mv_fail)
+      })
+  }
+}

@@ -32,6 +32,7 @@ import radioBanner from './index/radioBanner';
 import radioRaking from './index/radioRaking';
 import radioDetail from './index/radioDetail';
 import mvUrl from './video/mvUrl';
+import personalMv from './video/personalMv';
 
 const navState = RootNavigation.router.getStateForAction(
   RootNavigation.router.getActionForPathAndParams(rootCom),
@@ -76,6 +77,7 @@ const root = combineReducers({
   radioRaking,
   radioDetail,
   mvUrl,
+  personalMv
 });
 
 export default root;
