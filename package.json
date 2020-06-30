@@ -29,6 +29,7 @@
     "react-native-orientation-locker": "^1.1.8",
     "react-native-reanimated": "^1.7.0",
     "react-native-screens": "^2.0.0-beta.2",
+    "react-native-slide": "^0.2.2",
     "react-native-sound": "^0.11.0",
     "react-native-spinkit": "^1.5.0",
     "react-native-storage": "^1.0.1",

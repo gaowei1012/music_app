@@ -111,5 +111,8 @@ export default {
   GET_VIDEO_PLAYER_FAIL: 'GET_VIDEO_PLAYER_FAIL',
   // 推荐mv
   get_personal_mv_success: 'get_personal_mv_success',
-  get_personal_mv_fail: 'get_personal_mv_fail'
+  get_personal_mv_fail: 'get_personal_mv_fail',
+  // 获取用户歌单
+  get_user_play_list_success: 'get_user_play_list_success',
+  get_user_play_list_fail: 'get_user_play_list_fail'
 };

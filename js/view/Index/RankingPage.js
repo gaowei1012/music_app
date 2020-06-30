@@ -8,9 +8,8 @@ import TopNavigationBar from '../../common/TopNavigationBar';
 import {GoBack} from '../../utils/GoBack';
 import {px2dp} from '../../utils/px2dp';
 import NavigationUtil from '../../utils/NavigationUtil';
-// import {LazyloadImage} from 'react-native-lazyload';
-
-const THEME_COLOR = 'red';
+import SpinnerLoading from '../../components/Spinner';
+import {width} from '../../utils/screenUtil'
 
 // 排行榜
 class RankingPage extends React.Component {
@@ -54,7 +53,7 @@ class RankingPage extends React.Component {
   _renderContent = () => {
     const toplist = this.props.topList.item;
     if (!toplist) {
-      return <Text style={{justifyContent: 'center'}}>加载中...</Text>;
+      return <SpinnerLoading/>
     }
     return (
       <>

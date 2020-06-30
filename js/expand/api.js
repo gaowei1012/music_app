@@ -102,7 +102,7 @@ module.exports = {
   // 获取用户列表
   userList: 'user/follows',
   // 获取用户信息
-  userInfo: 'user/subcount',
+  // userInfo: 'user/subcount',
   // 通知 信息
   priate: 'msg/private',
   // 获取歌单详情
@@ -121,6 +121,10 @@ module.exports = {
   setting: 'setting',
   // MV 视频
   mvUrl: 'mv/url',
+  // 用户详情
+  userInfo: 'user/detail',
+  // 用户歌单
+  userPlaylist: 'user/playlist',
 
 
   // 首页天气

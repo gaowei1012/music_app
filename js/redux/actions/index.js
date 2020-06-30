@@ -9,6 +9,7 @@ import {
   onFollowsData,
   onUserInfoData,
   onSettingData,
+  onPlayListData,
 } from '../actions/personal/user';
 import {onDailySinger} from '../actions/personal/daily';
 import {onLoadWeatherData} from '../actions/index/weather';
@@ -67,4 +68,5 @@ export default {
   onRadioDetail,
   onLoadMvUrl,
   onPersonalizedData,
+  onPlayListData,
 };

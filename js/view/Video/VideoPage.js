@@ -12,7 +12,7 @@ import SpinnerLoading from '../../components/Spinner';
 const initRoutres = [
   { key: 'first', title: 'First' },
   { key: 'second', title: 'Second' },
-]
+];
 
 class VideoPage extends React.Component {
   constructor(props) {
@@ -27,7 +27,7 @@ class VideoPage extends React.Component {
         {id: 3, type: 3, name: '官方版'},
         {id: 4, type: 4, name: '原生'},
         {id: 5, type: 5, name: '现场版'},
-        {id: 6, type: 6, name: '网易出品'},
+        {id: 6, type: 6, name: '网易出品'}
       ]
     }
   }
@@ -132,7 +132,7 @@ class VideoPage extends React.Component {
                 <View style={styles.videoBtnBox}>
                   <Text style={{marginRight: px2dp(4), fontSize: 16}}>{item.name}</Text>
                   <Text>-</Text>
-                  <Text style={{marginLeft: px2dp(4), fontSize: 12,}}>{item.artistName}</Text>
+                  <Text numberOfLines={1} style={{marginLeft: px2dp(4), fontSize: 12, width: px2dp(325)}}>{item.artistName}</Text>
                 </View>
           </TouchableOpacity>
         })}

@@ -49,6 +49,7 @@ class LoginPage extends React.Component {
   }
   // 获取输入信息
   onChangeText(name, value) {
+    console.log('name', value)
     name == '手机号' ? (this.setState({
       phone: value
     })) : (this.setState({
@@ -94,16 +95,20 @@ class LoginPage extends React.Component {
         <View style={styles.textInputBox}>
           <View style={styles.phoneBox}>
             <TextInput
+              style={{height: px2dp(40)}}
               onChangeText={value => this.onChangeText('手机号', value)}
               clearTextOnFocus={true}
               placeholder='手机号'
+              placeholderTextColor='#fff'
             />
           </View>
           <View style={styles.codeBox}>
             <TextInput
+              style={{height: px2dp(40)}}
               onChangeText={value => this.onChangeText('密码', value)}
               clearTextOnFocus={true}
               placeholder='密码'
+              placeholderTextColor='#fff'
             />
             {/* <TouchableOpacity onPress={this.getCode} style={styles.codeNumBox}>
               <Text style={styles.textInput}>
@@ -112,6 +117,13 @@ class LoginPage extends React.Component {
             </TouchableOpacity> */}
           </View>
         </View>
+        {/* <TouchableOpacity
+          style={styles.submitBox}
+          onPress={this.handleSubmit}
+          activeOpacity={1}
+        >
+          <Text style={{color: '#fff'}}>登录</Text>
+        </TouchableOpacity> */}
         <Button
           title="登录"
           onPress={this.handleSubmit}
@@ -156,7 +168,7 @@ const styles = StyleSheet.create({
     alignSelf: center,
     fontFamily: iosFontFmily,
     fontSize: 18,
-    color: fontColor,
+    color: '#fff',
     fontWeight: '600',
   },
   textInputBox: {
@@ -166,12 +178,19 @@ const styles = StyleSheet.create({
     height: px2dp(140),
   },
   phoneBox: {
-    height: px2dp(60),
+    height: px2dp(40),
     marginTop: px2dp(20),
     color: '#fff',
+    borderBottomColor: '#d3d3d3d3',
+    borderBottomWidth: px2dp(.5),
+    paddingRight: px2dp(30)
   },
   codeBox: {
+    height: px2dp(40),
+    marginTop: px2dp(20),
     color: '#fff',
+    borderBottomColor: '#d3d3d3d3',
+    borderBottomWidth: px2dp(.5),
   },
   codeNumBox: {
     position: 'absolute',
@@ -197,6 +216,6 @@ const styles = StyleSheet.create({
     height: px2dp(42),
     alignItems: center,
     justifyContent: center,
-    borderRadius: px2dp(10),
+    borderRadius: px2dp(20),
   },
 });

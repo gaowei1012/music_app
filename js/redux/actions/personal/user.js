@@ -33,6 +33,7 @@ export function onLoginData(url) {
 
 // 获取用户信息
 export function onUserInfoData(url) {
+  // console.log('用户信息', url)
   return dispatch => {
     request(url)
       .then(res => {
@@ -83,6 +84,20 @@ export function onSettingData(url) {
       })
       .catch(err => {
         handleErrorData(dispatch, err, types.SETTING_DATA_SUCCESS)
+      })
+  }
+}
+
+// 获取用户歌单
+export function onPlayListData(url) {
+  return dispatch => {
+    request(url)
+      .then(res => {
+        let data = res.playlist;
+        handleData(dispatch, data, types.get_user_play_list_success)
+      })
+      .catch(err => {
+        handleErrorData(dispatch, err, types.get_user_play_list_fail)
       })
   }
 }
