@@ -5,12 +5,11 @@ import {
   StyleSheet,
   TouchableOpacity,
   Image,
-  Alert,
 } from 'react-native';
 import actions from '../../redux/actions/index';
-import {screentHeight, screentWidth} from '../../utils/screenUtil';
 import NavigationUtil from '../../utils/NavigationUtil';
-import {connect} from 'react-redux';
+import AsyncStorage from '@react-native-community/async-storage';
+import { connect } from 'react-redux';
 import {
   row,
   flex,
@@ -23,12 +22,12 @@ import {
   spaceAround,
   fontSmallSize,
 } from '../../styles/constants';
-import {dailySignin, setting} from '../../expand/api';
+import { dailySignin, setting } from '../../expand/api';
+import PropTypes from 'prop-types';
+import { px2dp } from '../../utils/px2dp'
 
 class UserInfo extends React.Component {
   state = {
-    avatar_url: 'https://iph.href.lu/60x60',
-    username: '执念',
     user_menu: [
       {
         id: 1,
@@ -56,23 +55,43 @@ class UserInfo extends React.Component {
       },
     ],
   };
+  static defaultProps = {
+    avatar_url: 'https://iph.href.lu/60x60',
+    username: '执念',
+  };
+  static propTypes = {
+    avatar_url: PropTypes.string,
+    username: PropTypes.string.isRequired, //.isRequired 必传
+  };
+  // props
   componentDidMount() {
-    //this.getDailyData()z
+    const token = AsyncStorage.getItem('token')
+
+    if (token) {
+      console.log('登录成功啦')
+      const { username } = this.props;
+      console.log('username', username)
+    } else {
+      console.log('请检查是否登录')
+    }
   }
   // 签到
   getDailyData() {
-    const {onDailySinger, onSettingData} = this.props;
+    const { onDailySinger, onSettingData } = this.props;
     onDailySinger(dailySignin);
     onSettingData(setting);
   }
   // 跳转
   handleUserInfo = () => {
-    NavigationUtil.goPage(
-      {
-        title: '登录页',
-      },
-      'LoginPage',
-    );
+    const token = AsyncStorage.getItem('token')
+    if (!token) {
+      // 跳转页面
+      NavigationUtil.goPage({ title: '登录页' }, 'LoginPage',);
+    } else {
+      
+      NavigationUtil.goPage({ title: '登录页' }, 'LoginPage',);
+    }
+
   };
   goToPage = (item, title) => {
     NavigationUtil.goPage(
@@ -84,11 +103,12 @@ class UserInfo extends React.Component {
   };
   // 签到
   handeSignin = () => {
-    NavigationUtil.goPage({title: '签到'}, 'SigninPage');
+    NavigationUtil.goPage({ title: '签到' }, 'SigninPage');
   };
   /* 顶部用户信息栏 */
   renderUserInfoTab() {
-    const {user_menu} = this.state;
+    const { user_menu } = this.state;
+    const { username, avatar_url } = this.props
     return (
       <View style={styles.topUserInfoBox}>
         {/* userinfo 头部 */}
@@ -100,11 +120,11 @@ class UserInfo extends React.Component {
               activeOpacity={1}>
               <Image
                 style={styles.image}
-                source={{uri: this.state.avatar_url}}
+                source={{ uri: avatar_url }}
               />
             </TouchableOpacity>
             <View style={styles.usernameBox}>
-              <Text>{this.state.username}</Text>
+              <Text>{username}</Text>
             </View>
           </View>
           <TouchableOpacity
@@ -119,14 +139,14 @@ class UserInfo extends React.Component {
           {user_menu == null
             ? null
             : user_menu.map(item => (
-                <TouchableOpacity
-                  onPress={() => this.goToPage(item.com, item.title)}
-                  key={item.id}
-                  style={styles.menuInfo}>
-                  <Image style={styles.menuImage} source={item.icon} />
-                  <Text style={styles.menuText}>{item.title}</Text>
-                </TouchableOpacity>
-              ))}
+              <TouchableOpacity
+                onPress={() => this.goToPage(item.com, item.title)}
+                key={item.id}
+                style={styles.menuInfo}>
+                <Image style={styles.menuImage} source={item.icon} />
+                <Text style={styles.menuText}>{item.title}</Text>
+              </TouchableOpacity>
+            ))}
         </View>
       </View>
     );
@@ -157,40 +177,40 @@ const styles = StyleSheet.create({
     backgroundColor: defaultBackgroundColor,
   },
   topUserInfoBox: {
-    marginTop: 20,
-    width: 345,
+    marginTop: px2dp(20),
+    width: px2dp(345),
     backgroundColor: '#eee',
-    height: 120,
+    height: px2dp(120),
     alignSelf: center,
-    borderRadius: 10,
+    borderRadius: px2dp(10),
   },
   userTopBox: {
-    height: 60,
-    width: 345,
+    height: px2dp(60),
+    width: px2dp(345),
     borderBottomColor: '#ddd',
     borderStyle: 'solid',
-    borderBottomWidth: 0.5,
+    borderBottomWidth: px2dp(0.5),
     flexDirection: row,
     justifyContent: spaceBetween,
   },
   avatarBox: {
     flexDirection: row,
-    marginLeft: 10,
-    marginTop: 5,
+    marginLeft: px2dp(10),
+    marginTop: px2dp(5),
   },
   avatarImageBox: {
-    width: 48,
-    height: 48,
+    width: px2dp(48),
+    height: px2dp(48),
     overflow: 'hidden',
-    borderRadius: 25,
+    borderRadius: px2dp(25),
   },
   image: {
-    width: 50,
-    height: 50,
+    width: px2dp(50),
+    height: px2dp(50),
   },
   usernameBox: {
     justifyContent: center,
-    marginLeft: 10,
+    marginLeft: px2dp(10),
   },
   text: {
     fontSize: defaultFontSize,
@@ -198,14 +218,14 @@ const styles = StyleSheet.create({
     color: fontColor,
   },
   signBox: {
-    marginRight: 10,
-    height: 30,
+    marginRight: px2dp(10),
+    height: px2dp(30),
     alignItems: center,
     alignSelf: center,
     justifyContent: center,
-    width: 60,
-    borderRadius: 15,
-    borderWidth: 1,
+    width: px2dp(60),
+    borderRadius: px2dp(15),
+    borderWidth: px2dp(1),
     borderStyle: 'solid',
     borderColor: '#d5d5d5d5',
   },
@@ -218,14 +238,17 @@ const styles = StyleSheet.create({
     // backgroundColor: 'red',
     flexDirection: row,
     justifyContent: spaceAround,
-    marginTop: 10,
+    marginTop: px2dp(10),
   },
-  menuInfo: {},
+  menuInfo: {
+    // width: px2dp(345),
+    // alignSelf:center
+  },
   menuImage: {
-    width: 24,
-    height: 24,
+    width: px2dp(24),
+    height: px2dp(24),
     alignSelf: center,
-    marginBottom: 6,
+    marginBottom: px2dp(6),
   },
   menuText: {
     fontFamily: iosFontFmily,

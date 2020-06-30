@@ -12,6 +12,7 @@ import {
   center,
 } from '../../../styles/constants';
 import NavigationUtil from '../../../utils/NavigationUtil';
+import { px2dp } from '../../../utils/px2dp';
 
 const listArr = [
   {
@@ -99,7 +100,10 @@ export default class PersonalItem extends React.Component {
   _list() {
     const {list} = this.state;
     return (
-      <View>
+      <View style={{
+        width: px2dp(345),
+        alignSelf: 'center'
+      }}>
         {list == null
           ? null
           : list.map(item => {
@@ -133,7 +137,7 @@ const styles = StyleSheet.create({
   },
   listBox: {
     height: 56,
-    width: screentWidth,
+    //width: screentWidth,
     flexDirection: row,
     borderBottomColor: '#ddd',
     borderBottomWidth: 1,

@@ -57,7 +57,7 @@ class GuessLikePage extends React.Component {
    * 跳转页面
    */
   goGuessLikePage = () => {
-    NavigationUtil.goPage({title: '猜你喜欢'}, 'GuessLikeMore');
+    NavigationUtil.goPage({title: '猜你喜欢'}, 'Player');
   };
   /**
    * 渲染推荐喜欢列表

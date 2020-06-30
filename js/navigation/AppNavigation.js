@@ -32,7 +32,7 @@ import PlayListPage from '../view/Index/PlayListPage';
 import GuessLikeMore from '../view/Index/components/GuessLikeMore';
 import SigninPage from '../view/Personal/Signin';
 import RankingDetail from '../view/Index/RankingDetail';
-import Player from '../components/Player';
+import Player from '../view/Player/Player';
 import MyMessage from '../view/Personal/Widget/MyMessage';
 import SearchPage from '../view/Index/SerachPage';
 import Anchors from '../view/Radio/Anchor';
@@ -41,6 +41,7 @@ import Selected from '../view/Radio/Selected';
 import MoreRadio from '../view/Radio/MoreRadio';
 import NoticesPage from '../view/Notices/NoticesPage';
 import VideoPalyer from '../view/Video/VideoPalyer';
+import SelectMorePage from '../view/Index/SelectMorePage';
 
 export const rootCom = 'Init';
 
@@ -230,6 +231,12 @@ const MainNavigator = createStackNavigator({
   },
   VideoPalyer: {
     screen: VideoPalyer,
+    navigationOptions: {
+      header: null
+    }
+  },
+  SelectMorePage: {
+    screen: SelectMorePage,
     navigationOptions: {
       header: null
     }

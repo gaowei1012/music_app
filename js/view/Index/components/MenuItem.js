@@ -8,7 +8,6 @@ import {
   spaceBetween,
   iosFontFmily,
   fontColor,
-  defaultFontSize,
 } from '../../../styles/constants';
 import {screentWidth} from '../../../utils/screenUtil';
 import NavigationUtil from '../../../utils/NavigationUtil';
@@ -41,12 +40,12 @@ export default class MenuItem extends React.Component {
         icon: require('../../../images/common/radio.png'),
         com: 'RadioPage',
       },
-      {
-        id: 5,
-        text: '推荐',
-        icon: require('../../../images/common/recommen.png'),
-        com: 'RecommenPage',
-      },
+      // {
+      //   id: 5,
+      //   text: '推荐',
+      //   icon: require('../../../images/common/recommen.png'),
+      //   com: 'RecommenPage',
+      // },
     ],
   };
   goToPage(text, com) {

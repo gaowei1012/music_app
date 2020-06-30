@@ -41,20 +41,18 @@ class SearchPage extends PureComponent {
     onChangeText(value) {
         this.setState({
             value
-        }, () => {
-            console.log('vvvvvv', this.state.value)
         })
-        console.log('value', value)
     }
 
     render() {
         const {data, value} = this.state;
         const search = this.props.search.item;
-        if (!search) {
-            return <View>
-                <Text>没有相关歌曲</Text>
-            </View>
-        };
+        console.log('search', search)
+        // if (!search) {
+        //     return <View>
+        //         <Text>没有相关歌曲</Text>
+        //     </View>
+        // };
         // 搜索区域
         const searchInput = (
             <TextInput
@@ -79,6 +77,7 @@ class SearchPage extends PureComponent {
         // 搜索内容展示区
         const searchContent = (
             <View style={styles.searchContentBox}>
+                {!search && <Text>数据加载中</Text>}
                 {search && search.map(item => (
                     <TouchableOpacity onPress={null} style={styles.searchItemBox} key={item.id}>
                         <Text>{item.name}</Text>

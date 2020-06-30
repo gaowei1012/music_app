@@ -230,17 +230,17 @@ PODS:
     - React-cxxreact (= 0.61.5)
     - React-jsi (= 0.61.5)
     - ReactCommon/jscallinvoker (= 0.61.5)
-  - ReactNativeUiLib (5.1.2):
+  - ReactNativeUiLib (5.1.3):
     - React
   - RNCAsyncStorage (1.8.1):
     - React
-  - RNDateTimePicker (2.1.0):
+  - RNDateTimePicker (2.1.2):
     - React
   - RNGestureHandler (1.5.3):
     - React
   - RNReanimated (1.7.0):
     - React
-  - RNScreens (2.3.0):
+  - RNScreens (2.0.0-beta.2):
     - React
   - RNSound (0.11.0):
     - React
@@ -398,9 +398,14 @@ SPEC CHECKSUMS:
   React-jsinspector: fa0ecc501688c3c4c34f28834a76302233e29dc0
   react-native-blur: cad4d93b364f91e7b7931b3fa935455487e5c33c
   react-native-orientation-locker: f0ca1a8e5031dab6b74bfb4ab33a17ed2c2fcb0d
+<<<<<<< HEAD
   react-native-slider: b34d943dc60deb96d952ba6b6b249aa8091e86da
   react-native-spinkit: da294fd828216ad211fe36a5c14c1e09f09e62db
   react-native-video: 961749da457e73bf0b5565edfbaffc25abfb8974
+=======
+  react-native-slider: e51492f1264d882a8815b71c5870f8978e52887d
+  react-native-video: d01ed7ff1e38fa7dcc6c15c94cf505e661b7bfd0
+>>>>>>> 53243ceb2c7aa283e4400c24d695719fe95e4770
   React-RCTActionSheet: 600b4d10e3aea0913b5a92256d2719c0cdd26d76
   React-RCTAnimation: 791a87558389c80908ed06cc5dfc5e7920dfa360
   React-RCTBlob: d89293cc0236d9cb0933d85e430b0bbe81ad1d72
@@ -411,13 +416,13 @@ SPEC CHECKSUMS:
   React-RCTText: 9ccc88273e9a3aacff5094d2175a605efa854dbe
   React-RCTVibration: a49a1f42bf8f5acf1c3e297097517c6b3af377ad
   ReactCommon: 198c7c8d3591f975e5431bec1b0b3b581aa1c5dd
-  ReactNativeUiLib: 6cbafa6c46e76cb84027ec2f986925db70eb08c1
-  RNCAsyncStorage: 00bdf63f7f1e0f11d3323533dba4f222e58bf092
-  RNDateTimePicker: 68e542a59ff1b73563744145bfc45c2b88a3deea
+  ReactNativeUiLib: d466c160bb28fdbf85aea78e8397142fe0a7b909
+  RNCAsyncStorage: e0dd7c8a36543b4ef84969acd9f8aceba3a92dc2
+  RNDateTimePicker: 80e458b4499318a3476a75c7df4358f522c0202e
   RNGestureHandler: 02905abe54e1f6e59c081a10b4bd689721e17aa6
   RNReanimated: 031fe8d9ea93c2bd689a40f05320ef9d96f74d7f
-  RNScreens: 03bf608b92ac0acf323f47d8f5b63a8f829340c8
-  RNSound: c980916b596cc15c8dcd2f6ecd3b13c4881dbe20
+  RNScreens: 5e4758109c6d35f9a009ce72af873df907548020
+  RNSound: da030221e6ac7e8290c6b43f2b5f2133a8e225b0
   RNVectorIcons: 0bb4def82230be1333ddaeee9fcba45f0b288ed4
   Yoga: f2a7cd4280bfe2cca5a7aed98ba0eb3d1310f18b
 
