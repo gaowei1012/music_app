@@ -91,7 +91,7 @@ class VideoPalyer extends React.PureComponent {
       minute = minute >= 10 ? minute : "0" + minute;
       second = second >= 10 ? second : "0" + second;
       return minute + ":" + second;
-  }
+    }
 
 
     // 获取当前的 播放时间 

@@ -3,29 +3,87 @@ import {px2dp} from '../../utils/px2dp'
 import Slider from '@react-native-community/slider'
 import Video from 'react-native-video'
 import {SafeAreaView,View,Text,StyleSheet,TouchableOpacity,Image} from 'react-native'
+import {GoBack} from '../../utils/GoBack'
 
 export default class Player extends React.PureComponent {
+    constructor(props) {
+        super(props)
+        this.state = {
+            iconItem: [
+                {id: 1, icon: require('../../images/player/like.png')},
+                {id: 2, icon: require('../../images/player/dowload.png')},
+                {id: 3, icon: require('../../images/player/sing.png')},
+                {id: 4, icon: require('../../images/player/comment.png')},
+                {id: 5, icon: require('../../images/player/more.png')},
+            ],
+            iconFotter: [
+                {id: 11, icon: require('../../images/player/cycle.png'), className: 'icon'},
+                {id: 22, icon: require('../../images/player/prev.png'), className: 'icon'},
+                {id: 33, icon: require('../../images/player/player.png'), className: 'icon'},
+                {id: 44, icon: require('../../images/player/next.png'), className: 'icon'},
+                {id: 55, icon: require('../../images/player/moreIocn.png'), className: 'icon'}
+            ],
+            url: 'http://m8.music.126.net/20200528094608/8aed0cf62a533d298f057f130d6c87e5/ymusic/0fd6/4f65/43ed/a8772889f38dfcb91c04da915b301617.mp3',
+            rate: 1,
+            muted: false,
+            resizeMode: 'contain',
+            duration: 0.0, // 总时长
+            currentTime: 0.0, // 当前播放时长
+            silderValue: 0, // 当前进度条长度
+            paused: true, // 播放暂停
+            isFullScreen: false,
 
-    state = {
-        iconItem: [
-            {id: 1, icon: require('../../images/player/like.png')},
-            {id: 2, icon: require('../../images/player/dowload.png')},
-            {id: 3, icon: require('../../images/player/sing.png')},
-            {id: 4, icon: require('../../images/player/comment.png')},
-            {id: 5, icon: require('../../images/player/more.png')},
-        ],
-        iconFotter: [
-            {id: 11, icon: require('../../images/player/cycle.png'), className: 'icon'},
-            {id: 22, icon: require('../../images/player/prev.png'), className: 'icon'},
-            {id: 33, icon: require('../../images/player/player.png'), className: 'icon'},
-            {id: 44, icon: require('../../images/player/next.png'), className: 'icon'},
-            {id: 55, icon: require('../../images/player/moreIocn.png'), className: 'icon'}
-        ],
-        url: 'http://m8.music.126.net/20200528094608/8aed0cf62a533d298f057f130d6c87e5/ymusic/0fd6/4f65/43ed/a8772889f38dfcb91c04da915b301617.mp3'
+        }
     }
 
     componentDidMount() {
         // song/url?id=33894312
+    }
+
+    // 格式化时间
+    formatMediaTime(time) {
+        let minute = Math.floor(time / 60);
+        let second = parseInt(time - minute * 60);
+        minute = minute >= 10 ? minute : "0" + minute;
+        second = second >= 10 ? second : "0" + second;
+        return minute + ":" + second;
+    }
+
+    // 获取当前播放时间
+    customerOnprogress(e) {
+        let time = e.currentTime;
+        this.setState({
+          currentTime: time,
+          sliderValue: time,
+        })
+      };
+
+    // 处理总时长 并进行格式化
+    customerOnload(e) {
+        let time = e.duration;
+        this.setState({
+            duration: time
+        })
+    }
+
+    // 改变滑块 改变音乐播放进度
+    customerSliderValue(value) {
+        this.player.seek(value)
+      };
+
+    _player=()=> {
+        return <Video
+            ref={(ref) => {
+                this.player = ref
+            }}
+            source={{uri: this.state.url}}
+            rate={this.state.rate}
+            muted={this.state.muted}
+            resizeMode={this.state.resizeMode}
+            onLoad={(e) => this.customerOnload(e)}
+            onProgress={(e) => this.customerOnprogress(e)}
+            repeat={false}
+        />
     }
 
     render() {
@@ -49,7 +107,7 @@ export default class Player extends React.PureComponent {
         const likeMeunItem = (
             <View style={styles.likeItemBox}>
                 {iconItem && iconItem.map(item => (
-                    <TouchableOpacity style={styles.imgBox} activeOpacity={0.8} key={item.id}>
+                    <TouchableOpacity style={styles.imgBox} activeOpacity={1} key={item.id}>
                         <Image style={{width: '100%', height: '100%'}} source={item.icon} />
                     </TouchableOpacity>
                 ))}
@@ -58,19 +116,27 @@ export default class Player extends React.PureComponent {
         // 进度条
         const playerSilder = (
             <View style={styles.playerSilderBox}>
-                <Text style={styles.playerStart}>00:00</Text>
+                <Text style={styles.playerStart}>{this.formatMediaTime(this.state.currentTime)}</Text>
                 <Slider 
                     style={{width: px2dp(240)}}
                     maximumTrackTintColor={'#d5d5d5'}
+                    value={this.state.silderValue}
+                    maximumValue={this.state.duration}
+                    thumbTintColor='#fff'
+                    //thumbImage={require('../../images/player/player.png')}
+                    step={1}
+                    onValueChange={() => {
+                        this.customerSliderValue
+                    }}
                 />
-                <Text style={styles.playerEnd}>04:30</Text>
+                <Text style={styles.playerEnd}>{this.formatMediaTime(this.state.duration)}</Text>
             </View>
         );
         // 底部播放
         const playerFotter = (
             <View style={styles.playerFooterBox}>
                 {iconFotter && iconFotter.map(item => (
-                    <TouchableOpacity key={item.id} style={styles.fotterImgBox}>
+                    <TouchableOpacity activeOpacity={.9} key={item.id} style={styles.fotterImgBox}>
                         {
                             item.className == 'icon' ? 
                                 <Image style={{width: px2dp(30), height: px2dp(30)}} source={item.icon}/> 
@@ -83,6 +149,7 @@ export default class Player extends React.PureComponent {
         );
         return (
             <SafeAreaView style={styles.container}>
+                {this._player()}
                 {playerAndmin}
                 {likeMeunItem}
                 {playerSilder}
