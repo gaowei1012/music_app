@@ -38,7 +38,7 @@ class VideoPage extends React.Component {
     this.setState({
       top_menu: type
     })
-    console.log('name', name)
+    //console.log('name', name)
     this.getData(name)
   }
   getData = (name = '全部') => {
@@ -63,8 +63,8 @@ class VideoPage extends React.Component {
               onPress={() => this.switchTab(a.type, a.name)}
               key={a.id}
             >
-              <Text style={[this.state.top_menu === a.type ? styles.actionText : null]}>{a.name}</Text>
-              <View style={[this.state.top_menu === a.type ? styles.actionLine : null]}/>
+              <Text style={[this.state.top_menu === a.type ? styles.actionText : styles.noActionText]}>{a.name}</Text>
+              <View style={[this.state.top_menu === a.type ? styles.actionLine : styles.noActionLine]}/>
             </TouchableOpacity>
           )
         })}
@@ -243,5 +243,16 @@ const styles = StyleSheet.create({
   },
   actionText: {
     color: 'red'
+  },
+  noActionText: {
+    color: '#333'
+  },
+  noActionLine: {
+    width: px2dp(16),
+    height: px2dp(1),
+    borderRadius: px2dp(10),
+    backgroundColor: '#fff',
+    marginTop: px2dp(6),
+    alignSelf: 'center'
   }
 });
