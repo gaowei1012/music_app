@@ -13,7 +13,8 @@ import {
   defaultFontSize,
   iosFontFmily,
 } from '../../styles/constants';
-import { Input, Button } from 'react-native-elements';
+// import { Input, Button } from 'react-native-elements';
+import MusicButton from '../../components/Button';
 import { connect } from 'react-redux';
 import actions from '../../redux/actions/index';
 // import Storage from 'react-native-storage';
@@ -124,11 +125,12 @@ class LoginPage extends React.Component {
         >
           <Text style={{color: '#fff'}}>登录</Text>
         </TouchableOpacity> */}
-        <Button
+        {/* <Button
           title="登录"
           onPress={this.handleSubmit}
           buttonStyle={styles.submitBox}
-        />
+        /> */}
+        <MusicButton text={'登录'}/>
       </View>
     );
   }
