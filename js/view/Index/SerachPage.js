@@ -1,6 +1,6 @@
 import React, {PureComponent} from 'react'
 import TopNavigationBar from '../../common/TopNavigationBar'
-import {SafeAreaView, View, Text, StyleSheet, TextInput, ScrollView, TouchableOpacity} from 'react-native'
+import {SafeAreaView, View, Text, StyleSheet, TextInput, ScrollView, TouchableOpacity, FlatList, Alert} from 'react-native'
 import actions from '../../redux/actions'
 import {connect} from 'react-redux'
 import {search} from '../../expand/api'
@@ -13,7 +13,7 @@ class SearchPage extends PureComponent {
         data: [
             {id: 112, title: '天堂'},{id: 221, title: '天堂'},{id: 213, title: '天堂'}
         ],
-        value: ''
+        value: '',
     }
 
     componentDidMount() {
@@ -44,16 +44,27 @@ class SearchPage extends PureComponent {
         })
     }
 
+    _renderItem=(data)=> {
+        console.log('data', data)
+        // const item = data.item;
+        // return <TouchableOpacity onPress={null} style={styles.searchItemBox} key={item.id}>
+        //         <Text>{item.name}</Text>
+        //     </TouchableOpacity>
+    }
+
+    _flatlist=()=> {
+        const search = this.props.search.item;
+        if (!search) {
+            return <View/>
+        }
+        return <FlatList
+            data={search}
+            renderItem={this._renderItem}
+        />
+    }
+
     render() {
         const {data, value} = this.state;
-        const search = this.props.search.item;
-        console.log('search', search)
-        // if (!search) {
-        //     return <View>
-        //         <Text>没有相关歌曲</Text>
-        //     </View>
-        // };
-        // 搜索区域
         const searchInput = (
             <TextInput
                 style={styles.textInput}
@@ -74,26 +85,15 @@ class SearchPage extends PureComponent {
             </View>
         );
 
-        // 搜索内容展示区
-        const searchContent = (
-            <View style={styles.searchContentBox}>
-                {!search && <Text>数据加载中</Text>}
-                {search && search.map(item => (
-                    <TouchableOpacity onPress={null} style={styles.searchItemBox} key={item.id}>
-                        <Text>{item.name}</Text>
-                    </TouchableOpacity>
-                ))}
-            </View>
-        );
-
         return (
             <SafeAreaView style={styles.container}>
                 {this.topnavigationbar()}
                 {searchInput}
-                {searchHistory}
-                <ScrollView>
+                {/* {searchHistory} */}
+                {/* <ScrollView>
                     {searchContent}
-                </ScrollView>
+                </ScrollView> */}
+                {this._renderItem()}
             </SafeAreaView>
         )
     }
@@ -127,7 +127,7 @@ const styles = StyleSheet.create({
         paddingLeft: px2dp(6),
     },
     searchHistory: {
-        marginTop: px2dp(20),
+        marginTop: px2dp(10),
         marginLeft:  px2dp(24),
         marginRight: px2dp(24),
     },
